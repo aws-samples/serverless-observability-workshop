@@ -1,21 +1,19 @@
 const AWSXRay = require('aws-xray-sdk-core')
 const AWS = AWSXRay.captureAWS(require('aws-sdk'))
 const docClient = new AWS.DynamoDB.DocumentClient()
-const { MetricUnit } = require('../lib/helper/models')
-const { putMetric } = require('../lib/logging/logger')
-
-let _cold_start = true
+const { logger_setup } = require('../lib/logging/logger')
+let log
 
 exports.getAllItemsHandler = async (event, context) => {
+    log = logger_setup()
+    let response
 
+    log.info(event)
+    log.info(context)
     try {
-        if (_cold_start) {
-            //Metrics
-            await putMetric(name = 'ColdStart', unit = MetricUnit.Count, value = 1, { service: 'item_service', function_name: context.functionName })
-            _cold_start = false
-        }
         if (event.httpMethod !== 'GET') {
-            await putMetric(name = 'UnsupportedHTTPMethod', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-all-items' })
+            // Logging
+            log.error({ "operation": "get-all-items", 'method': 'getAllItemsHandler', "details": `getAllItems only accept GET method, you tried: ${event.httpMethod}` })
             throw new Error(`getAllItems only accept GET method, you tried: ${event.httpMethod}`)
         }
 
@@ -27,9 +25,9 @@ exports.getAllItemsHandler = async (event, context) => {
             },
             body: JSON.stringify(items)
         }
-        //Metrics
-        await putMetric(name = 'SuccessfullGetAllItems', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-all-items' })
     } catch (err) {
+        // Logging
+        log.error({ "operation": "get-all-items", 'method': 'getAllItemsHandler', "details": err })
         response = {
             statusCode: 500,
             headers: {
@@ -37,10 +35,9 @@ exports.getAllItemsHandler = async (event, context) => {
             },
             body: JSON.stringify(err)
         }
-        //Metrics
-        await putMetric(name = 'FailedGetAllItems', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-all-items' })
     }
-
+    // Logging
+    log.info({ operation: 'get-all-items', 'method': 'getAllItemsHandler', eventPath: event.path, statusCode: response.statusCode, body: JSON.parse(response.body) })
     return response
 }
 

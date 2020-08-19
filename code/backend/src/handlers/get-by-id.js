@@ -64,7 +64,7 @@ exports.getByIdHandler = async (event, context) => {
     } finally {
       subsegment.close()
     }
-    log.info({ operation: 'get-by-id', 'method': 'getByIdHandler', eventPath: event.path, statusCode: response.statusCode, body: response.body })
+    log.info({ operation: 'get-by-id', 'method': 'getByIdHandler', eventPath: event.path, statusCode: response.statusCode, body: JSON.parse(response.body) })
     return response
   }, AWSXRay.getSegment());
 }

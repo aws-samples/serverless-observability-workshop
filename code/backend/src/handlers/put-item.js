@@ -63,7 +63,7 @@ exports.putItemHandler = async (event, context) => {
         } finally {
             subsegment.close()
         }
-        log.info({ operation: 'put-item', 'method': 'putItemHandler', eventPath: event.path, statusCode: response.statusCode, body: response.body })
+        log.info({ operation: 'put-item', 'method': 'putItemHandler', eventPath: event.path, statusCode: response.statusCode, body: JSON.parse(response.body) })
         return response
 
     }, AWSXRay.getSegment());

@@ -48,6 +48,7 @@ Modify the function handler to handle Cold Starts occurences and push the above 
 ```javascript
 
 exports.putItemHandler = async (event, context) => {
+    let response
     try {
         if (event.httpMethod !== 'POST') {
             throw new Error(`PutItem only accept POST method, you tried: ${event.httpMethod}`)
@@ -81,6 +82,7 @@ to :
 ```javascript
 
 exports.putItemHandler = async (event, context) => {
+    let response
     try {
         if (_cold_start) {
             //Metrics
@@ -153,7 +155,7 @@ Modify the function handler to handle Cold Starts occurences and push the above 
 ```javascript
 
 exports.getAllItemsHandler = async (event, context) => {
-
+    let response
     try {
         if (event.httpMethod !== 'GET') {
             throw new Error(`getAllItems only accept GET method, you tried: ${event.httpMethod}`)
@@ -186,7 +188,7 @@ to :
 ```javascript
 
 exports.getAllItemsHandler = async (event, context) => {
-
+    let response
     try {
         if (_cold_start) {
             //Metrics

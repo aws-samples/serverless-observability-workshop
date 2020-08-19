@@ -14,7 +14,7 @@ exports.getAllItemsHandler = async (event, context) => {
 
         log.info(event)
         log.info(context)
-
+ 
         try {
             if (_cold_start) {
                 //Metrics
@@ -62,7 +62,7 @@ exports.getAllItemsHandler = async (event, context) => {
         } finally {
             subsegment.close()
         }
-        log.info({ operation: 'get-all-items', 'method': 'getAllItemsHandler', eventPath: event.path, statusCode: response.statusCode, body: response.body })
+        log.info({ operation: 'get-all-items', 'method': 'getAllItemsHandler', eventPath: event.path, statusCode: response.statusCode, body: JSON.parse(response.body) })
         return response
     }, AWSXRay.getSegment());
 }

@@ -1,9 +1,9 @@
 const AWSXRay = require('aws-xray-sdk-core')
 const AWS = AWSXRay.captureAWS(require('aws-sdk'))
 const docClient = new AWS.DynamoDB.DocumentClient()
-const { logger_setup } = require('../lib/logging/logger')
 
 exports.getAllItemsHandler = async (event, context) => {
+    let response
     try {
         if (event.httpMethod !== 'GET') {
             throw new Error(`getAllItems only accept GET method, you tried: ${event.httpMethod}`)
