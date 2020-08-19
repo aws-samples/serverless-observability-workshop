@@ -1,20 +1,11 @@
 const AWSXRay = require('aws-xray-sdk-core')
 const AWS = AWSXRay.captureAWS(require('aws-sdk'))
 const docClient = new AWS.DynamoDB.DocumentClient()
-const { MetricUnit } = require('../lib/helper/models')
-const { logger_setup, putMetric, logMetric } = require('../lib/logging/logger')
-
-let _cold_start = true
+const { logger_setup } = require('../lib/logging/logger')
 
 exports.putItemHandler = async (event, context) => {
     try {
-        if (_cold_start) {
-            //Metrics
-            await putMetric(name = 'ColdStart', unit = MetricUnit.Count, value = 1, { service: 'item_service', function_name: context.functionName })
-            _cold_start = false
-        }
         if (event.httpMethod !== 'POST') {
-            await putMetric(name = 'UnsupportedHTTPMethod', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
             throw new Error(`PutItem only accept POST method, you tried: ${event.httpMethod}`)
         }
 
@@ -27,8 +18,6 @@ exports.putItemHandler = async (event, context) => {
             },
             body: JSON.stringify(item)
         }
-        //Metrics
-        await putMetric(name = 'SuccessfulPutItem', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
     } catch (err) {
         response = {
             statusCode: 500,
@@ -37,8 +26,6 @@ exports.putItemHandler = async (event, context) => {
             },
             body: JSON.stringify(err)
         }
-        //Metrics
-        await putMetric(name = 'FailedPutItem', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
     }
     return response
 }
