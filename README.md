@@ -1,4 +1,4 @@
-![Build](https://github.com/enr1c091/serverless-observability-workshop/workflows/Build/badge.svg)
+![Build](https://github.com/aws-samples/serverless-observability-workshop/workflows/Build/badge.svg)
 
 # AWS Serverless Observability Workshop 
 

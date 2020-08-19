@@ -14,7 +14,7 @@ sectionPagesMenu = "main"
 enableEmoji = true
 
 [params]
-  editURL = "https://github.com/enr1c091/serverless-observability-workshop/edit/master/workshop-content/workshop/content/"
+  editURL = "https://github.com/aws-samples/serverless-observability-workshop/edit/master/workshop-content/workshop/content/"
   description = "AWS Serverless Observability Workshop"
   author = "Enrico Bergamo"
   disableBreadcrumb = false
@@ -81,7 +81,7 @@ weight = 3
 
 [[menu.shortcuts]]
 name = "<i class='fab fa-github'></i> GitHub Project"
-url = "https://github.com/enr1c091/serverless-observability-workshop"
+url = "https://github.com/aws-samples/serverless-observability-workshop"
 weight = 4
 
 [[menu.shortcuts]]
