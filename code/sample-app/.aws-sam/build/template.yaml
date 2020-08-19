@@ -1,0 +1,132 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: observability-app
+Transform:
+- AWS::Serverless-2016-10-31
+Globals:
+  Function:
+    Runtime: nodejs12.x
+    Timeout: 100
+    Tracing: Active
+    MemorySize: 128
+    CodeUri: ./
+    Environment:
+      Variables:
+        APP_NAME:
+          Ref: SampleTable
+        SAMPLE_TABLE:
+          Ref: SampleTable
+        SERVICE_NAME: item_service
+        ENABLE_DEBUG: false
+        AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+  Api:
+    TracingEnabled: true
+Resources:
+  Api:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+  getAllItemsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/get-all-items.getAllItemsHandler
+      Description: A simple example includes a HTTP get method to get all items from
+        a DynamoDB table.
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: SampleTable
+      - CloudWatchPutMetricPolicy: {}
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: Api
+            Path: /items
+            Method: GET
+      CodeUri: getAllItemsFunction
+  getByIdFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/get-by-id.getByIdHandler
+      Description: A simple example includes a HTTP get method to get one item by
+        id from a DynamoDB table.
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: SampleTable
+      - CloudWatchPutMetricPolicy: {}
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: Api
+            Path: /items/{id}
+            Method: GET
+      CodeUri: getByIdFunction
+  putItemFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/put-item.putItemHandler
+      Description: A simple example includes a HTTP post method to add one item to
+        a DynamoDB table.
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: SampleTable
+      - CloudWatchPutMetricPolicy: {}
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: Api
+            Path: /items
+            Method: POST
+      CodeUri: putItemFunction
+  SampleTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: id
+        Type: String
+  ApiAccessLogGroup:
+    Type: AWS::Logs::LogGroup
+    DependsOn: Api
+    Properties:
+      LogGroupName:
+        Fn::Sub: /aws/apigateway/${Api}
+      RetentionInDays: 7
+  GetByIdLogGroup:
+    Type: AWS::Logs::LogGroup
+    DependsOn: getByIdFunction
+    Properties:
+      LogGroupName:
+        Fn::Sub: /aws/lambda/${getByIdFunction}
+      RetentionInDays: 7
+  GetAllItemsLogGroup:
+    Type: AWS::Logs::LogGroup
+    DependsOn: getAllItemsFunction
+    Properties:
+      LogGroupName:
+        Fn::Sub: /aws/lambda/${getAllItemsFunction}
+      RetentionInDays: 7
+  PutItemLogGroup:
+    Type: AWS::Logs::LogGroup
+    DependsOn: putItemFunction
+    Properties:
+      LogGroupName:
+        Fn::Sub: /aws/lambda/${putItemFunction}
+      RetentionInDays: 7
+Outputs:
+  ApiUrl:
+    Description: API Gateway endpoint URL for Prod stage
+    Value:
+      Fn::Sub: https://${Api}.execute-api.${AWS::Region}.amazonaws.com/Prod/
+  SampleTable:
+    Value:
+      Fn::GetAtt:
+      - SampleTable
+      - Arn
+    Description: Sample Data Table ARN

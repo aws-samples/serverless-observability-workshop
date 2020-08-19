@@ -1,0 +1,90 @@
+RelativeURLs=true
+CanonifyURLs=true
+languageCode = "en-US"
+defaultContentLanguage = "en"
+
+title = "AWS Serverless Observability Workshop"
+theme = "learn"
+metaDataFormat = "yaml"
+defaultContentLanguageInSubdir= true
+
+uglyurls = false
+sectionPagesMenu = "main"
+
+enableEmoji = true
+
+[params]
+  editURL = "https://github.com/enr1c091/serverless-observability-workshop/edit/master/workshop-content/workshop/content/"
+  description = "AWS Serverless Observability Workshop"
+  author = "Enrico Bergamo"
+  disableBreadcrumb = false
+  disableNextPrev = false
+  themeVariant = "mine"
+  disableSearch = false
+  disableAssetsBusting = false
+  disableLanguageSwitchingButton = true
+  disableShortcutsTitle = false
+  disableInlineCopyToClipBoard = true
+  pygmentsUseClasses = true
+  pygmentsCodefencesGuessSyntax = true
+  pygmentsCodeFences = true
+  pygmentsStyle = "monokai"
+
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+page = [ "HTML" ]
+
+[blackfriday]
+plainIDAnchors = true
+hrefTargetBlank = true
+
+#[Languages]
+#[Languages.en]
+#title = "AWS Serverless Observability Workshop"
+#weight = 1
+#languageName = "English"
+
+#[Languages.es]
+#title = "AWS Serverless Observability Workshop"
+#weight = 2
+#languageName = "Español"
+
+#[Languages.pt]
+#title = "AWS Serverless Observability Workshop"
+#weight = 3
+#languageName = "Português"
+
+#
+
+[menu]
+  [[menu.main]]
+    identifier = "Prerequisites"
+    name = "This is the Mu track"
+    title = "Workshop using Mu"
+    url = "/mu/"
+    weight = -110
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-tags'></i> Tags"
+url = "/tags"
+weight = 1
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-bookmark'></i> More Resources"
+url = "/more_resources"
+weight = 2
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-users'></i> Authors"
+url = "/authors"
+weight = 3
+
+[[menu.shortcuts]]
+name = "<i class='fab fa-github'></i> GitHub Project"
+url = "https://github.com/enr1c091/serverless-observability-workshop"
+weight = 4
+
+[[menu.shortcuts]]
+name = "<i class='fas fa-envelope'></i> Feedback / Questions?"
+url = "mailto:serverless-observability-workshop@amazon.com"
+weight = 5

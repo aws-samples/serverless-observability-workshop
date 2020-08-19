@@ -1,0 +1,38 @@
+#name - DNS-friendly name for the workshop. This will be used when generating the hosting URL (ie. https://my-first-workshop.workshops.aws/)
+name: observability
+#title - The title of your workshop
+title: AWS Serverless Observability Workshop
+#description - A short description that will be displayed in search results
+description: Gaining Observability in your Serverless Applications! 
+#categories - Refer to official AWS categories covered by the workshop content here
+categories: 
+  - Serverless
+  - Developer
+  - Compute
+#services - Refer to the official AWS service names covered by the workshop content here
+services: 
+   - Api Gateway
+   - Lambda
+   - DynamoDB
+   - CloudFormation
+   - Cloud Development Kit
+   - CloudWatch
+   - Serverless Application Model
+   - X-Ray
+#level - Approximate skill level needed for this workshop
+level: 300
+#duration - Estimated duration in minutes
+duration: 120 
+#cost - Cost in USD. If the content is offered without cost, enter 0
+cost: 0 
+#author - Amazon alias of the primary author of the content
+author: enricosb 
+#audience - Names of the personas associated with this workshop
+audience: 
+  - IT Professional
+  - Solutions Architect
+  - Software Engineer
+  - DevOps Engineer
+  - SRE
+  - Developer
+  - SysOps
