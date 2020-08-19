@@ -17,6 +17,7 @@ phases:
       - echo Entered the build phase ...
       - echo Build started on `date`
       - cd $CODEBUILD_SRC_DIR/workshop
+      - git clone https://github.com/matcornic/hugo-theme-learn.git themes/learn
       - cd ../
       - hugo --quiet
     finally:
