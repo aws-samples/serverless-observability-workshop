@@ -14,7 +14,7 @@ sectionPagesMenu = "main"
 enableEmoji = true
 
 [params]
-  editURL = "https://github.com/aws-samples/serverless-observability-workshop/edit/master/workshop-content/workshop/content/"
+  editURL = "https://github.com/aws-samples/serverless-observability-workshop/edit/master/workshop/content/"
   description = "AWS Serverless Observability Workshop"
   author = "Enrico Bergamo"
   disableBreadcrumb = false

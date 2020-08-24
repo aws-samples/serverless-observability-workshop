@@ -27,7 +27,7 @@ let log
 
 ```
 
-#### Adding PutMetric 
+#### Instrumenting Logs 
 
 Modify the function handler to handle Cold Starts occurences and push the above defined metrics:
 
