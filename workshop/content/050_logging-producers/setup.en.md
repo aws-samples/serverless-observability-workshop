@@ -1,6 +1,6 @@
 +++
 title = "Setting Up Logger Library"
-weight = 51
+weight = 52
 +++
 
 To help us print our logs in a strutured way to CloudWatch Logs we will be using the [lambda-log](https://www.npmjs.com/package/lambda-log) NPM module, which already logs our log entries as a structured JSON and also allow us to define additional metadata and attributes to enrich our logs for further analysis and correlations. To ease some of the complexity of setting up the module in our code, you'll find a lib folder under `/serverless-observability-workshop/code/sample-app/src/lib` containing some helper functions ready to be imported across our Lambda functions. 

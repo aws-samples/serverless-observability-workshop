@@ -1,6 +1,6 @@
 +++
 title = "Analyze Logs in the Console"
-weight = 53
+weight = 54
 +++
 
 Go to your [CloudWatch Console](https://console.aws.amazon.com/cloudwatch/home).
@@ -22,3 +22,8 @@ You should be able to  see something like the print screen below containing at l
 
 ![metrics-3](/images/log_producer_3.png)
 
+#### API Gateway Logs
+
+Also, make sure to investigate the logs generated when invoking our APIs via API Gateway
+
+![metrics-3](/images/log_producer_api.png)

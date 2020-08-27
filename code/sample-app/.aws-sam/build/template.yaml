@@ -23,8 +23,42 @@ Globals:
 Resources:
   Api:
     Type: AWS::Serverless::Api
+    DependsOn: ApiCWLRoleArn
     Properties:
       StageName: Prod
+      AccessLogSetting:
+        DestinationArn:
+          Fn::Sub: ${ApiAccessLogGroup.Arn}
+        Format: '{ ''requestId'':''$context.requestId'', ''ip'': ''$context.identity.sourceIp'',
+          ''caller'':''$context.identity.caller'', ''user'':''$context.identity.user'',''requestTime'':''$context.requestTime'',
+          ''xrayTraceId'':''$context.xrayTraceId'', ''wafResponseCode'':''$context.wafResponseCode'',
+          ''httpMethod'':''$context.httpMethod'',''resourcePath'':''$context.resourcePath'',
+          ''status'':''$context.status'',''protocol'':''$context.protocol'', ''responseLength'':''$context.responseLength''
+          }'
+      MethodSettings:
+      - MetricsEnabled: true
+        ResourcePath: /*
+        HttpMethod: '*'
+  ApiCWLRoleArn:
+    Type: AWS::ApiGateway::Account
+    Properties:
+      CloudWatchRoleArn:
+        Fn::GetAtt:
+        - CloudWatchRole
+        - Arn
+  CloudWatchRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          Action: sts:AssumeRole
+          Effect: Allow
+          Principal:
+            Service: apigateway.amazonaws.com
+      Path: /
+      ManagedPolicyArns:
+      - arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs
   getAllItemsFunction:
     Type: AWS::Serverless::Function
     Properties:

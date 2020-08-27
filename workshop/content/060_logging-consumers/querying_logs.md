@@ -15,12 +15,20 @@ The sample query fetches the `@timestamp` and `@message` fields from the log dat
 
 ![metrics-1](/images/query_logs_2.png)
 
+#### Querying API Gateway Custom Access Logging
+
+You can also switch your log group preference to the `/aws/apigateway/` log group in order to query for access logs of our API, while maintaining the same query statement.
+
+![metrics-1](/images/query_logs_api.png)
+
 {{% notice tip %}}
 Learn more about Logs Insights syntax and queries [here](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html)
 {{% /notice %}}
 
 
 #### Simple list with filter and sort 
+
+Select once again the `/aws/lambda/sam-app-getAllItemsFunction` log group.
 
 Now paste this query into the log field. The following query applies a filter on the messages and fetches only the records that contain the string `operation` in the log event and displays the result ordered by the timestamp field in descending order
 
