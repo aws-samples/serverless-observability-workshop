@@ -1,8 +1,9 @@
 +++
-title = "Partner Solutions"
+title = "Partner Solutions (TBA)"
 chapter = true
 weight = 100
 +++
 
 # Partner Solutions
-![Cleaned Environment](/images/cleanup.svg)
+
+This module is currently in progress.

@@ -1,7 +1,7 @@
 ---
 title: "Delete the Synthetic Canary API"
 chapter: false
-weight: 74
+weight: 72
 ---
 
 ```sh
