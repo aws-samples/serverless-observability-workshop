@@ -6,6 +6,10 @@ weight = 40
 
 # Synthetic Canaries
 
-[Continuous integration (CI)](https://aws.amazon.com/devops/continuous-integration/) and [continuous delivery (CD)](https://aws.amazon.com/devops/continuous-delivery/) are essential for deft organizations. Teams are more productive when they can make discrete changes frequently, release those changes programmatically and deliver updates without disruption.
+You can use Amazon CloudWatch Synthetics to create canaries, configurable scripts that run on a schedule, to monitor your endpoints and APIs. Canaries follow the same routes and perform the same actions as a customer, which makes it possible for you to continually verify your customer experience even when you don’t have any customer traffic on your applications. By using canaries, you can discover issues before your customers do.
 
-In this module, we will build a CI/CD pipeline for our serverless application using [AWS CodeCommit](https://aws.amazon.com/codecommit/), [AWS CodeBuild](https://aws.amazon.com/codebuild/) and [AWS CodePipeline](https://aws.amazon.com/codepipeline/). The CI/CD pipeline will deploy our sample Node.js service in multiple environments, we will make a change to the CodeCommit repository and observe the automated delivery of this change to our account.
+Canaries are Node.js scripts. They create Lambda functions in your account that use Node.js as a framework. Canaries can use the Puppeteer Node.js library to perform functions on your applications. Canaries work over HTTP and HTTPS protocols.
+
+Canaries check the availability and latency of your endpoints and can store load time data and screenshots of the UI. They monitor your REST APIs, URLs, and website content, and they can check for unauthorized changes from phishing, code injection and cross-site scripting.
+
+For a video demonstration of canaries, see the [Amazon CloudWatch Synthetics Demo video](https://www.youtube.com/watch?v=hF3NM9j-u7I).

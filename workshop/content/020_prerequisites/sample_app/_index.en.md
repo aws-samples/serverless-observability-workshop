@@ -75,6 +75,11 @@ export ApiUrl=$(aws cloudformation describe-stacks --stack-name sam-app --output
 echo "export ApiUrl="$ApiUrl
 ```
 
+{{% notice warning %}}
+Note down your API Url endpoint because it might end up being a requirement in a later module.
+{{% /notice %}}
+
+
 #### Test the `Put Item` operation
 
 ```sh
