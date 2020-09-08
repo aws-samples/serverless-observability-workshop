@@ -88,6 +88,11 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref SampleTable
         - CloudWatchPutMetricPolicy: {}
+        - SNSPublishMessagePolicy:
+            TopicName: !Sub ${NewItemTopic.TopicName}
+      Environment:
+        Variables:
+          TOPIC_NAME: !Ref NewItemTopic
       Events:
         Api:
           Type: Api
@@ -95,6 +100,24 @@ Resources:
             RestApiId: !Ref Api
             Path: /items
             Method: POST
+
+  notifiyNewItemFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/notify-item.notifiyNewItemHandler
+      Description: A simple example that is triggered by a SNS message to notify of a new item insertion.
+      Events:
+        TopicListener:
+          Type: SNS
+          Properties:
+            Topic: !Ref NewItemTopic
+            FilterPolicy:
+              Status:
+                - Success
+
+# SNS Topic
+  NewItemTopic:
+    Type: AWS::SNS::Topic
 
 # DynamoDB Table            
   SampleTable:
@@ -131,6 +154,13 @@ Resources:
     DependsOn: putItemFunction
     Properties:
       LogGroupName: !Sub /aws/lambda/${putItemFunction}
+      RetentionInDays: 7
+
+  NotifyItemLogGroup:
+    Type: AWS::Logs::LogGroup
+    DependsOn: notifiyNewItemFunction
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${notifiyNewItemFunction}
       RetentionInDays: 7
 
 # IAM Role for 

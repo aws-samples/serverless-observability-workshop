@@ -1,5 +1,5 @@
 +++
-title = "CloudWatch Contributor Insights (TBA)"
+title = "Contributor Insights (TBA)"
 chapter = true
 weight = 90
 +++

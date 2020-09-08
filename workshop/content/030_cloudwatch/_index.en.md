@@ -1,5 +1,5 @@
 +++
-title = "CloudWatch Metrics, Alarms, and Dashboards"
+title = "Metrics, Alarms, and Dashboards"
 chapter = true
 weight = 30
 +++

@@ -7,7 +7,7 @@ weight = 20
 
 ```sh
 cd ~/environment
-git clone https://github.com/enr1c091/serverless-observability-workshop.git
+git clone https://github.com/aws-samples/serverless-observability-workshop.git
 cd serverless-observability-workshop/code/sample-app
 ```
 
@@ -22,6 +22,7 @@ After we deploy this application, the following resources will be provisioned in
 ### Deploying your application
 
 ```sh
+cd ~/environment/serverless-observability-workshop/code/sample-app
 npm install
 sam build
 sam deploy -g

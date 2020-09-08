@@ -1,7 +1,5 @@
-const AWSXRay = require('aws-xray-sdk-core')
-const AWS = AWSXRay.captureAWS(require('aws-sdk'))
+const AWS = require('aws-sdk')
 const docClient = new AWS.DynamoDB.DocumentClient()
-const { logger_setup } = require('../lib/logging/logger')
 
 exports.getByIdHandler = async (event, context) => {
   let response

@@ -39,7 +39,6 @@ exports.getAllItemsHandler = async (event, context) => {
             await logMetric(name = 'SuccessfulGetAllItems', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-all-items' })
             //Tracing
             log.debug('Adding All Items Retrieval annotation')
-            subsegment.addMetadata('items', items)
             subsegment.addAnnotation('ItemsCount', items.Count)
             subsegment.addAnnotation('Status', 'SUCCESS')
         } catch (err) {
