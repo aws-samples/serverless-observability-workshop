@@ -10,4 +10,4 @@ Welcome! In this workshop, we will explore some of the techniques you can adopt 
 
 # Spoiler Alert
 
-Each workshop module is designed to be completely independent without depending on the previous module completion, except for the `Prerequisites` and the `Logging - Producers + Consumers` modules. In this way, you can plan your day/event to accomplish or deliver the entire workshop or specific modules that capture your attention.
+Each workshop module is designed to be completely independent without depending on the previous module completion, except for the `Prerequisites`. In this way, you can plan your day/event to accomplish or deliver the entire workshop or specific modules that capture your attention.

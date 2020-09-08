@@ -1,5 +1,5 @@
 +++
-title = "Metrics, Alarms, and Dashboards"
+title = "Metrics and Dashboards"
 chapter = true
 weight = 30
 +++
