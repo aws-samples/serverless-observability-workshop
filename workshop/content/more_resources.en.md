@@ -7,8 +7,8 @@ Discover more AWS resources for building and running your application on AWS:
 
 #### More Workshops
 
+* [AWS Observability Workshop](https://observability.workshop.aws/) - This workshop oversees observability as a whole and outside the serverless scope, and is a big source of inspiration to this workshop.
 * [AWS Wild Rydes Serverless Workshops](https://github.com/aws-samples/aws-serverless-workshops) - This repository contains a collection of workshops and other hands on content that will guide you through building various serverless applications using AWS Lambda, Amazon API Gateway, Amazon DynamoDB, AWS Step Functions, Amazon Kinesis, and other services. The following workshops are available: **Web Application, Auth, Data Processing, DevOps, Image Processing, Multi Region, Security and Machine Learning.**
-* [Monolith to Serverless SaaS Workshop](https://decompose-monolith.serverlessworkshops.io/) In this workshop, we’ll start with a traditional monolithic architecture for a working sample application. Then, we’ll progressively migrate the elements of the single-tenant monolithic architecture to a modern multi-tenant solution. This will include moving to a modern web application, introducing the API Gateway, decomposing the application tier into serverless microservices.
 
 #### Tools for AWS Lambda, Serverless Applications and CI/CD Pipelines
 

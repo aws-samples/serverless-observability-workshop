@@ -8,7 +8,7 @@ disableToc: true
 The AWS Serverless Observability Workshop website has been developed by:
 
 * **Enrico Bergamo** - Labs, content, website & format
-* **Justin Pirtle** - Labs, content, website & format
+* **Justin Pirtle** - Labs, content & format
 
 ### Thanks to our wonderful contributors <i class="fas fa-heart"></i> for making Open Source a better place!
 

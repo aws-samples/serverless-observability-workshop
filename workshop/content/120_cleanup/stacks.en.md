@@ -18,6 +18,14 @@ If you completed the `CloudWatch Metrics, Alarms, and Dashboards > Pushing Metri
 aws cloudformation delete-stack --stack-name log-processing
 ```
 
+#### Delete the stack for distributed tracing
+
+If you completed the `Distributed Tracing` module:
+
+```sh
+aws cloudformation delete-stack --stack-name sam-app-tracing
+```
+
 #### Delete the stack for the CDK-based CW Metrics Dashboard
 
 If you completed the `CloudWatch Metrics, Alarms, and Dashboards > Creating Dashboards` module:
