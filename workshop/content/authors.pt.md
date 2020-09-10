@@ -27,6 +27,6 @@ This website is the result of many reviews and contributions.
 
 ##### GitHub Contributor(s) <i class='fas fa-heart'></i>
 
-Please go to [Contributors page](https://github.com/enr1c091/serverless-observability-workshop/graphs/contributors) to checkout authors for this Workshop
+Please go to [Contributors page](https://github.com/aws-samples/serverless-observability-workshop/graphs/contributors) to checkout authors for this Workshop
 
 Thanks to our wonderful contributors <i class="fas fa-heart"></i>

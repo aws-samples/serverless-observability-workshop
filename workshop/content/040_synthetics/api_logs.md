@@ -10,15 +10,15 @@ Go to [Synthetics canary](https://console.aws.amazon.com/cloudwatch/home?#synthe
 
 ### Creating an API Canary
 
-- Select **API canary** under **Blueprints**.
-- Name it **my-api-canary**.
-- Select the **GET** method.
-- Add your API endpoint under **Application or endpoint URL** with the **/items** route.
-- On **Schedule** configure it to run every **1 minute**.
+1. Select **API canary** under **Blueprints**.
+1. Name it **my-api-canary**.
+1. Select the **GET** method.
+1. Add your API endpoint under **Application or endpoint URL** with the **/items** route.
+1. On **Schedule** configure it to run every **1 minute**.
 
 ![synthetics-2](/images/synthetics2.png)
 
-- Accept all other default configurations and click **Create canary**.
+6. Accept all other default configurations and click **Create canary**.
 
 {{% notice tip %}}
 If you  didn't take a note of your API Url after deploying the sample app, you can always check for its CloudFormation Stack Output Variable of type the following command on your **Cloud9 environment terminal**.
@@ -34,23 +34,21 @@ After a few minutes, you should be presented with a similar screen to observe yo
 
 ### Introducing Failures
 
-Let's see what happens if we accidentaly break our API? Since we are monitoring the GET method for the `/items/` route, we are going to modify our `get-all-items.js` Lambda function.
+Let's see what happens if we accidentaly break our API? Since we are monitoring the GET method for the `/items/` route, we are going to modify our ***get-all-items.js*** Lambda function in order to introduce a random exception to make our canary fail.
 
-Switch back to your **Cloud9 environment** and open the file at `/serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js`. Modify it from:
+7. Switch back to your **Cloud9 environment** and open the file at ***/serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js***. Modify the `getAllItemsHandler()` method by throwing a new error right after it's HTTP method validation:
 
 ```javascript
-exports.getAllItemsHandler = async (event, context) => {
-    let response
-    try {
-        if (event.httpMethod !== 'GET') {
-            throw new Error(`getAllItems only accept GET method, you tried: ${event.httpMethod}`)
-        }
-
-        const items = await getAllItems()
+    if (event.httpMethod !== 'GET') {
+        throw new Error(`getAllItems only accept GET method, you tried: ${event.httpMethod}`)
+    }
+    throw new Error('Sample exception introduction') // <- Sample exception throw 
 ```
 
-to:
+8. Save your changes to the ***serverless-observability-workshop/code/sample-app-tracing/src/handlers/get-all-items.js*** file.
 
+**Your getAllItemsHandler() method should look like this:**
+{{% expand "Fully modified method (expand for code)" %}}
 ```javascript
 exports.getAllItemsHandler = async (event, context) => {
     let response
@@ -61,7 +59,27 @@ exports.getAllItemsHandler = async (event, context) => {
         throw new Error('Sample exception introduction') // <- Sample exception throw 
 
         const items = await getAllItems()
+        response = {
+            statusCode: 200,
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify(items)
+        }
+    } catch (err) {
+        response = {
+            statusCode: 500,
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify(err)
+        }
+    }
+    return response
+}
 ```
+{{% /expand  %}}
+
 
 #### Deploy the application
 
@@ -85,24 +103,18 @@ Click the **my-api-canary** link to view all additional information about your c
 
 #### Rebasing the application code
 
-For us to be able to pass our canary tests again, switch back to your **Cloud9 environment** and open the file at `/serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js` onceagain. 
+In order for us to be able to pass our canary tests again, we are going to switch back to your **Cloud9 environment** and open the file at ***/serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js*** once again. 
 
-Remove the error we just introduced by modifying the Lambda handler from:
+9. We are now going to remove the error we just introduced by modifying the Lambda handler removing the `throw new Error()` command we introduced in the `getAllItemsHandler()` method:
 
 ```javascript
-exports.getAllItemsHandler = async (event, context) => {
-    let response
-    try {
-        if (event.httpMethod !== 'GET') {
-            throw new Error(`getAllItems only accept GET method, you tried: ${event.httpMethod}`)
-        }
-        throw new Error('Sample exception introduction') // <- Sample exception throw 
-
-        const items = await getAllItems()
+throw new Error('Sample exception introduction') // <- Remove exception throw 
 ```
 
-to:
+10. Save your changes to the ***serverless-observability-workshop/code/sample-app-tracing/src/handlers/get-all-items.js*** file.
 
+**Your getAllItemsHandler() method should look like this:**
+{{% expand "Fully modified method (expand for code)" %}}
 ```javascript
 exports.getAllItemsHandler = async (event, context) => {
     let response
@@ -112,6 +124,24 @@ exports.getAllItemsHandler = async (event, context) => {
         }
 
         const items = await getAllItems()
+        response = {
+            statusCode: 200,
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify(items)
+        }
+    } catch (err) {
+        response = {
+            statusCode: 500,
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify(err)
+        }
+    }
+    return response
+}
 ```
 
 #### Deploy the application
