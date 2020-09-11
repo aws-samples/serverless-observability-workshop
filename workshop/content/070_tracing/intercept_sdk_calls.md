@@ -11,7 +11,7 @@ You can also leverage the AWS X-Ray SDK to capture traces for [Incoming Requests
 
 ### Modify the application
 
-Go back you your **Cloud9** environment and open your app workspace at `serverless-observability-workshop/code/sample-app-tracing/src/handlers/put-item.js`.
+Go back you your **Cloud9** environment and open your app workspace at ***serverless-observability-workshop/code/sample-app-tracing/src/handlers/put-item.js***.
 
 We are now going import the `aws-xray-sdk-core` module and instead of purely requiring the `aws-sdk` module using the `const AWS = AWSXRay.captureAWS(require('aws-sdk'))` syntax, we are going to import it using X-Ray to capture all AWS Services calls using the AWS SDK.
 
@@ -34,6 +34,15 @@ sam deploy
 ```
 
 ### Test the APIs 
+
+#### Export the stack output variables
+
+To invoke our API's, we first need to fetch the `ApiUrl` output variable that our CloudFormation stack gives us. So let us iterate through our stack and export all output variables as environment variables:
+
+```sh
+export ApiUrl=$(aws cloudformation describe-stacks --stack-name sam-app-tracing --output json | jq '.Stacks[].Outputs[] | select(.OutputKey=="ApiUrl") | .OutputValue' | sed -e 's/^"//'  -e 's/"$//')
+echo "export ApiUrl="$ApiUrl
+```
 
 #### Test the `Put Item` operation
 
@@ -72,7 +81,7 @@ Go to [ServiceLens Service Map](https://console.aws.amazon.com/cloudwatch/home?#
 
 ![Service Lens](/images/tracing_sdk_1.png)
 
-You are now able to see the tracing between **Client -> API Gateway -> Lambda -> Other Downstream Services** and the same additional properties (latency, requests/secs, and 5xx erros) we already saw in the previous step.
+You are now able to see the tracing between `Client -> API Gateway -> Lambda -> Other Downstream Services` and the same additional properties (latency, requests/secs, and 5xx erros) we already saw in the previous step.
 
 - Click the **notifyNewItemFunction** node in the Service Map.
 - Click **View Traces**
@@ -93,6 +102,6 @@ You are now able to dig into the details of a specific request you want to troub
 
 ![Service Lens](/images/tracing_sdk_5.png)
 
-You can also see the response time and additional annotations and metadada of each **segment** and **subsegment** for each node of the request trace. Analyzing a bit further, you can see the `AWS X-Ray SDK` captured the calls we did to both `DynamoDB` and `SNS`, as well as the `API Operations` we performed. 
+You can also see the response time and additional annotations and metadada of each `segment` and `subsegment` for each node of the request trace. Analyzing a bit further, you can see the `AWS X-Ray SDK` captured the calls we did to both `DynamoDB` and `SNS`, as well as the `API Operations` we performed. 
 
 ![Service Lens](/images/tracing_sdk_6.png)

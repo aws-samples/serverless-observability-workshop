@@ -9,7 +9,9 @@ Go to [CloudWatch Logs Insights console](https://console.aws.amazon.com/cloudwat
 
 ![metrics-1](/images/query_logs_1.png)
 
-As you can see a sample query is automatically placed in the query field. Now simply click on `Run query` button to execute the query results. As expected, you will see results from the query.
+As you can see a sample query is automatically placed in the query field. 
+
+Now simply click on **Run query** button to execute the query results. As expected, you will see results from the query.
 
 The sample query fetches the `@timestamp` and `@message` fields from the log data, orders by the timestamp field in descending order and displays the first 20 records.
 
@@ -68,7 +70,7 @@ You can query the log groups using AWS CLI as well. The query below queries top 
 Make sure you replace the log group to the appropriate one you have on your account and change the start and end time parameter values to the right epoch time values. You can calculate epoch time values from this public website - https://www.epochconverter.com/
 
 {{% notice tip %}}
-For simplicity reasons, the timestamps below are set between **24th Aug, 2020** to **24th Aug, 2022**.
+For simplicity reasons, the timestamps below are set between `24th Aug, 2020` to `24th Aug, 2022`.
 {{% /notice %}}
 
 ```sh

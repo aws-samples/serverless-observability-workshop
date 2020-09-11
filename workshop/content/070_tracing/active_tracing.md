@@ -7,9 +7,9 @@ weight = 72
 
 ### Modify the application
 
-Go back you your **Cloud9** environment and open your app workspace at `serverless-observability-workshop/code/sample-app-tracing`.
+Go back you your **Cloud9** environment and open your app workspace at ***serverless-observability-workshop/code/sample-app-tracing***.
 
-We are going to edit the `template.yaml` file to include `Active Tracing` for all **Lambda** functions and **API Gateway** stages we add in our template. Open the your YAML template and locate the Global section. Enable both `Tracing` attribute for Lambda and `TracingEnabled` for API Gateway.
+We are going to edit the ***serverless-observability-workshop/code/sample-app-tracing/template.yaml*** file to include `Active Tracing` for all `Lambda` functions and `API Gateway` stages we add in our template. Open the your YAML template and locate the Global section. Enable both `Tracing` attribute for Lambda and `TracingEnabled` for API Gateway.
 
 ```yaml
 Globals:
@@ -41,6 +41,15 @@ sam deploy
 
 ### Test the APIs 
 
+#### Export the stack output variables
+
+To invoke our API's, we first need to fetch the `ApiUrl` output variable that our CloudFormation stack gives us. So let us iterate through our stack and export all output variables as environment variables:
+
+```sh
+export ApiUrl=$(aws cloudformation describe-stacks --stack-name sam-app-tracing --output json | jq '.Stacks[].Outputs[] | select(.OutputKey=="ApiUrl") | .OutputValue' | sed -e 's/^"//'  -e 's/"$//')
+echo "export ApiUrl="$ApiUrl
+```
+
 #### Test the `Get All Items` operation
 
 ```sh
@@ -53,4 +62,4 @@ Go to [ServiceLens Service Map](https://console.aws.amazon.com/cloudwatch/home?#
 
 ![Service Lens](/images/tracing-1.png)
 
-You are now able to see the tracing between **Client -> API Gateway -> Lambda** with some additional properties such as each node's latency, requests/secs, and 5xx erros without instrumenting any type of code. But that doesn't really add much value in case we need to perform any deeper troubleshootings, right? In the next step, we are going to start instrumenting calls to other AWS services in our application.
+You are now able to see the tracing between `Client -> API Gateway -> Lambda` with some additional properties such as each node's latency, requests/secs, and 5xx erros without instrumenting any type of code. But that doesn't really add much value in case we need to perform any deeper troubleshootings, right? In the next step, we are going to start instrumenting calls to other AWS services in our application.

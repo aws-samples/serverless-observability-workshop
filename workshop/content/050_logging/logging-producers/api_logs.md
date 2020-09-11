@@ -11,59 +11,46 @@ Spare a couple of minutes to go through the available access logging variables f
 
 ### Update the SAM Template
 
-In order to enable logging in our API, we must alter our SAM Template file at `serverless-observability-workshop/code/sample-app/template.yaml` to add our desired logging pattern as well as the required resources to support it, which consist of an IAM Role with the proper permissions to enable API Gateway to push logs to CloudWatch Logs, and enabling this feature to API Gateway itself.
+In order to enable logging in our API, we must alter our SAM Template file at ***serverless-observability-workshop/code/sample-app/template.yaml*** to add our desired logging pattern as well as the required resources to support it, which consist of an IAM Role with the proper permissions to enable API Gateway to push logs to CloudWatch Logs, and enabling this feature to API Gateway itself.
 
-Find in your `template.yaml` file the resource declaration of your API Gateway stage and update it from:
+1. Edit the ***serverless-observability-workshop/code/sample-app/template.yaml*** file the resource declaration of your API Gateway stage and update by enabling `AccessLogSetting` to the `API Gateway` resource and also creating an `IAM Role` granting permission to push logs to CloudWatch Logs and attaching this role to your `API Gateway` resource:
 
-```yaml
-
-Resources:
-# API Gateway
-  Api:
-    Type: AWS::Serverless::Api
-    Properties:
-      StageName: Prod
-      
-```
-
-to:
- 
-```yaml
-Resources:
-# API Gateway
-  Api:
-    Type: AWS::Serverless::Api
-    DependsOn: ApiCWLRoleArn
-    Properties:
-      StageName: Prod
-      AccessLogSetting:
-        DestinationArn: !Sub ${ApiAccessLogGroup.Arn} # This Log Group is already created within our SAM Template
-        Format: "{ 'requestId':'$context.requestId', 'ip': '$context.identity.sourceIp', 'caller':'$context.identity.caller', 'user':'$context.identity.user','requestTime':'$context.requestTime', 'xrayTraceId':'$context.xrayTraceId', 'wafResponseCode':'$context.wafResponseCode', 'httpMethod':'$context.httpMethod','resourcePath':'$context.resourcePath', 'status':'$context.status','protocol':'$context.protocol', 'responseLength':'$context.responseLength' }"
-      MethodSettings:
-        - MetricsEnabled: True
-          ResourcePath: '/*'
-          HttpMethod: '*'
-
-  ApiCWLRoleArn:
-    Type: AWS::ApiGateway::Account
-    Properties: 
-      CloudWatchRoleArn: !GetAtt CloudWatchRole.Arn
-
-# IAM Role for API GW + CWL
-  CloudWatchRole:
-      Type: AWS::IAM::Role
+  ```yaml
+  Resources:
+  # API Gateway
+    Api:
+      Type: AWS::Serverless::Api
+      DependsOn: ApiCWLRoleArn
       Properties:
-        AssumeRolePolicyDocument:
-          Version: '2012-10-17'
-          Statement:
-            Action: 'sts:AssumeRole'
-            Effect: Allow
-            Principal:
-              Service: apigateway.amazonaws.com
-        Path: /
-        ManagedPolicyArns:
-          - 'arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs'
-      
-```
+        StageName: Prod
+        AccessLogSetting:
+          DestinationArn: !Sub ${ApiAccessLogGroup.Arn} # This Log Group is already created within our SAM Template
+          Format: "{ 'requestId':'$context.requestId', 'ip': '$context.identity.sourceIp', 'caller':'$context.identity.caller', 'user':'$context.identity.user','requestTime':'$context.requestTime', 'xrayTraceId':'$context.xrayTraceId', 'wafResponseCode':'$context.wafResponseCode', 'httpMethod':'$context.httpMethod','resourcePath':'$context.resourcePath', 'status':'$context.status','protocol':'$context.protocol', 'responseLength':'$context.responseLength' }"
+        MethodSettings:
+          - MetricsEnabled: True
+            ResourcePath: '/*'
+            HttpMethod: '*'
 
-You can now save and close your file. 
+    ApiCWLRoleArn:
+      Type: AWS::ApiGateway::Account
+      Properties: 
+        CloudWatchRoleArn: !GetAtt CloudWatchRole.Arn
+
+  # IAM Role for API GW + CWL
+    CloudWatchRole:
+        Type: AWS::IAM::Role
+        Properties:
+          AssumeRolePolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              Action: 'sts:AssumeRole'
+              Effect: Allow
+              Principal:
+                Service: apigateway.amazonaws.com
+          Path: /
+          ManagedPolicyArns:
+            - 'arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs'
+        
+  ```
+
+2. Save the modofications to the ***serverless-observability-workshop/code/sample-app/template.yaml*** file. 

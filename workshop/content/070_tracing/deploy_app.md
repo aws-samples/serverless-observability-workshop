@@ -5,10 +5,8 @@ weight = 71
 
 First of all, let's get to our sample application for this exercise.
 
-Go back you your **Cloud9** environment and navigate the sample app at `serverless-observability-workshop/code/sample-app-tracing`
-
 {{% notice tip %}}
-Spare a couple of minutes to understand which resources are being provisioned in the `template.yaml` file as well as its Lambda functions.
+Spare a couple of minutes to understand which resources are being provisioned in the ***serverless-observability-workshop/code/sample-app-tracing/template.yaml*** file as well as its Lambda functions.
 {{% /notice %}}
 
 For the sake of showing a more complete example of active tracing in place, we will be adding a second link to our `Put Item` service in a way that for each new item recorded, a message will be sent to a SNS Topic which will later trigger another Lambda function to notify an administrator about this new item insertion.
@@ -19,43 +17,44 @@ After we deploy this application, the following resources will be provisioned in
 
 ### Deploying your application
 
-```sh
-cd ~/environment/serverless-observability-workshop/code/sample-app-tracing
-npm install
-sam build
-sam deploy -g
-```
+1. Go back you your **Cloud9** environment and navigate the sample app at ***serverless-observability-workshop/code/sample-app-tracing***
 
-Enter the following settings when prompted:
+    ```sh
+    cd ~/environment/serverless-observability-workshop/code/sample-app-tracing
+    npm install
+    sam build
+    sam deploy -g
+    ```
 
-```sh
-        Setting default arguments for 'sam deploy'
-        =========================================
-        Stack Name [sam-app]: sam-app-tracing
-        AWS Region [us-east-1]: 
-        #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
-        Confirm changes before deploy [y/N]: N
-        #SAM needs permission to be able to create roles to connect to the resources in your template
-        Allow SAM CLI IAM role creation [Y/n]: Y
-        getAllItemsFunction may not have authorization defined, Is this okay? [y/N]: Y
-        getByIdFunction may not have authorization defined, Is this okay? [y/N]: Y
-        putItemFunction may not have authorization defined, Is this okay? [y/N]: Y
-        Save arguments to samconfig.toml [Y/n]: Y 
-```
+1. Enter the following settings when prompted:
 
-Wait for a few minutes and then enter the following when prompted again:
+    ```sh
+            Setting default arguments for 'sam deploy'
+            =========================================
+            Stack Name [sam-app]: sam-app-tracing
+            AWS Region [us-east-1]: 
+            #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
+            Confirm changes before deploy [y/N]: N
+            #SAM needs permission to be able to create roles to connect to the resources in your template
+            Allow SAM CLI IAM role creation [Y/n]: Y
+            getAllItemsFunction may not have authorization defined, Is this okay? [y/N]: Y
+            getByIdFunction may not have authorization defined, Is this okay? [y/N]: Y
+            putItemFunction may not have authorization defined, Is this okay? [y/N]: Y
+            Save arguments to samconfig.toml [Y/n]: Y 
+    ```
+
+1. Wait for a few minutes and then enter the following when prompted again:
+
+    ```sh
+    Changeset created successfully. arn:aws:cloudformation:us-east-1:1234567890:changeSet/samcli-deploy135353414/3d893bb8-2ecf-4491-9022-0644f5534da
 
 
-```sh
-Changeset created successfully. arn:aws:cloudformation:us-east-1:1234567890:changeSet/samcli-deploy135353414/3d893bb8-2ecf-4491-9022-0644f5534da
+    Previewing CloudFormation changeset before deployment
+    ======================================================
+    Deploy this changeset? [y/N]: Y
+    ```
 
-
-Previewing CloudFormation changeset before deployment
-======================================================
-Deploy this changeset? [y/N]: Y
-```
-
-Follow [this deep link to CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=sam-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) to keep up with the stack deployment.
+1. Follow [this deep link to CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=sam-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) to keep up with the stack deployment.
 
 ![Sample Architecture](/images/samstacks.png)
 
