@@ -14,21 +14,21 @@ sectionPagesMenu = "main"
 enableEmoji = true
 
 [params]
-  editURL = "https://github.com/aws-samples/serverless-observability-workshop/edit/master/workshop/content/"
-  description = "AWS Serverless Observability Workshop"
-  author = "Enrico Bergamo"
-  disableBreadcrumb = false
-  disableNextPrev = false
-  themeVariant = "mine"
-  disableSearch = false
-  disableAssetsBusting = false
-  disableLanguageSwitchingButton = true
-  disableShortcutsTitle = false
-  disableInlineCopyToClipBoard = true
-  pygmentsUseClasses = true
-  pygmentsCodefencesGuessSyntax = true
-  pygmentsCodeFences = true
-  pygmentsStyle = "tango"
+editURL = "https://github.com/aws-samples/serverless-observability-workshop/edit/master/workshop/content/"
+description = "AWS Serverless Observability Workshop"
+author = "Enrico Bergamo"
+disableBreadcrumb = false
+disableNextPrev = false
+themeVariant = "mine"
+disableSearch = false
+disableAssetsBusting = false
+disableLanguageSwitchingButton = true
+disableShortcutsTitle = false
+disableInlineCopyToClipBoard = true
+#pygmentsUseClasses = true
+pygmentsCodefencesGuessSyntax = true
+pygmentsCodeFences = true
+pygmentsStyle = "monokai"
 
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
