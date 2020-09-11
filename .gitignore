@@ -112,5 +112,5 @@ template-export.yml
 packaged.yaml
 samconfig.toml
 
-/workshop/themes
+# /workshop/themes
 /workshop/public
