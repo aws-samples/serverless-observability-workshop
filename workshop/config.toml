@@ -28,7 +28,7 @@ enableEmoji = true
   pygmentsUseClasses = true
   pygmentsCodefencesGuessSyntax = true
   pygmentsCodeFences = true
-  pygmentsStyle = "monokai"
+  pygmentsStyle = "tango"
 
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
