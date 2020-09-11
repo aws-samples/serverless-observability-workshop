@@ -18,7 +18,7 @@ cdk deploy -c stack_name=sam-app
 ```
 
 {{% notice tip %}}
-Spare a couple of minutes to understand how these two SAR apps are being deployed by examining the SAM Template on `serverless-observability-workshop/code/cloudwatch-cdk` file.
+Spare a couple of minutes to understand how these two SAR apps are being deployed by examining the SAM Template on ***serverless-observability-workshop/code/cloudwatch-cdk/lib/cloudwatch-cdk-stack.ts*** file.
 {{% /notice %}}
 
 Go to your [CloudWatch Dashboard Console](https://console.aws.amazon.com/cloudwatch/home?#dashboards:).

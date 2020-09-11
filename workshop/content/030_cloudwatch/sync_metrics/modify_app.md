@@ -3,190 +3,179 @@ title = "Modifying the Application Code"
 weight = 11
 +++
 
+In this step, we are going to define a couple of metrics that we want to capture amongst our three core services, and will instrument the `putMetric()` method to push them synchronously to CloudWatch Metrics.
+
 ### Defining Metrics
 
-We are pushing the following Business & Operational metrics:
-- Cold Starts
-- UnsupportedHTTPMethod
-- SuccessfulPutItem
-- FailedPutItem
-- SuccessfulGetAllItems
-- FailedGetAllItems
+Let's define the following Business & Operational metrics:
+- `ColdStart`
+- `UnsupportedHTTPMethod`
+- `SuccessfulPutItem`
+- `FailedPutItem`
+- `SuccessfulGetAllItems`
+- `FailedGetAllItems`
 
 ### Modifying the Put Item Function
 
 #### Importing Dependencies
 
-Open the Lambda function located on **/serverless-observability-workshop/code/sample-app/src/handlers/put-item.js** and start by importing the required dependencies in the beginning of the file and initializing a `_cold_start` variable to capture cold starts in our lambda executions:
+1. Open the Lambda function located on ***/serverless-observability-workshop/code/sample-app/src/handlers/put-item.js*** and start by importing the required `MetricUnit` and `putMetric` dependencies in the beginning of the file and initializing a `_cold_start` variable to capture cold starts in our lambda executions:
 
-```javascript
+    ```javascript
+    const AWS = require('aws-sdk')
+    const docClient = new AWS.DynamoDB.DocumentClient()
+    const { MetricUnit } = require('../lib/helper/models')
+    const { putMetric } = require('../lib/logging/logger')
 
-const AWSXRay = require('aws-xray-sdk-core')
-const AWS = AWSXRay.captureAWS(require('aws-sdk'))
-const docClient = new AWS.DynamoDB.DocumentClient()
+    let _cold_start = true
+    ```
 
-```
+    #### Adding PutMetric
 
-To:
+1. Now, inside the `putItemHandler()` we are going to test whether it's the first execution of a given Lambda container and label it as `Cold Start`, also pushing this information as a CloudWatch Metric using our `putMetric()` method. Add and `if` statement checking whether the `_cold_start` variable is `true` or `false` right after the beginning of the `try` block.
 
-```javascript
+    ```javascript
+    exports.putItemHandler = async (event, context) => {
+        let response
+        try {
+            if (_cold_start) {
+                //Metrics
+                await putMetric(name = 'ColdStart', unit = MetricUnit.Count, value = 1, { service: 'item_service', function_name: context.functionName })
+                _cold_start = false
+            }
+    ```
 
-const AWSXRay = require('aws-xray-sdk-core')
-const AWS = AWSXRay.captureAWS(require('aws-sdk'))
-const docClient = new AWS.DynamoDB.DocumentClient()
-const { MetricUnit } = require('../lib/helper/models')
-const { putMetric } = require('../lib/logging/logger')
+1. Now, we are going to capture metrics for `UnsupportedHTTPMethod`, instrumenting the `putMetric()` method call if our `if (event.httpMethod !== 'POST')` evaluates true.
 
-let _cold_start = true
-
-```
-
-#### Adding PutMetric 
-
-Modify the function handler to handle Cold Starts occurences and push the above defined metrics:
-
-```javascript
-
-exports.putItemHandler = async (event, context) => {
-    let response
-    try {
-        if (event.httpMethod !== 'POST') {
-            throw new Error(`PutItem only accept POST method, you tried: ${event.httpMethod}`)
-        }
-
-        const item = await putItem(event)
-
-        response = {
-            statusCode: 200,
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify(item)
-        }
-    } catch (err) {
-        response = {
-            statusCode: 500,
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify(err)
-        }
-    }
-    return response
-}
-
-```
-
-to :
-
-```javascript
-
-exports.putItemHandler = async (event, context) => {
-    let response
-    try {
-        if (_cold_start) {
-            //Metrics
-            await putMetric(name = 'ColdStart', unit = MetricUnit.Count, value = 1, { service: 'item_service', function_name: context.functionName })
-            _cold_start = false
-        }
+    ```javascript
         if (event.httpMethod !== 'POST') {
             await putMetric(name = 'UnsupportedHTTPMethod', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
             throw new Error(`PutItem only accept POST method, you tried: ${event.httpMethod}`)
         }
 
-        const item = await putItem(event)
+    ```
 
-        response = {
-            statusCode: 200,
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify(item)
+1. Next, we are ready to add our business metrics for successful and failed item insertions. Still inside your `putItemHandler()`, find and add in the end of your `try` and beginning of your `catch` blocks the metrics for `SuccessfulPutItem` and `FailedPutItem`:
+
+    ```javascript
+        try{
+            //After Sucessful Response Composition
+            //Metrics
+            await putMetric(name = 'SuccessfulPutItem', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
+        } catch (err) {
+            //After Exception Handling
+            //Metrics
+            await putMetric(name = 'FailedPutItem', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
         }
-        //Metrics
-        await putMetric(name = 'SuccessfulPutItem', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
-    } catch (err) {
-        response = {
-            statusCode: 500,
-            headers: {
+    ```
+
+1. Save your changes to the ***serverless-observability-workshop/code/sample-app/src/handlers/put-item.js*** file.
+
+    **Your putItemHandler method should look like the one below**
+
+    {{% expand "Full putItemHandler method (expand for code)" %}}
+  ```javascript
+    exports.putItemHandler = async (event, context) => {
+      let response
+      try {
+          if (_cold_start) {
+              //Metrics
+              await putMetric(name = 'ColdStart', unit = MetricUnit.Count, value = 1, { service: 'item_service', function_name: context.functionName })
+              _cold_start = false
+          }
+          if (event.httpMethod !== 'POST') {
+              await putMetric(name = 'UnsupportedHTTPMethod', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
+              throw new Error(`PutItem only accept POST method, you tried: ${event.httpMethod}`)
+          }
+
+          const item = await putItem(event)
+          response = {
+              statusCode: 200,
+              headers: {
+                  'Access-Control-Allow-Origin': '*'
+              },
+            body: JSON.stringify(item)
+          }
+          //Metrics
+          await putMetric(name = 'SuccessfulPutItem', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
+      } catch (err) {
+          response = {
+              statusCode: 500,
+              headers: {
                 'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify(err)
-        }
-        //Metrics
-        await putMetric(name = 'FailedPutItem', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
-    }
-    return response
-}
+          }
+          //Metrics
+          await putMetric(name = 'FailedPutItem', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
+      }
+      return response
+  }
+  ```
+    {{% /expand %}}
 
-```
 ### Modifying the Get All Items Function
 
 #### Importing Dependencies
 
-Open the Lambda function located on **/serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js** and start by importing the required dependencies in the beginning of the file and initializing a `_cold_start` variable to capture cold starts in our lambda executions:
+1. Open the Lambda function located on ***/serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js*** and start by importing the required `MetricUnit` and `putMetric` dependencies in the beginning of the file and initializing a `_cold_start` variable to capture cold starts in our lambda executions:
 
-```javascript
+    ```javascript
 
-const AWSXRay = require('aws-xray-sdk-core')
-const AWS = AWSXRay.captureAWS(require('aws-sdk'))
-const docClient = new AWS.DynamoDB.DocumentClient()
+    const AWS = require('aws-sdk')
+    const docClient = new AWS.DynamoDB.DocumentClient()
+    const { MetricUnit } = require('../lib/helper/models')
+    const { putMetric } = require('../lib/logging/logger')
 
-```
+    let _cold_start = true
 
-To:
+    ```
 
-```javascript
+    #### Adding PutMetric 
 
-const AWSXRay = require('aws-xray-sdk-core')
-const AWS = AWSXRay.captureAWS(require('aws-sdk'))
-const docClient = new AWS.DynamoDB.DocumentClient()
-const { MetricUnit } = require('../lib/helper/models')
-const { putMetric } = require('../lib/logging/logger')
+1. Now, inside the `getAllItemsHandler()` we are going to test whether it's the first execution of a given Lambda container and label it as `Cold Start`, also pushing this information as a CloudWatch Metric using our `putMetric()` method. Add and `if` statement checking whether the `_cold_start` variable is `true` or `false` right after the beginning of the `try` block.
 
-let _cold_start = true
+    ```javascript
+    exports.getAllItemsHandler = async (event, context) => {
+        let response
+        try {
+            if (_cold_start) {
+                //Metrics
+                await putMetric(name = 'ColdStart', unit = MetricUnit.Count, value = 1, { service: 'item_service', function_name: context.functionName })
+                _cold_start = false
+            }
+    ```
 
-```
+1. Now, we are going to capture metrics for `UnsupportedHTTPMethod`, instrumenting the `putMetric()` method call if our `if (event.httpMethod !== 'GET')` evaluates true.
 
-#### Adding PutMetric 
-
-Modify the function handler to handle Cold Starts occurences and push the above defined metrics:
-
-```javascript
-
-exports.getAllItemsHandler = async (event, context) => {
-    let response
-    try {
+    ```javascript
         if (event.httpMethod !== 'GET') {
+            await putMetric(name = 'UnsupportedHTTPMethod', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-all-items' })
             throw new Error(`getAllItems only accept GET method, you tried: ${event.httpMethod}`)
         }
 
-        const items = await getAllItems()
-        response = {
-            statusCode: 200,
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify(items)
+    ```
+
+1. Next, we are ready to add our business metrics for successful and failed item list retrievals. Still inside your `getAllItemsHandler()`, find and add in the end of your `try` and beginning of your `catch` blocks the metrics for `SuccessfulGetAllItems` and `FailedGetAllItems`:
+
+    ```javascript
+        try{
+            //After Sucessful Response Composition
+            //Metrics
+            await putMetric(name = 'SuccessfulGetAllItems', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-all-items' })
+        } catch (err) {
+            //After Exception Handling
+            //Metrics
+            await putMetric(name = 'FailedGetAllItems', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-all-items' })
         }
-    } catch (err) {
-        response = {
-            statusCode: 500,
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify(err)
-        }
-    }
-    return response
-}
+    ```
 
-```
+1. Save your changes to the ***serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js*** file.
 
-to :
+**Your getAllItemsHandler method should look like the one below**
 
+{{% expand "Full getAllItemsHandler method (expand for code)" %}}
 ```javascript
-
 exports.getAllItemsHandler = async (event, context) => {
     let response
     try {
@@ -221,11 +210,13 @@ exports.getAllItemsHandler = async (event, context) => {
         //Metrics
         await putMetric(name = 'FailedGetAllItems', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-all-items' })
     }
-    
+        
     return response
 }
-
 ```
+    {{% /expand %}}
+
+
 
 ### Deploy the application
 
