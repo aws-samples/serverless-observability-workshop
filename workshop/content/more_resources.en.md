@@ -10,11 +10,11 @@ Discover more AWS resources for building and running your application on AWS:
 * [AWS Observability Workshop](https://observability.workshop.aws/) - This workshop oversees observability as a whole and outside the serverless scope, and is a big source of inspiration to this workshop.
 * [AWS Wild Rydes Serverless Workshops](https://github.com/aws-samples/aws-serverless-workshops) - This repository contains a collection of workshops and other hands on content that will guide you through building various serverless applications using AWS Lambda, Amazon API Gateway, Amazon DynamoDB, AWS Step Functions, Amazon Kinesis, and other services. The following workshops are available: **Web Application, Auth, Data Processing, DevOps, Image Processing, Multi Region, Security and Machine Learning.**
 
-#### Tools for AWS Lambda, Serverless Applications and CI/CD Pipelines
+#### Tools/Partners for Serverless & CI/CD Observability on AWS
 
-* [AWS SAM Local](https://github.com/thoeni/aws-sam-local) - AWS CLI tool for managing Serverless applications written with AWS Serverless Application Model (SAM). SAM Local can be used to test functions locally, start a local API Gateway from a SAM template, validate a SAM template, and generate sample payloads for various event sources.
-* [cfn-lint](https://www.npmjs.com/package/cfn-lint) - A more friendly CloudFormation JSON and YAML Validator.
-* [Snyk](https://snyk.io/product/) - Automatically detect open source vulnerabilities and accelerate fixing throughout your development process.
+* [Epsagon](https://epsagon.com/serverless-observability) - Monitor and troubleshoot serverless functions to get the full picture of what they're doing and why they fail. Epsagon automates detection, troubleshooting, and resolution of issues within complex microservice architectures with instant data correlation, payload visualization, and full-depth tracing.
+* [Thundra](https://www.thundra.io/) - Understand and manage the aggregate set of distributed services an application consumes down to the line level of the runtime code for every local service, serverless or container-based applications.
+* [Lumigo SAR-async-lambda-metrics](https://github.com/lumigo/SAR-async-lambda-metrics) - A Serverless application that parses custom metrics from CloudWatch Logs and sends them to CloudWatch as custom metrics.
 * [AWS X-Ray](https://aws.amazon.com/xray/) - AWS X-Ray helps developers analyze and debug production, distributed applications, such as those built using a microservices architecture, serverless or not.
 * [pipeline-dashboard](https://github.com/stelligent/pipeline-dashboard) - Simple dashboard built for viewing pipeline metrics in AWS. Built using CloudWatch dashboards and metrics populated from CloudWatch events that CodePipeline triggers.
 
