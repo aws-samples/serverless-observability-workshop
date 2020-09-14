@@ -142,6 +142,7 @@ exports.getAllItemsHandler = async (event, context) => {
     return response
 }
 ```
+{{% /expand  %}}
 
 #### Deploy the application
 
