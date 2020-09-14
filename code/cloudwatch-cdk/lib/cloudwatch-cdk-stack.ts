@@ -13,9 +13,9 @@ export class CloudwatchCdkStack extends cdk.Stack {
 
     const operationalDashboard = new cloudwatch.Dashboard(this, 'MonitoringApp-Operational-Dashboard', { dashboardName: 'MonitoringApp-Operational-Dashboard' })
     operationalDashboard.addWidgets(
-      this.buildSingleValueWidget('Get All Items -- Operational Metrics', 'monitoring-getAllItemsFunction-1OFYBMQ0CWM1D'),
-      this.buildSingleValueWidget('Get Item By ID -- Operational Metrics', 'monitoring-getByIdFunction-PJDC795HE5YP'),
-      this.buildSingleValueWidget('Put Item -- Operational Metrics', 'monitoring-putItemFunction-U6EIYZDPS5B5'),
+      this.buildSingleValueWidget('Get All Items -- Operational Metrics', props.functions.getAllItemsFunction),
+      this.buildSingleValueWidget('Get Item By ID -- Operational Metrics', props.functions.getByIdFunction),
+      this.buildSingleValueWidget('Put Item -- Operational Metrics', props.functions.putItemFunction)
     );
 
     const businessDashboard = new cloudwatch.Dashboard(this, 'MonitoringApp-Business-Dashboard', { dashboardName: 'MonitoringApp-Business-Dashboard' })

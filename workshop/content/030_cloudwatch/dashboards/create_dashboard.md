@@ -11,7 +11,7 @@ Go back to your Cloud9 environment and open a new terminal.
 
 ```sh
 cd ~/environment/serverless-observability-workshop/code/cloudwatch-cdk
-npm outdate
+npm outdated
 npm update
 npm install
 cdk deploy -c stack_name=sam-app
