@@ -40,9 +40,16 @@ The available options for actions include, - `Send a notification to an SNS topi
 
 10. Name it `my_observability_topic`, fill your `e-mail address` and click **Create topic**.
 11. Click **Next**.
-11. Name it `My Observability Alarm`.
-11. Click **Next**.
+12. Name it `My Observability Alarm`.
+13. Click **Next**.
 
 ![alarm-4](/images/alarm_name.png?width=50pc)
 
-11. Review your settings and click **Create alarm**.
+14. Review your settings and click **Create alarm**.
+15. Open you e-mail inbox and confirm your SNS topic subscription 
+![alarm-4](/images/alarm_confirm.png?width=50pc)
+
+
+{{% notice warning %}}
+If you don't confirm your e-mail subscription, you will not receive any notification emails for triggered alarms. **Always remember to also check your spam folder**.
+{{% /notice %}}
