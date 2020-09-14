@@ -15,7 +15,7 @@ Go to your [CloudWatch Alarms Console](https://console.aws.amazon.com/cloudwatch
 
 ![alarm-1](/images/alarm_1.png?width=60pc)
 
-4. Select `FunctionName, FunctionVersion` dimension and select the `SuccessfulGetItem` metric we created in the previous exercise.
+4. Select `FunctionName, FunctionVersion, operation, service` dimension and select the `SuccessfulGetItem` metric we created in the previous exercise.
 
 ![alarm-2](/images/alarm_2.png?width=60pc)
 ![alarm-3](/images/alarm_3.png?width=60pc)
@@ -38,3 +38,5 @@ The available options for actions include, - `Send a notification to an SNS topi
 
 ![alarm-4](/images/alarm_4.png?width=50pc)
 
+10. Name it `my_observability_topic`, fill your `e-mail address` and click **Create topic**.
+11. Click **Next**.
