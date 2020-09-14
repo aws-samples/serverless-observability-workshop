@@ -40,3 +40,9 @@ The available options for actions include, - `Send a notification to an SNS topi
 
 10. Name it `my_observability_topic`, fill your `e-mail address` and click **Create topic**.
 11. Click **Next**.
+11. Name it `My Observability Alarm`.
+11. Click **Next**.
+
+![alarm-4](/images/alarm_name.png?width=50pc)
+
+11. Review your settings and click **Create alarm**.
