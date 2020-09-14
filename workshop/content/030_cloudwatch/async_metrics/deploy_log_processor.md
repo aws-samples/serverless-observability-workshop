@@ -50,8 +50,19 @@ Deploy this changeset? [y/N]: N
 capabilities = "CAPABILITY_IAM CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND"
 ```
 
-5. Save it and run the `sam deploy` command once again **without** the **-g** option. Confirm the deployment and wait a few minutes until it completes.
+5. Save it and run the `sam deploy` command once again **without** the **-g** option. **Confirm** the deployment and wait a few minutes until it completes.
 
 ```sh
+cd ~/environment/serverless-observability-workshop/code/log-processing
 sam deploy
+```
+
+```sh 
+
+Changeset created successfully. arn:aws:cloudformation:us-east-1:1234567890:changeSet/samcli-deploy1597269838/0752490d-33a9-4995-ae17-4ccca3efbf5d
+
+
+Previewing CloudFormation changeset before deployment
+======================================================
+Deploy this changeset? [y/N]: Y
 ```

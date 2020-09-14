@@ -221,7 +221,6 @@ exports.getAllItemsHandler = async (event, context) => {
 ### Deploy the application
 
 ```sh
-
+cd ~/environment/serverless-observability-workshop/code/sample-app
 sam build && sam deploy
-
 ```

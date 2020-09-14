@@ -13,7 +13,7 @@ Let's define the following Business & Operational metrics:
 - `SuccessfulGetItem`
 - `FailedGetItem`
 
-### Modifying the Get All Items Function
+### Modifying the Get Item By ID Function
 
 #### Importing Dependencies
 
@@ -34,12 +34,12 @@ Let's define the following Business & Operational metrics:
 1. Now, inside the `getByIdHandler()` we are going to test whether it's the first execution of a given Lambda container and label it as `Cold Start`, also pushing this information as a CloudWatch Metric using our `logMetric()` method. Add and `if` statement checking whether the `_cold_start` variable is `true` or `false` right after the beginning of the `try` block.
 
     ```javascript
-    exports.putItemHandler = async (event, context) => {
+    exports.getByIdHandler = async (event, context) => {
       let response
       try {
         if (_cold_start) {
             //Metrics
-            await putMetric(name = 'ColdStart', unit = MetricUnit.Count, value = 1, { service: 'item_service', function_name: context.functionName })
+            await logMetric(name = 'ColdStart', unit = MetricUnit.Count, value = 1, { service: 'item_service', function_name: context.functionName })
             _cold_start = false
         }
     ```
@@ -118,6 +118,7 @@ Let's define the following Business & Operational metrics:
 ### Deploy the application
 
 ```sh
+cd ~/environment/serverless-observability-workshop/code/sample-app
 sam build && sam deploy
 ```
 
