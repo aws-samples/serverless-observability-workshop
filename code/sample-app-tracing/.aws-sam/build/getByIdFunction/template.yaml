@@ -10,7 +10,6 @@ Globals:
     Runtime: nodejs12.x
     Timeout: 100
     MemorySize: 128
-    Tracing: Active # <----- ADD FOR LAMBDA
     CodeUri: ./
     Environment:
       Variables:
@@ -20,8 +19,6 @@ Globals:
         ENABLE_DEBUG: false
         # Enable usage of KeepAlive to reduce overhead of short-lived actions, like DynamoDB queries
         AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
-  Api:                    # <----- ADD FOR API
-    TracingEnabled: true  # <----- ADD FOR API
 
 Resources:
 # API Gateway

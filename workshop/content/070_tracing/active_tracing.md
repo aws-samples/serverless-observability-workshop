@@ -31,6 +31,9 @@ Globals:
     TracingEnabled: true  # <----- ADD FOR API  
 ```
 
+Save your changes to the ***serverless-observability-workshop/code/sample-app-tracing/template.yaml*** file.
+
+
 ### Deploy your application
 
 ```sh

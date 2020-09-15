@@ -7,9 +7,7 @@ exports.notifiyNewItemHandler = async (event, context) => {
     response = await getItem(record)
   } catch (err) {
     throw err
-  } finally {
-    subsegment.close()
-  }
+  } 
   return response
 }
 
@@ -20,8 +18,6 @@ const getItem = async (record) => {
     response = JSON.stringify(record)
   } catch (err) {
     throw err
-  } finally {
-    subsegment.close()
-  }
+  } 
   return response
 }
