@@ -50,6 +50,7 @@ Now paste this query into the log field. The following shows a result that conta
 ```sql
 fields @timestamp, @message
 | stats count(@message) as number_of_events by bin(5m)
+| filter @message like /operation/
 | limit 20
 ```
 
@@ -74,7 +75,8 @@ For simplicity reasons, the timestamps below are set between `24th Aug, 2020` to
 {{% /notice %}}
 
 ```sh
-aws logs start-query --log-group-name /aws/lambda/sam-app-getAllItemsFunction-'<STACK_ID>' --start-time '1598288209' --end-time '1661364126' --query-string 'fields @message | limit 10'
+export getAllItemsFunction=$(aws cloudformation describe-stack-resources --stack-name sam-app --output json | jq '.StackResources[] | select(.LogicalResourceId=="getAllItemsFunction") | .PhysicalResourceId' | sed -e 's/^"//'  -e 's/"$//')
+aws logs start-query --log-group-name /aws/lambda/$getAllItemsFunction --start-time '1598288209' --end-time '1661364126' --query-string 'fields @message | limit 10'
 ```
 
 The above query will return a queryId. Copy that query Id and replace the `<QUERY_ID>` string. in the below command and execute it to see log data results.

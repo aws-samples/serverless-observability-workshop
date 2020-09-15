@@ -99,9 +99,8 @@ weight = 53
 ### Deploy the application
 
 ```sh
-
+cd ~/environment/serverless-observability-workshop/code/sample-app
 sam build && sam deploy
-
 ```
 
 ### Export the stack output variables
