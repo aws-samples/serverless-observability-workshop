@@ -19,7 +19,17 @@ After we deploy this application, the following resources will be provisioned in
 
 1. Go back you your **Cloud9** environment and navigate the sample app at ***serverless-observability-workshop/code/sample-app-tracing***
 
+    **Optional** - If you find yourself unable to run `npm install` or `sam build` due a `no space left on device` error, you might want to free up some space.
+
     ```sh
+    # Look for uninstallable node_modules in our workspace to free disk space
+    find ~/environment -type d -name 'node_modules' -prune | xargs rm -r
+    ```
+
+    Then, install, build and deploy the application
+
+    ```sh
+    # Install, Build and Deploy the application
     cd ~/environment/serverless-observability-workshop/code/sample-app-tracing
     npm install
     sam build
