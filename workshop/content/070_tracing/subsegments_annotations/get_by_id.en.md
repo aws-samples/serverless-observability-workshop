@@ -81,5 +81,74 @@ Go back you your **Cloud9** environment and open your app workspace at ***server
 {{% expand "Fully modified file (expand for code)" %}}
 
 ```javascript
+const AWSXRay = require('aws-xray-sdk-core')
+const AWS = AWSXRay.captureAWS(require('aws-sdk'))
+const docClient = new AWS.DynamoDB.DocumentClient()
+
+exports.getByIdHandler = async(event, context) => {
+  return AWSXRay.captureAsyncFunc('## Handler', async(subsegment) => {
+    let response, id
+    try {
+      if (event.httpMethod !== 'GET') {
+        throw new Error(`getById only accept GET method, you tried: ${event.httpMethod}`)
+      }
+
+      id = event.pathParameters.id
+      const item = await getItemById(id, subsegment)
+
+      response = {
+        statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(item)
+      }
+      //Tracing
+      subsegment.addAnnotation('ItemID', id)
+      subsegment.addAnnotation('Status', 'SUCCESS')
+    }
+    catch (err) {
+
+      response = {
+        statusCode: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(err)
+      }
+      //Tracing
+      subsegment.addAnnotation('ItemID', id)
+      subsegment.addAnnotation('Status', 'FAILED')
+    }
+    finally {
+      subsegment.close()
+    }
+    return response
+  }, AWSXRay.getSegment());
+}
+
+
+const getItemById = async(id, segment) => {
+  return AWSXRay.captureAsyncFunc('## getItemData', async(subsegment) => {
+    let response
+    try {
+      var params = {
+        TableName: process.env.SAMPLE_TABLE,
+        Key: { id: id }
+      }
+
+      response = await docClient.get(params).promise()
+      //Tracing
+      subsegment.addMetadata('Item', response)
+    }
+    catch (err) {
+      throw err
+    }
+    finally {
+      subsegment.close()
+    }
+    return response
+  }, segment);
+}
 
 ```

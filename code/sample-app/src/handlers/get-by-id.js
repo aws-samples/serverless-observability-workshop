@@ -2,7 +2,7 @@ const AWS = require('aws-sdk')
 const docClient = new AWS.DynamoDB.DocumentClient()
 
 exports.getByIdHandler = async (event, context) => {
-  let response
+  let response, id
   try {
     if (event.httpMethod !== 'GET') {
       throw new Error(`getById only accept GET method, you tried: ${event.httpMethod}`)
