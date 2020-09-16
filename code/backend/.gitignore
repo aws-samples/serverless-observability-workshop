@@ -111,3 +111,4 @@ __pycache__
 template-export.yml
 packaged.yaml
 samconfig.toml
+.aws-sam/
