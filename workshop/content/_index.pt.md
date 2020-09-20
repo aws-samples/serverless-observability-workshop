@@ -6,6 +6,8 @@ weight = 1
 
 # AWS Serverless Observability Workshop
 
-Bem-vindo! Neste workshop, iremos explorar algumas das formas que você pode implementar um pipeline de CI/CD para workloads Serverless de forma padronizada através de uma organização, permitindo que Engenheiros de Software desenvolvam e testem aplicações Serverless assim como fariam em um ambiente mais tradicional enquanto times de DevOps podem focar em construir um único pipeline que satisfaça múltiplos ambientes e que possa ser distribuido como um "produto" entre múltiplos times de desenvolvimento.
+Bem Vindo! Neste workshop, iremos explorar algumas das técnicas que você pode adotar para monitorar suas aplicações Serverless utilizando serviços da AWS através de métricas de negócio e operacionais, logging centralizado, e orquestração de traces distribuidos pela sua aplicação.
 
-![AWS SAM](/images/aws-sam.png?width=20pc&classes=shadow)
+# Spoiler Alert
+
+Cada módulo deste workshop é desenhado para ser completamente independente um do outro, para que não se crie uma dependência de complitude do módulo anterior, com exceção do módulo `Pré-Requisitos`. Desta forma, você pode planejar seu dia/evento para completar ou entregar este workshop por inteiro ou apenas os módulos que te interessem.

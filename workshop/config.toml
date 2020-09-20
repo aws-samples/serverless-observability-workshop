@@ -22,7 +22,7 @@ disableNextPrev = false
 themeVariant = "mine"
 disableSearch = false
 disableAssetsBusting = false
-disableLanguageSwitchingButton = true
+disableLanguageSwitchingButton = false
 disableShortcutsTitle = false
 disableInlineCopyToClipBoard = true
 #pygmentsUseClasses = true
@@ -38,21 +38,21 @@ page = [ "HTML" ]
 plainIDAnchors = true
 hrefTargetBlank = true
 
-#[Languages]
-#[Languages.en]
-#title = "AWS Serverless Observability Workshop"
-#weight = 1
-#languageName = "English"
+[Languages]
+[Languages.en]
+title = "AWS Serverless Observability Workshop"
+weight = 1
+languageName = "English"
 
 #[Languages.es]
 #title = "AWS Serverless Observability Workshop"
 #weight = 2
 #languageName = "Español"
 
-#[Languages.pt]
-#title = "AWS Serverless Observability Workshop"
-#weight = 3
-#languageName = "Português"
+[Languages.pt]
+title = "AWS Serverless Observability Workshop"
+weight = 3
+languageName = "Português"
 
 #
 

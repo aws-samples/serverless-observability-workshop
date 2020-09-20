@@ -3,30 +3,15 @@ title: Créditos
 disableToc: true
 ---
 
-#### Main Author(s)
+#### Autor(es) Principal(is)
 
-The AWS Serverless Catalog Workshop website has been developed by:
+O Workshop AWS Serverless Observability Workshop foi desenvolvido por:
 
-* **Enrico Bergamo** - Labs, content, website & format
+* **Enrico Bergamo** - Labs, conteúdo, website & formato
+* **Justin Pirtle** - Labs, conteúdo & formato
 
-#### Additional Author(s)
-* **Luiz Yanai** - Content & tech review, and labs 
-  
-#### Other Contributor(s)
+### Obrigado a todos nossos incríveis contribuidores <i class="fas fa-heart"></i> por fazerem do Open Source um lugar melhor!
 
-This website is the result of many reviews and contributions.
+Este website é um resultado de diversos reviews e contribuições.
 
-##### Technical Reviewer(s)
-* **Gustavo Rozatti**
-* **Claudia Charro**
-* **Natalia Girolamo**
-
-##### Translator(s)
-* **Enrico Bergamo** (PT)
-* **Luiz Yanai** (PT)
-
-##### GitHub Contributor(s) <i class='fas fa-heart'></i>
-
-Please go to [Contributors page](https://github.com/aws-samples/serverless-observability-workshop/graphs/contributors) to checkout authors for this Workshop
-
-Thanks to our wonderful contributors <i class="fas fa-heart"></i>
+Por favor, vá até a [página de Contribuidores](https://github.com/aws-samples/serverless-observability-workshop/graphs/contributors) para ver informações adicionais dos demais autores deste workshop.
