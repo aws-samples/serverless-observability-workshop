@@ -1,4 +1,4 @@
-RelativeURLs=true
+RelativeURLs=false
 CanonifyURLs=true
 languageCode = "en-US"
 defaultContentLanguage = "en"
