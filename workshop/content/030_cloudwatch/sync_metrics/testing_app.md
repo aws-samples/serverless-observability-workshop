@@ -22,9 +22,3 @@ curl -X POST \
         "name": "Sample third item"
   }'
 ```
-
-#### Test the `Get All Items` operation
-
-```sh
-curl -X GET $ApiUrl/items/ | jq
-```

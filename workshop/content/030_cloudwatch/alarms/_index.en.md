@@ -1,7 +1,7 @@
 ---
 title: "Metric Alarms"
 chapter: true
-weight: 34
+weight: 35
 ---
 
 # Alarms

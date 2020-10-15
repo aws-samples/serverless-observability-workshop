@@ -1,7 +1,7 @@
 ---
 title: "Creating Dashboards"
 chapter: true
-weight: 35
+weight: 36
 ---
 
 # Dashboards

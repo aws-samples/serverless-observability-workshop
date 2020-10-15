@@ -178,7 +178,7 @@ const buildDimensions = (service, extra_dimensions) => {
 
 However, it is important to take in consideration that creating Custom Metrics synchronously may impact on performance/execution time. For this reason, it is advisable to push your metrics asynchronously, which is accomplished by logging your metrics to `CloudWatch Logs` and then creating `subscription filters` that process these specific log entries and push them to CloudWatch Metrics in background. 
 
-In order to log our metrics in a unique format that won't mess with the rest of our function logs, we are parsing our JSON object in the StatsD format.
+In order to log our metrics in a unique format that won't mess with the rest of our function logs, we are parsing our JSON object in the StatsD format. Once our payload is formed, we use the `logMetric()` method to log them to CloudWatch Logs.
 
 **You can visualize the full helper functions expanding the section below**
 
@@ -308,3 +308,78 @@ const buildDimensionsStatsDFormat = (service, extra_dimensions) => {
     return dimensions
 }
 ```
+{{% /expand  %}}
+
+#### Pushing Metrics using Embedded Metric Format (EMF)
+
+In order to leverage EMF to push metrics to CloudWatch through structured log, we can follow several implementation approaches as described in the [AWS Embedded Metric Format GitHub Repository](https://github.com/awslabs/aws-embedded-metrics-node).
+
+**You can visualize the full helper functions expanding the section below**
+
+{{% expand "Full helper functions (expand for code)" %}}
+```javascript
+/**
+ * Logs Custom Metric on CloudWatch Metrics using Embedded Metric Format (EMF).
+ *   
+ * @example
+ * Logs metric to count the number of successful item retrievals using default dimensions and namepsace.
+ * logMetric(name = 'SuccessfulGetItem', unit = MetricUnit.Count, value = 1)
+ * // Dimensions included: {service: 'service_undefined'} 
+ * // Namespace used: MonitoringApp
+ * 
+ * @example
+ * Logs metric to count the number of successful item retrievals per service & operation in the default namespace.
+ * logMetric(name = 'SuccessfulGetItem', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-item-by-id' })
+ * // Dimensions included: {service: 'item_service', operation: 'get-item-by-id'} 
+ * // Namespace used: MonitoringApp
+ * 
+ * @example
+ * Logs metric to count the number of successful item retrievals per service & operation in a custom namespace.
+ * logMetric(name = 'SuccessfulGetItem', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-item-by-id', namespace: 'MySampleApp' })
+ * // Dimensions included: {service: 'item_service', operation: 'get-item-by-id'} 
+ * // Namespace used: MySampleApp
+ * 
+ * @property    {String}    AWS_EMF_NAMESPACE    Environment variable defining the service name to be used as metric namespace. This variable can be defined in the SAM template.
+ * 
+ * @param   {String}        name    Metric name. 
+ * @param   {MetricUnit}    unit    Metric unit enum value (e.g. MetricUnit.Seconds). Metric units are available via Unit Enum. Default to Count.
+ * @param   {Number}        value   Metric value. Default to 0.
+ * @param   {Object}        dimensions Dict containing metric dimensions and namespace. Optional. (e.g. {customer: customerId})
+ */
+exports.logMetricEMF = async (name, unit = Unit.Count, value = 0, dimensions) => {
+    try {
+        const metrics = createMetricsLogger()
+        metrics.putDimensions(buildEMFDimensions(dimensions))
+        metrics.putMetric(name, value, unit)
+        metrics.setNamespace(process.env.AWS_EMF_NAMESPACE !== undefined ? process.env.AWS_EMF_NAMESPACE : 'aws-embedded-metrics')
+        log.debug(`Logging custom metric ${name} via Embbeded Metric Format (EMF)`)
+        log.debug(metrics)
+        await metrics.flush()
+    } catch (err) {
+        log.error({ operation: dimensions.operation !== undefined ? options.dimensions : 'undefined_operation', method: 'logMetricEMF', details: err })
+        throw err
+    }
+}
+
+/**
+ * Transforms arguments into dimensions to EMF. 
+ *   
+ * @property    {String}        SERVICE_NAME    Environment variable defining the service name to be used as metric dimension. This variable can be defined in the SAM template.
+ * 
+ * @param       {Object}        dimensions Dict containing metric dimensions and namespace. Optional. (e.g. {customer: customerId})
+ *  
+ * @returns     {Object}        Custom Dimensions object.
+ */
+const buildEMFDimensions = (dimensions) => {
+    let service = process.env.SERVICE_NAME !== undefined ? process.env.SERVICE_NAME : 'service_undefined'
+
+    if (dimensions) {
+        if (dimensions.service !== undefined) service = dimensions.service
+        delete dimensions.namespace
+        delete dimensions.service
+    }
+
+    return dimensions
+}
+```
+{{% /expand  %}}
