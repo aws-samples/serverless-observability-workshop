@@ -44,27 +44,32 @@ title = "AWS Serverless Observability Workshop"
 weight = 1
 languageName = "English"
 
-  [[Languages.en.menu.shortcuts]]
+  [[Languages.en.menu.main]]
+  url = "/"
+  weight = 0
+  name = "Home"
+
+  [[Languages.en.menu.tag]]
   name = "<i class='fas fa-tags'></i> Tags"
   url = "/more_resources"
   weight = 1
   
-  [[Languages.en.menu.shortcuts]]
+  [[Languages.en.menu.more]]
   name = "<i class='fas fa-bookmark'></i> More Resources"
   url = "/more_resources"
   weight = 2
 
-  [[Languages.en.menu.shortcuts]]
+  [[Languages.en.menu.author]]
   name = "<i class='fas fa-users'></i> Authors"
   url = "/authors"
   weight = 3
 
-  [[Languages.en.menu.shortcuts]]
+  [[Languages.en.menu.github]]
   name = "<i class='fab fa-github'></i> GitHub Project"
   url = "https://github.com/aws-samples/serverless-observability-workshop"
   weight = 4
 
-  [[Languages.en.menu.shortcuts]]
+  [[Languages.en.menu.feedback]]
   name = "<i class='fas fa-envelope'></i> Feedback / Questions?"
   url = "mailto:serverless-observability-workshop@amazon.com"
   weight = 5
@@ -79,27 +84,32 @@ title = "AWS Serverless Observability Workshop"
 weight = 3
 languageName = "Português"
 
-  [[Languages.pt.menu.shortcuts]]
+  [[Languages.pt.menu.main]]
+  url = "/"
+  weight = 0
+  name = "Home"
+
+  [[Languages.pt.menu.tag]]
   name = "<i class='fas fa-tags'></i> Tags"
   url = "/more_resources"
   weight = 1
   
-  [[Languages.pt.menu.shortcuts]]
+  [[Languages.pt.menu.more]]
   name = "<i class='fas fa-bookmark'></i> Mais Recursos"
   url = "/more_resources"
   weight = 2
 
-  [[Languages.pt.menu.shortcuts]]
+  [[Languages.pt.menu.author]]
   name = "<i class='fas fa-users'></i> Autores"
   url = "/authors"
   weight = 3
 
-  [[Languages.pt.menu.shortcuts]]
+  [[Languages.pt.menu.github]]
   name = "<i class='fab fa-github'></i> Projeto no GitHub"
   url = "https://github.com/aws-samples/serverless-observability-workshop"
   weight = 4
 
-  [[Languages.pt.menu.shortcuts]]
+  [[Languages.pt.menu.feedback]]
   name = "<i class='fas fa-envelope'></i> Feedback / Perguntas?"
   url = "mailto:serverless-observability-workshop@amazon.com"
   weight = 5
