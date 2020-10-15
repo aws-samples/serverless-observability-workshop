@@ -2,7 +2,8 @@ const AWSXRay = require('aws-xray-sdk-core')
 const AWS = AWSXRay.captureAWS(require('aws-sdk'))
 const docClient = new AWS.DynamoDB.DocumentClient()
 const { MetricUnit } = require('../lib/helper/models')
-const { logger_setup, putMetric, logMetric } = require('../lib/logging/logger')
+const { logger_setup, putMetric, logMetricEMF } = require('../lib/logging/logger')
+const { Unit } = require("aws-embedded-metrics");
 let log
 
 let _cold_start = true
@@ -18,12 +19,12 @@ exports.getAllItemsHandler = async (event, context) => {
         try {
             if (_cold_start) {
                 //Metrics
-                await logMetric(name = 'ColdStart', unit = MetricUnit.Count, value = 1, { service: 'item_service', function_name: context.functionName })
+                await logMetricEMF(name = 'ColdStart', unit = Unit.Count, value = 1, { service: 'item_service', function_name: context.functionName })
                 _cold_start = false
             }
             if (event.httpMethod !== 'GET') {
                 log.error({ "operation": "get-all-items", 'method': 'getAllItemsHandler', "details": `getAllItems only accept GET method, you tried: ${event.httpMethod}` })
-                await logMetric(name = 'UnsupportedHTTPMethod', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-all-items' })
+                await logMetricEMF(name = 'UnsupportedHTTPMethod', unit = Unit.Count, value = 1, { service: 'item_service', operation: 'get-all-items' })
                 throw new Error(`getAllItems only accept GET method, you tried: ${event.httpMethod}`)
             }
 
@@ -36,7 +37,7 @@ exports.getAllItemsHandler = async (event, context) => {
                 body: JSON.stringify(items)
             }
             //Metrics
-            await logMetric(name = 'SuccessfulGetAllItems', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-all-items' })
+            await logMetricEMF(name = 'SuccessfulGetAllItems', unit = Unit.Count, value = 1, { service: 'item_service', operation: 'get-all-items' })
             //Tracing
             log.debug('Adding All Items Retrieval annotation')
             subsegment.addAnnotation('ItemsCount', items.Count)
@@ -57,7 +58,7 @@ exports.getAllItemsHandler = async (event, context) => {
             }
 
             //Metrics
-            await logMetric(name = 'FailedGetAllItems', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-all-items' })
+            await logMetricEMF(name = 'FailedGetAllItems', unit = Unit.Count, value = 1, { service: 'item_service', operation: 'get-all-items' })
         } finally {
             subsegment.close()
         }

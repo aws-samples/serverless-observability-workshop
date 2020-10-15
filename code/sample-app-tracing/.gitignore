@@ -112,3 +112,4 @@ template-export.yml
 packaged.yaml
 samconfig.toml
 .aws-sam/
+.aws-sam/build

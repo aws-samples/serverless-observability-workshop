@@ -20,6 +20,7 @@ Globals:
         ENABLE_DEBUG: false
         # Enable usage of KeepAlive to reduce overhead of short-lived actions, like DynamoDB queries
         AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+        AWS_EMF_NAMESPACE: MonitoringApp
   Api:
     TracingEnabled: true
 
@@ -156,12 +157,12 @@ Resources:
       LogGroupName: !Sub /aws/lambda/${putItemFunction}
       RetentionInDays: 7
 
-  NotifyItemLogGroup:
-    Type: AWS::Logs::LogGroup
-    DependsOn: notifiyNewItemFunction
-    Properties:
-      LogGroupName: !Sub /aws/lambda/${notifiyNewItemFunction}
-      RetentionInDays: 7
+#  NotifyItemLogGroup:
+#    Type: AWS::Logs::LogGroup
+#    DependsOn: notifiyNewItemFunction
+#    Properties:
+#      LogGroupName: !Sub /aws/lambda/${notifiyNewItemFunction}
+#      RetentionInDays: 7
 
 # IAM Role for 
   CloudWatchRole:
