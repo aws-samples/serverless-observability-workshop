@@ -33,6 +33,7 @@ You can also create filter expressions using the custom annotations we created i
 
     ```sh
     export ApiUrl=$(aws cloudformation describe-stacks --stack-name sam-app-tracing --output json | jq '.Stacks[].Outputs[] | select(.OutputKey=="ApiUrl") | .OutputValue' | sed -e 's/^"//'  -e 's/"$//')
+    echo "export ApiUrl="$ApiUrl
     curl -X GET $ApiUrl/items/ | jq
     ```
 
