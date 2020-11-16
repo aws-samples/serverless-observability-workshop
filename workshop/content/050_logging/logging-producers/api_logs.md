@@ -3,10 +3,10 @@ title = "API Gateway Custom Access Logging"
 weight = 51
 +++
 
-To help us enhance our logging capabilites and also understand the patterns our APIs are invoked, Amazon API Gateway provides a feature called [Custom Access Logs](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html) which allow us to specify and log attributes to CloudWatch Logs from a wide range of available fields for each request made to our APIs.
+To help us enhance our logging capabilites and also understand the patterns our APIs are invoked, Amazon API Gateway provides a feature called `Custom Access Logs` which allow us to specify and log attributes to CloudWatch Logs from a wide range of available fields for each request made to our APIs.
 
 {{% notice tip %}}
-Spare a couple of minutes to go through the available access logging variables from [our Documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html#context-variable-reference).
+Learn more about [Custom Access Logs](https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-logging.html) and the available [access logging variables](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html#context-variable-reference) from our Documentation.
 {{% /notice %}}
 
 ### Update the SAM Template

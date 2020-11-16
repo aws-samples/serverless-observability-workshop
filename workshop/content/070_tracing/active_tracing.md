@@ -3,7 +3,12 @@ title = "Adding Active Tracing"
 weight = 72
 +++
 
-[X-Ray Active Tracing](https://docs.aws.amazon.com/xray/latest/devguide/xray-usage.html#xray-usage-services) is a feature that automatically captures inbound calls to AWS Services (Lambda, API Gateway, SNS, SQS, and others) without requiring you to instrument any code. SAM and other frameworks also provide built-in support for you to enable active tracing in your resources during development-time.
+`X-Ray Active Tracing` is a feature that automatically captures inbound calls to AWS Services (Lambda, API Gateway, SNS, SQS, and others) without requiring you to instrument any code. SAM and other frameworks also provide built-in support for you to enable active tracing in your resources during development-time.
+
+{{% notice tip %}}
+Learn more about [X-Ray Active Tracing](https://docs.aws.amazon.com/xray/latest/devguide/xray-usage.html#xray-usage-services) from our documentation.
+{{% /notice %}}
+
 
 ### Modify the application
 
