@@ -43,7 +43,7 @@ Enter the following settings when prompted:
 ```sh
         Setting default arguments for 'sam deploy'
         =========================================
-        Stack Name [sam-app]: 
+        Stack Name [sam-app]: monitoring-app
         AWS Region [us-east-1]: 
         #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
         Confirm changes before deploy [y/N]: N
@@ -82,7 +82,7 @@ Wait until both stacks complete its deployment and take note of your API URL end
 To invoke our API's, we first need to fetch the `ApiUrl` output variable that our CloudFormation stack gives us. So let us iterate through our stack and export all output variables as environment variables:
 
 ```sh
-export ApiUrl=$(aws cloudformation describe-stacks --stack-name sam-app --output json | jq '.Stacks[].Outputs[] | select(.OutputKey=="ApiUrl") | .OutputValue' | sed -e 's/^"//'  -e 's/"$//')
+export ApiUrl=$(aws cloudformation describe-stacks --stack-name monitoring-app --output json | jq '.Stacks[].Outputs[] | select(.OutputKey=="ApiUrl") | .OutputValue' | sed -e 's/^"//'  -e 's/"$//')
 echo "export ApiUrl="$ApiUrl
 ```
 

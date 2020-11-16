@@ -5,7 +5,7 @@ weight = 61
 
 ### Using Logs Insights queries
 
-Go to [CloudWatch Logs Insights console](https://console.aws.amazon.com/cloudwatch/home?#logsV2:logs-insights) and select the `/aws/lambda/sam-app-getAllItemsFunction` log group. Remember, you can select more than one log group if needed. As of Aug 2020, you can select up to 20 log groups at a time.
+Go to [CloudWatch Logs Insights console](https://console.aws.amazon.com/cloudwatch/home?#logsV2:logs-insights) and select the `/aws/lambda/monitoring-app-getAllItemsFunction` log group. Remember, you can select more than one log group if needed. As of Aug 2020, you can select up to 20 log groups at a time.
 
 ![metrics-1](/images/query_logs_1.png)
 
@@ -30,7 +30,7 @@ Learn more about Logs Insights syntax and queries [here](https://docs.aws.amazon
 
 #### Simple list with filter and sort 
 
-Select once again the `/aws/lambda/sam-app-getAllItemsFunction` log group.
+Select once again the `/aws/lambda/monitoring-app-getAllItemsFunction` log group.
 
 Now paste this query into the log field. The following query applies a filter on the messages and fetches only the records that contain the string `operation` in the log event and displays the result ordered by the timestamp field in descending order
 
@@ -75,7 +75,7 @@ For simplicity reasons, the timestamps below are set between `24th Aug, 2020` to
 {{% /notice %}}
 
 ```sh
-export getAllItemsFunction=$(aws cloudformation describe-stack-resources --stack-name sam-app --output json | jq '.StackResources[] | select(.LogicalResourceId=="getAllItemsFunction") | .PhysicalResourceId' | sed -e 's/^"//'  -e 's/"$//')
+export getAllItemsFunction=$(aws cloudformation describe-stack-resources --stack-name monitoring-app --output json | jq '.StackResources[] | select(.LogicalResourceId=="getAllItemsFunction") | .PhysicalResourceId' | sed -e 's/^"//'  -e 's/"$//')
 aws logs start-query --log-group-name /aws/lambda/$getAllItemsFunction --start-time '1598288209' --end-time '1661364126' --query-string 'fields @message | limit 10'
 ```
 

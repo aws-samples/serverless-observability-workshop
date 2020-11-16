@@ -25,7 +25,7 @@ If you  didn't take a note of your API Url after deploying the sample app, you c
 {{% /notice %}}
 
 ```sh
-echo $(aws cloudformation describe-stacks --stack-name sam-app --output json | jq '.Stacks[].Outputs[] | select(.OutputKey=="ApiUrl") | .OutputValue' | sed -e 's/^"//'  -e 's/"$//')
+echo $(aws cloudformation describe-stacks --stack-name monitoring-app --output json | jq '.Stacks[].Outputs[] | select(.OutputKey=="ApiUrl") | .OutputValue' | sed -e 's/^"//'  -e 's/"$//')
 ```
 
 After a few minutes, you should be presented with a similar screen to observe your canary status.

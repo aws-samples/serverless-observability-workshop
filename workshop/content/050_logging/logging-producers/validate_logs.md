@@ -6,7 +6,7 @@ weight = 54
 Go to your [CloudWatch Console](https://console.aws.amazon.com/cloudwatch/home).
 
 1. Under **Logs**, click **Log Groups**.
-1. Check the **Exact match** box, and type the prefix of your Stack, **sam-app** in our case.
+1. Check the **Exact match** box, and type the prefix of your Stack, **monitoring-app** in our case.
 1. You should see all available Log Groups for our Lambda functions. 
 1. Click in the one that contains **GetAllItemsFunction** on its name.
 

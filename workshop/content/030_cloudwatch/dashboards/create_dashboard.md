@@ -25,7 +25,7 @@ npm outdated
 npm update
 npm install
 npm install -g typescript aws-cdk
-cdk deploy -c stack_name=sam-app
+cdk deploy -c stack_name=monitoring-app
 ```
 
 {{% notice tip %}}
