@@ -7,7 +7,7 @@ weight: 71
 #### Delete the stack for our sample application
 
 ```sh
-aws cloudformation delete-stack --stack-name sam-app
+aws cloudformation delete-stack --stack-name monitoring-app
 ```
 
 #### Delete the stack for log processing
@@ -23,7 +23,7 @@ aws cloudformation delete-stack --stack-name log-processing
 If you completed the `Distributed Tracing` module:
 
 ```sh
-aws cloudformation delete-stack --stack-name sam-app-tracing
+aws cloudformation delete-stack --stack-name monitoring-app-tracing
 ```
 
 #### Delete the stack for the CDK-based CW Metrics Dashboard
