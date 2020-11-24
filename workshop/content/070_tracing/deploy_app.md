@@ -66,11 +66,11 @@ After we deploy this application, the following resources will be provisioned in
 
 1. Follow [this deep link to CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=sam-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) to keep up with the stack deployment.
 
-![Sample Architecture](/images/samstacks.png)
+![Sample Architecture](/images/samstacks_tracing.png)
 
 Wait until both stacks complete its deployment and take note of your API URL endpoint for later testing.
 
-![Sample Architecture](/images/samstackcomplete.png)
+![Sample Architecture](/images/samstackcomplete_tracing.png)
 
 ### Test the APIs 
 

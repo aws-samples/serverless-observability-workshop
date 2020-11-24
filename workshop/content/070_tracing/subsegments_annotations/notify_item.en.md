@@ -48,7 +48,7 @@ Go back you your **Cloud9** environment and open your app workspace at ***server
 1. Next, let's modify the `getItem()` method to receive the `subsegment` as a parameter and create an additional subsegment to capture any business logic inside this method.
 
     ```javascript
-    const getItem = async (event, segment) => {
+    const getItem = async (record, segment) => {
         return AWSXRay.captureAsyncFunc('## subscribeSNSNewItem', async (subsegment) => {
             // Initialization
             try {

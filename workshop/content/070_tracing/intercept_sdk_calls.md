@@ -94,7 +94,7 @@ You can now see the entire tracing for all requests of a given node, as well as 
 
 You can also visualize the response time distribution of your traces and check for them individually.
 
-- Click the trace with the most discrepant response time, which most likely represents a Lambda function containing a Cold Start.  
+- Click the trace with the `most discrepant response time`, which most likely represents a Lambda function containing a `Cold Start`.  
 
 ![Service Lens](/images/tracing_sdk_4.png)
 

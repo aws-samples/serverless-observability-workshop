@@ -12,7 +12,7 @@ cd serverless-observability-workshop/code/sample-app
 ```
 
 {{% notice tip %}}
-Spare a couple of minutes to understand which resources are being provisioned in the `template.yaml` file as well as its Lambda functions.
+Spare a couple of minutes to understand which resources are being provisioned in the `serverless-observability-workshop/code/sample-app/template.yaml` file as well as its Lambda functions.
 {{% /notice %}}
 
 After we deploy this application, the following resources will be provisioned in our AWS account:
@@ -21,14 +21,7 @@ After we deploy this application, the following resources will be provisioned in
 
 ### Deploying your application
 
-**Optional** - If you find yourself unable to run `npm install` or `sam build` due a `no space left on device` error, you might want to free up some space.
-
-```sh
-# Look for uninstallable node_modules in our workspace to free disk space
-find ~/environment -type d -name 'node_modules' -prune | xargs rm -r
-```
-
-Then, install, build and deploy the application
+Install, build and deploy the application
 
 ```sh
 # Install, Build and Deploy the application
