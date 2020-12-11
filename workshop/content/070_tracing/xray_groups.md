@@ -32,7 +32,8 @@ You can also create filter expressions using the custom annotations we created i
 3. **(Optional)** Allow some time (around 9~10 minutes) since your last API testing and invoke once again your API.
 
     ```sh
-    export ApiUrl=$(aws cloudformation describe-stacks --stack-name sam-app-tracing --output json | jq '.Stacks[].Outputs[] | select(.OutputKey=="ApiUrl") | .OutputValue' | sed -e 's/^"//'  -e 's/"$//')
+    export ApiUrl=$(aws cloudformation describe-stacks --stack-name monitoring-app-tracing --output json | jq '.Stacks[].Outputs[] | select(.OutputKey=="ApiUrl") | .OutputValue' | sed -e 's/^"//'  -e 's/"$//')
+    echo "export ApiUrl="$ApiUrl
     curl -X GET $ApiUrl/items/ | jq
     ```
 

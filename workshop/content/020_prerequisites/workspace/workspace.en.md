@@ -39,9 +39,3 @@ and **lower work area**, and opening a new **terminal** tab in the main work are
 
 - If you like this theme, you can choose it yourself by selecting **View / Themes / Solarized / Solarized Dark**
 in the Cloud9 workspace menu.
-
-#### Install dependencies
-```
-nvm install stable
-sudo yum -y install jq 
-```

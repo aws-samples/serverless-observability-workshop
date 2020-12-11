@@ -3,10 +3,10 @@ title = "Intercepting AWS SDK Calls"
 weight = 73
 +++
 
-In this step, we are going to add a small change to our application using the AWS X-Ray SDK in order to trace all [AWS SDK calls](https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-nodejs-awssdkclients.html) inside our Lambda functions. This will give us further visibility on what's going on during a function execution, as well as a better glimpse to any bottlenecks we couldn't see before. For example, a Lambda function might take 10s to complete, but 9s can be spent calling a DynamoDB table. Having this information in hand help us focus our efforts to enhance our DynamoDB query code or even remodel our DynamoDB tables and/or rethink our data access patterns.
+In this step, we are going to add a small change to our application using the AWS X-Ray SDK in order to trace all AWS SDK calls inside our Lambda functions. This will give us further visibility on what's going on during a function execution, as well as a better glimpse to any bottlenecks we couldn't see before. For example, a Lambda function might take 10s to complete, but 9s can be spent calling a DynamoDB table. Having this information in hand help us focus our efforts to enhance our DynamoDB query code or even remodel our DynamoDB tables and/or rethink our data access patterns.
 
 {{% notice tip %}}
-You can also leverage the AWS X-Ray SDK to capture traces for [Incoming Requests](https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-nodejs-middleware.html), [Outgoing HTTP Calls](https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-nodejs-httpclients.html), and [SQL Queries](https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-nodejs-sqlclients.html)
+You can learn more on how to leverage the AWS X-Ray SDK to capture traces all [AWS SDK calls](https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-nodejs-awssdkclients.html), [Incoming Requests](https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-nodejs-middleware.html), [Outgoing HTTP Calls](https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-nodejs-httpclients.html), and [SQL Queries](https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-nodejs-sqlclients.html)
 {{% /notice %}}
 
 ### Modify the application
@@ -40,7 +40,7 @@ sam deploy
 To invoke our API's, we first need to fetch the `ApiUrl` output variable that our CloudFormation stack gives us. So let us iterate through our stack and export all output variables as environment variables:
 
 ```sh
-export ApiUrl=$(aws cloudformation describe-stacks --stack-name sam-app-tracing --output json | jq '.Stacks[].Outputs[] | select(.OutputKey=="ApiUrl") | .OutputValue' | sed -e 's/^"//'  -e 's/"$//')
+export ApiUrl=$(aws cloudformation describe-stacks --stack-name monitoring-app-tracing --output json | jq '.Stacks[].Outputs[] | select(.OutputKey=="ApiUrl") | .OutputValue' | sed -e 's/^"//'  -e 's/"$//')
 echo "export ApiUrl="$ApiUrl
 ```
 
@@ -94,7 +94,7 @@ You can now see the entire tracing for all requests of a given node, as well as 
 
 You can also visualize the response time distribution of your traces and check for them individually.
 
-- Click the trace with the most discrepant response time, which most likely represents a Lambda function containing a Cold Start.  
+- Click the trace with the `most discrepant response time`, which most likely represents a Lambda function containing a `Cold Start`.  
 
 ![Service Lens](/images/tracing_sdk_4.png)
 

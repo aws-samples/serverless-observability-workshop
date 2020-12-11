@@ -3,7 +3,12 @@ title = "Adding Active Tracing"
 weight = 72
 +++
 
-[X-Ray Active Tracing](https://docs.aws.amazon.com/xray/latest/devguide/xray-usage.html#xray-usage-services) is a feature that automatically captures inbound calls to AWS Services (Lambda, API Gateway, SNS, SQS, and others) without requiring you to instrument any code. SAM and other frameworks also provide built-in support for you to enable active tracing in your resources during development-time.
+`X-Ray Active Tracing` is a feature that automatically captures inbound calls to AWS Services (Lambda, API Gateway, SNS, SQS, and others) without requiring you to instrument any code. SAM and other frameworks also provide built-in support for you to enable active tracing in your resources during development-time.
+
+{{% notice tip %}}
+Learn more about [X-Ray Active Tracing](https://docs.aws.amazon.com/xray/latest/devguide/xray-usage.html#xray-usage-services) from our documentation.
+{{% /notice %}}
+
 
 ### Modify the application
 
@@ -49,7 +54,7 @@ sam deploy
 To invoke our API's, we first need to fetch the `ApiUrl` output variable that our CloudFormation stack gives us. So let us iterate through our stack and export all output variables as environment variables:
 
 ```sh
-export ApiUrl=$(aws cloudformation describe-stacks --stack-name sam-app-tracing --output json | jq '.Stacks[].Outputs[] | select(.OutputKey=="ApiUrl") | .OutputValue' | sed -e 's/^"//'  -e 's/"$//')
+export ApiUrl=$(aws cloudformation describe-stacks --stack-name monitoring-app-tracing --output json | jq '.Stacks[].Outputs[] | select(.OutputKey=="ApiUrl") | .OutputValue' | sed -e 's/^"//'  -e 's/"$//')
 echo "export ApiUrl="$ApiUrl
 ```
 

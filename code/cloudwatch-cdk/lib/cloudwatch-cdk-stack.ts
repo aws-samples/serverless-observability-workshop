@@ -1,7 +1,6 @@
 import * as cdk from '@aws-cdk/core'
 import cloudwatch = require('@aws-cdk/aws-cloudwatch')
 import { GraphWidget, SingleValueWidget, Metric, DimensionHash } from '@aws-cdk/aws-cloudwatch'
-import { CloudFormationHelper } from './helper/cloudformation-parser'
 
 export interface MyStackProps extends cdk.StackProps {
   functions?: any;
@@ -58,7 +57,7 @@ export class CloudwatchCdkStack extends cdk.Stack {
     })
   }
 
-  buildMetric(namespace: string, label: string, functionName: string, metricName: string, statistic: string, period: cdk.Duration, dimensions: DimensionHash): Metric {
+  buildMetric(namespace: string, label: string, functionName: string, metricName: string, statistic: string, period: any, dimensions: DimensionHash): Metric {
     return new Metric({
       namespace: namespace,
       metricName: metricName,

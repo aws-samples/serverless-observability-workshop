@@ -41,7 +41,7 @@ After we deploy this application, the following resources will be provisioned in
     ```sh
             Setting default arguments for 'sam deploy'
             =========================================
-            Stack Name [sam-app]: sam-app-tracing
+            Stack Name [sam-app]: monitoring-app-tracing
             AWS Region [us-east-1]: 
             #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
             Confirm changes before deploy [y/N]: N
@@ -66,11 +66,11 @@ After we deploy this application, the following resources will be provisioned in
 
 1. Follow [this deep link to CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=sam-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) to keep up with the stack deployment.
 
-![Sample Architecture](/images/samstacks.png)
+![Sample Architecture](/images/samstacks_tracing.png)
 
 Wait until both stacks complete its deployment and take note of your API URL endpoint for later testing.
 
-![Sample Architecture](/images/samstackcomplete.png)
+![Sample Architecture](/images/samstackcomplete_tracing.png)
 
 ### Test the APIs 
 
@@ -79,7 +79,7 @@ Wait until both stacks complete its deployment and take note of your API URL end
 To invoke our API's, we first need to fetch the `ApiUrl` output variable that our CloudFormation stack gives us. So let us iterate through our stack and export all output variables as environment variables:
 
 ```sh
-export ApiUrl=$(aws cloudformation describe-stacks --stack-name sam-app-tracing --output json | jq '.Stacks[].Outputs[] | select(.OutputKey=="ApiUrl") | .OutputValue' | sed -e 's/^"//'  -e 's/"$//')
+export ApiUrl=$(aws cloudformation describe-stacks --stack-name monitoring-app-tracing --output json | jq '.Stacks[].Outputs[] | select(.OutputKey=="ApiUrl") | .OutputValue' | sed -e 's/^"//'  -e 's/"$//')
 echo "export ApiUrl="$ApiUrl
 ```
 
