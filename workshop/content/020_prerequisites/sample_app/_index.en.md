@@ -37,7 +37,7 @@ Enter the following settings when prompted:
         Setting default arguments for 'sam deploy'
         =========================================
         Stack Name [sam-app]: monitoring-app
-        AWS Region [us-east-1]: 
+        AWS Region [us-east-1]: <YOUR AWS_REGION>
         #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
         Confirm changes before deploy [y/N]: N
         #SAM needs permission to be able to create roles to connect to the resources in your template
@@ -45,19 +45,10 @@ Enter the following settings when prompted:
         getAllItemsFunction may not have authorization defined, Is this okay? [y/N]: Y
         getByIdFunction may not have authorization defined, Is this okay? [y/N]: Y
         putItemFunction may not have authorization defined, Is this okay? [y/N]: Y
-        Save arguments to samconfig.toml [Y/n]: Y 
-```
+        Save arguments to configuration file [Y/n]: Y
+        SAM configuration file [samconfig.toml]: 
+        SAM configuration environment [default]: 
 
-Wait for a few minutes and then enter the following when prompted again:
-
-
-```sh
-Changeset created successfully. arn:aws:cloudformation:us-east-1:1234567890:changeSet/samcli-deploy135353414/3d893bb8-2ecf-4491-9022-0644f5534da
-
-
-Previewing CloudFormation changeset before deployment
-======================================================
-Deploy this changeset? [y/N]: Y
 ```
 
 Follow [this deep link to CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=sam-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) to keep up with the stack deployment.
@@ -68,7 +59,7 @@ Wait until both stacks complete its deployment and take note of your API URL end
 
 ![Sample Architecture](/images/samstackcomplete.png)
 
-### Test the APIs 
+### Test the APIs
 
 #### Export the stack output variables
 
