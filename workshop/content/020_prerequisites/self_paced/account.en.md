@@ -29,7 +29,9 @@ one now by clicking here](https://aws.amazon.com/getting-started/)
 1. Click to create the new user:
 ![Confirm User](/images/iam-3-create-user.png)
 
-1. Take note of the login URL and save:
+1. Take note of the login URL and save it for future use:
 ![Login URL](/images/iam-4-save-url.png)
+
+1. Click on this URL to go to the AWS Management Console login page, use the username and password for the `workshop` user you just created.
 
 Once you have completed the step above, you can head straight to [**Create a Workspace**](../../workspace/workspace)
