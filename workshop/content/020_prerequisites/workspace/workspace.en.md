@@ -30,13 +30,19 @@ Cloud9 requires third-party-cookies. You can whitelist the [specific domains]( h
 - Select **Create environment**
 - Name it **serverless-observability-workshop**, click Next.
 - In the Environment Settings  make sure the option "Create a new EC2 instance for environment (direct access)" is selected.
-- Choose **t3.small** for instance type, take all default values and click **Create environment**
-- When it comes up, customize the environment by closing the **welcome tab**
-and **lower work area**, and opening a new **terminal** tab in the main work area:
+- Choose **t3.small** for instance type, take all default values and click **Next Step**
+- Review the details, and click **Create environment** (this will take a few minutes)
+
+- When the Cloud9 console is shown, customize the environment by closing the **welcome tab** and the **AWS Toolkit** tab, **lower work area**, and opening a new **terminal** tab in the main work area:
 ![c9before](/images/c9before.png)
 
 - Your workspace should now look like this:
 ![c9after](/images/c9after.png)
 
-- If you like this theme, you can choose it yourself by selecting **View / Themes / Solarized / Solarized Dark**
+
+{{% notice tip %}}
+If you like this theme, you can choose it yourself by selecting **View / Themes / Solarized / Solarized Dark**
 in the Cloud9 workspace menu.
+
+{{% /notice %}}
+
