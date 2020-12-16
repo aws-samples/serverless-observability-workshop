@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  Serverless Observability Workshop - Cloud9 environment
+Parameters:
+  c9Password:
+    Type: String
+    NoEcho: true
+
+Resources:
+  c9user:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: workshop
+      LoginProfile:
+        Password: !Ref c9Password
+        PasswordResetRequired: false
+      ManagedPolicyArns: 
+      - arn:aws:iam::aws:policy/AdministratorAccess
+
+  c9:
+    Type: AWS::Cloud9::EnvironmentEC2
+    Properties: 
+      InstanceType: t3.small
+      Name: serverless-observability-workshop
+      OwnerArn: !GetAtt c9user.Arn
+
+Outputs:
+  AWSConsoleSignInUrl:
+    Description: The URL to sign into the AWS Management Console
+    Value: !Sub "https://${AWS::AccountId}.signin.aws.amazon.com/console"

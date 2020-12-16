@@ -15,7 +15,7 @@ Cloud9 normally manages IAM credentials dynamically. For this workshop we will d
 ![c9disableiam](/images/c9disableiam.png)
 
 To ensure temporary credentials aren't already in place we will also remove
-any existing credentials file:
+any existing credentials file. Run this command in the terminal on the Cloud9 console towards the bottom of the screen.
 ```sh
 rm -vf ${HOME}/.aws/credentials
 ```

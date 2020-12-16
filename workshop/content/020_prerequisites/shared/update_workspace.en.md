@@ -1,7 +1,7 @@
 ---
 title: "Update your Workspace"
 chapter: false
-weight: 15
+weight: 30
 ---
 
 #### Install dependencies

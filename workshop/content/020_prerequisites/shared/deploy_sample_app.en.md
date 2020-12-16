@@ -1,7 +1,8 @@
-+++
-title = "Deploy the sample app"
-weight = 20
-+++
+---
+title: 'Deploy the sample app'
+chapter: false
+weight: 40
+---
 
 ### Clone the GitHub Repository 
 
@@ -51,11 +52,11 @@ Enter the following settings when prompted:
 
 ```
 
-Follow [this deep link to CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=sam-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) to keep up with the stack deployment.
+Follow [this deep link to CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=monitoring-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) to keep up with the stack deployment.
 
 ![Sample Architecture](/images/samstacks.png)
 
-Wait until both stacks complete its deployment and take note of your API URL endpoint for later testing.
+Take note of your API URL endpoint for later testing.
 
 ![Sample Architecture](/images/samstackcomplete.png)
 
