@@ -30,7 +30,7 @@ Resources:
         ExcludePrefix: "ProcessCustomMetricsAsync" # Uncomment to override default value
         # Only subscribe to functions created for this project
         ## Otherwise we'd override all CloudWatch Logs by subscribing to our Kinesis
-        Prefix: "/aws/lambda/sam-app" # Uncomment to override default value
+        Prefix: "/aws/lambda/monitoring-app" # Uncomment to override default value
         # Only captures Custom Metrics and INFO|WARN|ERROR log events; reduces cost and unnecessary noise
         FilterPattern:  "?INFO ?ERROR ?WARN ?REPORT ?MONITORING" # "{ $._logLevel != \"debug\" || $.MetricData IS TRUE }" in cases of custom consumer applications.
 
