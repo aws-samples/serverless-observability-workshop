@@ -9,6 +9,15 @@ In order for us to handle our log entries in background we need two complimentar
 Spare a couple of minutes to understand how these two SAR apps are being deployed by examining the SAM Template on ***serverless-observability-workshop/code/log-processing/template.yaml*** file.
 {{% /notice %}}
 
+By inspecting the ***serverless-observability-workshop/code/log-processing/template.yaml*** file, you can understand the patterns that Amazon CloudWatch Logs will attempt to filter and route to this module.
+
+```yaml
+# Only captures Custom Metrics and INFO|WARN|ERROR log events; reduces cost and unnecessary noise
+FilterPattern:  "?INFO ?ERROR ?WARN ?REPORT ?MONITORING"
+```
+
+Also, by inspecting the `logMetric()` and `buildStatsDMetricData()` methods at ***serverless-observability-workshop/code/sample-app/src/lib*** file, you can understand that the log structure that our metric entries will start with **MONITORING**, which will be filtered together with the **REPORT** log entry of every function execution to capture further operational data points.
+
 ### Deploy the Log Processing Utility
 
 1. Go back to your Cloud9 environment and open a new terminal.
