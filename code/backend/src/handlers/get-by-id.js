@@ -1,8 +1,9 @@
 const AWSXRay = require('aws-xray-sdk-core')
 const AWS = AWSXRay.captureAWS(require('aws-sdk'))
 const docClient = new AWS.DynamoDB.DocumentClient()
+const { Unit } = require("aws-embedded-metrics")
 const { MetricUnit } = require('../lib/helper/models')
-const { logger_setup, putMetric, logMetric } = require('../lib/logging/logger')
+const { logger_setup, putMetric, logMetric, logMetricEMF } = require('../lib/logging/logger')
 let log
 
 let _cold_start = true
@@ -18,12 +19,12 @@ exports.getByIdHandler = async (event, context) => {
     try {
       if (_cold_start) {
         //Metrics
-        await logMetric(name = 'ColdStart', unit = MetricUnit.Count, value = 1, { service: 'item_service', function_name: context.functionName })
+        await logMetricEMF(name = 'ColdStart', unit = Unit.Count, value = 1, { service: 'item_service', function_name: context.functionName })
         _cold_start = false
       }
       if (event.httpMethod !== 'GET') {
         log.error({ "operation": "get-by-id", 'method': 'getByIdHandler', "details": `getById only accept GET method, you tried: ${event.httpMethod}` })
-        await logMetric(name = 'UnsupportedHTTPMethod', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-by-id' })
+        await logMetricEMF(name = 'UnsupportedHTTPMethod', unit = Unit.Count, value = 1, { service: 'item_service', operation: 'get-by-id' })
         throw new Error(`getById only accept GET method, you tried: ${event.httpMethod}`)
       }
       
@@ -38,7 +39,7 @@ exports.getByIdHandler = async (event, context) => {
         body: JSON.stringify(item)
       }
       //Metrics
-      await logMetric(name = 'SuccessfulGetItem', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-by-id' })
+      await logMetricEMF(name = 'SuccessfulGetItem', unit = Unit.Count, value = 1, { service: 'item_service', operation: 'get-by-id' })
       //Tracing
       log.debug('Adding Item Retrieval annotation')
       subsegment.addAnnotation('ItemID', id)
@@ -60,7 +61,7 @@ exports.getByIdHandler = async (event, context) => {
       }
 
       //Metrics
-      await logMetric(name = 'FailedGetItem', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-by-id' })
+      await logMetricEMF(name = 'FailedGetItem', unit = Unit.Count, value = 1, { service: 'item_service', operation: 'get-by-id' })
     } finally {
       subsegment.close()
     }

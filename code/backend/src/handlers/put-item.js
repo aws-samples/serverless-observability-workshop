@@ -2,8 +2,9 @@ const AWSXRay = require('aws-xray-sdk-core')
 const AWS = AWSXRay.captureAWS(require('aws-sdk'))
 const docClient = new AWS.DynamoDB.DocumentClient()
 const sns = new AWS.SNS();
+const { Unit } = require("aws-embedded-metrics")
 const { MetricUnit } = require('../lib/helper/models')
-const { logger_setup, putMetric, logMetric } = require('../lib/logging/logger')
+const { logger_setup, putMetric, logMetric, logMetricEMF } = require('../lib/logging/logger')
 let log
 
 let _cold_start = true
@@ -19,12 +20,12 @@ exports.putItemHandler = async (event, context) => {
         try {
             if (_cold_start) {
                 //Metrics
-                await logMetric(name = 'ColdStart', unit = MetricUnit.Count, value = 1, { service: 'item_service', function_name: context.functionName })
+                await logMetricEMF(name = 'ColdStart', unit = Unit.Count, value = 1, { service: 'item_service', function_name: context.functionName })
                 _cold_start = false
             }
             if (event.httpMethod !== 'POST') {
                 log.error({ "operation": "put-item", 'method': 'putItemHandler', "details": `PutItem only accept GET method, you tried: ${event.httpMethod}` })
-                await logMetric(name = 'UnsupportedHTTPMethod', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
+                await logMetricEMF(name = 'UnsupportedHTTPMethod', unit = Unit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
                 throw new Error(`PutItem only accept POST method, you tried: ${event.httpMethod}`)
             }
 
@@ -39,7 +40,7 @@ exports.putItemHandler = async (event, context) => {
                 body: JSON.stringify(item)
             }
             //Metrics
-            await logMetric(name = 'SuccessfulPutItem', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
+            await logMetricEMF(name = 'SuccessfulPutItem', unit = Unit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
             //Tracing
             log.debug('Adding Item Creation annotation')
             subsegment.addAnnotation('ItemID', JSON.parse(event.body).id)
@@ -61,7 +62,7 @@ exports.putItemHandler = async (event, context) => {
             }
 
             //Metrics
-            await logMetric(name = 'FailedPutItem', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
+            await logMetricEMF(name = 'FailedPutItem', unit = Unit.Count, value = 1, { service: 'item_service', operation: 'put-item' })
         } finally {
             subsegment.close()
         }

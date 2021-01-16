@@ -37,6 +37,7 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref SampleTable
         - CloudWatchPutMetricPolicy: {}
+        - CloudWatchLambdaInsightsExecutionRolePolicy
       Events:
         Api:
           Type: Api
@@ -54,6 +55,7 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref SampleTable
         - CloudWatchPutMetricPolicy: {}
+        - CloudWatchLambdaInsightsExecutionRolePolicy
       Events:
         Api:
           Type: Api
@@ -73,6 +75,7 @@ Resources:
         - CloudWatchPutMetricPolicy: {}
         - SNSPublishMessagePolicy:
             TopicName: !Sub ${NewItemTopic.TopicName}
+        - CloudWatchLambdaInsightsExecutionRolePolicy
       Environment:
         Variables:
           TOPIC_NAME: !Ref NewItemTopic
@@ -89,6 +92,8 @@ Resources:
     Properties:
       Handler: src/handlers/notify-item.notifiyNewItemHandler
       Description: A simple example that is triggered by a SNS message to notify of a new item insertion.
+      Policies:
+        - CloudWatchLambdaInsightsExecutionRolePolicy
       Events:
         TopicListener:
           Type: SNS

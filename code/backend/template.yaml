@@ -21,6 +21,10 @@ Globals:
         # Enable usage of KeepAlive to reduce overhead of short-lived actions, like DynamoDB queries
         AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
         AWS_EMF_NAMESPACE: MonitoringApp
+        # d
+        LAMBDA_INSIGHTS_LOG_LEVEL: info
+    Layers:
+      - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:14"
   Api:
     TracingEnabled: true
 
@@ -55,6 +59,7 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref SampleTable
         - CloudWatchPutMetricPolicy: {}
+        - CloudWatchLambdaInsightsExecutionRolePolicy
       Events:
         Api:
           Type: Api
@@ -72,6 +77,7 @@ Resources:
         - DynamoDBCrudPolicy:
             TableName: !Ref SampleTable
         - CloudWatchPutMetricPolicy: {}
+        - CloudWatchLambdaInsightsExecutionRolePolicy
       Events:
         Api:
           Type: Api
@@ -91,6 +97,7 @@ Resources:
         - CloudWatchPutMetricPolicy: {}
         - SNSPublishMessagePolicy:
             TopicName: !Sub ${NewItemTopic.TopicName}
+        - CloudWatchLambdaInsightsExecutionRolePolicy
       Environment:
         Variables:
           TOPIC_NAME: !Ref NewItemTopic
@@ -107,6 +114,8 @@ Resources:
     Properties:
       Handler: src/handlers/notify-item.notifiyNewItemHandler
       Description: A simple example that is triggered by a SNS message to notify of a new item insertion.
+      Policies:
+        - CloudWatchLambdaInsightsExecutionRolePolicy
       Events:
         TopicListener:
           Type: SNS

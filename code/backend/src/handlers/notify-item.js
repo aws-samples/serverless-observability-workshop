@@ -1,6 +1,7 @@
 const AWSXRay = require('aws-xray-sdk-core')
 const { MetricUnit } = require('../lib/helper/models')
-const { logger_setup, putMetric, logMetric } = require('../lib/logging/logger')
+const { Unit } = require("aws-embedded-metrics")
+const { logger_setup, putMetric, logMetric, logMetricEMF } = require('../lib/logging/logger')
 let log
 
 let _cold_start = true
@@ -16,7 +17,7 @@ exports.notifiyNewItemHandler = async (event, context) => {
     try {
       if (_cold_start) {
         //Metrics
-        await logMetric(name = 'ColdStart', unit = MetricUnit.Count, value = 1, { service: 'item_service', function_name: context.functionName })
+        await logMetricEMF(name = 'ColdStart', unit = Unit.Count, value = 1, { service: 'item_service', function_name: context.functionName })
         _cold_start = false
       }
      
@@ -24,7 +25,7 @@ exports.notifiyNewItemHandler = async (event, context) => {
       response = await getItem(record, subsegment)
 
       //Metrics
-      await logMetric(name = 'SuccessfulNewItemNotification', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'get-by-id' })
+      await logMetricEMF(name = 'SuccessfulNewItemNotification', unit = Unit.Count, value = 1, { service: 'item_service', operation: 'get-by-id' })
       //Tracing
       log.debug('Adding New Item Notification annotation')
       //subsegment.addAnnotation('ItemID', id)
@@ -38,7 +39,7 @@ exports.notifiyNewItemHandler = async (event, context) => {
       log.error({ "operation": "notify-item", 'method': 'notifiyNewItemHandler', "details": err })
 
       //Metrics
-      await logMetric(name = 'FailedGetNewItemNotification', unit = MetricUnit.Count, value = 1, { service: 'item_service', operation: 'notify-item' })
+      await logMetricEMF(name = 'FailedGetNewItemNotification', unit = Unit.Count, value = 1, { service: 'item_service', operation: 'notify-item' })
     } finally {
       subsegment.close()
     }
