@@ -21,12 +21,12 @@ This workshop can be found [here](http://observability.serverlessworkshops.io/).
 - [X] ~~Create CDK project to create CloudWatch Dashboard with Operational/Business metrics from Lambda.~~
 - [X] ~~Add Parameters for creating the CDK CW Dashboard stack.~~
 - [X] ~~Create Synthetic Canaries module.~~
+- [X] ~~Create Contributor Insight module.~~
 
 ## TO-DO:
 
 - [ ] Create CDK project to provision ES (Advanced Module in workshop).
 - [ ] Create Circuit Breaker module.
-- [ ] Create Contributor Insight module.
 - [ ] Create Partner Solutions module.
 - [ ] Create Log Subscription to push logs to ES.
 - [ ] Create Kibana Visualization / Dashboards for import/export.
