@@ -72,10 +72,35 @@ languageName = "English"
   url = "mailto:serverless-observability-workshop@amazon.com"
   weight = 5
 
-#[Languages.es]
-#title = "AWS Serverless Observability Workshop"
-#weight = 2
-#languageName = "Español"
+[Languages.es]
+title = "AWS Serverless Observability Workshop"
+weight = 2
+languageName = "Español"
+
+  [[Languages.es.menu.shortcuts]]
+  name = "<i class='fas fa-tags'></i> Tags"
+  url = "tags"
+  weight = 1
+  
+  [[Languages.es.menu.shortcuts]]
+  name = "<i class='fas fa-bookmark'></i> Más Recursos"
+  url = "more_resources"
+  weight = 2
+
+  [[Languages.es.menu.shortcuts]]
+  name = "<i class='fas fa-users'></i> Autores"
+  url = "authors"
+  weight = 3
+
+  [[Languages.es.menu.shortcuts]]
+  name = "<i class='fab fa-github'></i> Proyecto en GitHub"
+  url = "https://github.com/aws-samples/serverless-observability-workshop"
+  weight = 4
+
+  [[Languages.es.menu.shortcuts]]
+  name = "<i class='fas fa-envelope'></i> Feedback / Preguntas?"
+  url = "mailto:serverless-observability-workshop@amazon.com"
+  weight = 5
 
 [Languages.pt]
 title = "AWS Serverless Observability Workshop"
