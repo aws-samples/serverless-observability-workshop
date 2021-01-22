@@ -1,6 +1,6 @@
 ![Build](https://github.com/aws-samples/serverless-observability-workshop/workflows/Build/badge.svg)
 
-# AWS Serverless Observability Workshop 
+# AWS Serverless Observability Workshop 1
 
 This workshop can be found [here](http://observability.serverlessworkshops.io/).
 
