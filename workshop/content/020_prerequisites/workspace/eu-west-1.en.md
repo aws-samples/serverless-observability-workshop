@@ -5,4 +5,4 @@ disableToc: true
 hidden: true
 ---
 
-Create a Cloud9 Environment: [https://eu-west-1.console.aws.amazon.com/cloud9/home?region=eu-west-1](https://eu-west-1.console.aws.amazon.com/cloud9/home?region=eu-west-1)
+[![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/new?stackName=Serverless-Observability-Wksp-C9&templateURL=https://serverless-observability-workshop-cfn.s3.amazonaws.com/quickstart-c9/template.yaml)

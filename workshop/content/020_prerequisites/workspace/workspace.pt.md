@@ -5,6 +5,10 @@ weight: 14
 ---
 
 {{% notice warning %}}
+**Se você estiver fazendo este workshop em um evento AWS (Immersion Day, re:Invent, Summit, etc) utilizando o Event Engine, você deve pular esta etapa.**
+{{% /notice %}}
+
+{{% notice warning %}}
 O workspace do Cloud9 deve ser criado por um usuário do IAM com privilégios de administrador,
 não o usuário root da conta. Certifique-se de que você está conectado como um usuário do IAM, não o usuário root da conta.
 {{% /notice %}}
@@ -26,11 +30,18 @@ O Cloud9 requer cookies de terceiros. Você pode colocar na whitelist os [domín
 {{{< tab name="São Paulo" include="sa-east-1.pt.md" />}}
 {{< /tabs >}}
 
-- Selecione **Create environment**
-- Nomeie como  **serverless-observability-workshop**, clique em Next.
-- Nas Configurações do ambiente, verifique se a opção "Create a new EC2 instance for environment (direct access)" está selecionada.
-- Escolha **t3.small** para o tipo de instância, mantenha todos os valores padrão e clique em **Next Step**
-- Revise os detalhes e clique em **Create environment** (isso levará alguns minutos)
+- Aceite os valores padrões para **Stack name** e **Parameters** e clique **Create stack**. 
+
+![c9before](/images/cfn-stack-1.png)
+
+![c9before](/images/cfn-stack-2.png)
+
+- Aguarde até que sua Stack esteja com o status de criação como `CREATE_COMPLETE`
+
+![c9before](/images/cfn-stack-3.png)
+
+- Abra seu [Console do Cloud9](https://console.aws.amazon.com/cloud9/home).
+- Encontre o ambiente chamado **serverless-observability-workshop**, clique **Open IDE**.
 
 - Quando o console do Cloud9 for exibido, personalize o ambiente fechando a guia **welcome** e a guia **AWS Toolkit**, **lower work area**, e abrindo uma nova guia **terminal** na área de trabalho principal:
 ![c9before](/images/c9before.png)

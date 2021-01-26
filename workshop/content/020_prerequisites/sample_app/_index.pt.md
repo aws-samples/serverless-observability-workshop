@@ -1,5 +1,5 @@
 +++
-title = "Implante o aplicativo de amostra"
+title = "Deploy da aplicação de exemplo"
 weight = 20
 +++
 

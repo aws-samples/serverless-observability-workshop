@@ -5,10 +5,15 @@ weight: 14
 ---
 
 {{% notice warning %}}
+**If you are running this workshop at an AWS Event (Immersion Day, re:Invent, Summit, etc) using Event Engine, you must skip this step.**
+{{% /notice %}}
+
+{{% notice warning %}}
 The Cloud9 workspace should be built by an IAM user with Administrator privileges,
 not the root account user. Please ensure you are logged in as an IAM user, not the root
 account user.
 {{% /notice %}}
+
 
 {{% notice tip %}}
 Ad blockers, javascript disablers, and tracking blockers should be disabled for
@@ -27,12 +32,19 @@ Cloud9 requires third-party-cookies. You can whitelist the [specific domains]( h
 {{{< tab name="São Paulo" include="sa-east-1.en.md" />}}
 {{< /tabs >}}
 
-- Select **Create environment**
-- Name it **serverless-observability-workshop**, click Next.
-- In the Environment Settings  make sure the option "Create a new EC2 instance for environment (direct access)" is selected.
-- Choose **t3.small** for instance type, take all default values and click **Next Step**
-- Review the details, and click **Create environment** (this will take a few minutes)
 
+- Accept the default values for **Stack name** and **Parameters** and click **Create stack**. 
+
+![c9before](/images/cfn-stack-1.png)
+
+![c9before](/images/cfn-stack-2.png)
+
+- Wait until your Stack creating status shows as `CREATE_COMPLETE`
+
+![c9before](/images/cfn-stack-3.png)
+
+- Go to your [Cloud9 Environment](https://console.aws.amazon.com/cloud9/home).
+- Find the environment named **serverless-observability-workshop**, click **Open IDE**.
 - When the Cloud9 console is shown, customize the environment by closing the **welcome tab** and the **AWS Toolkit** tab, **lower work area**, and opening a new **terminal** tab in the main work area:
 ![c9before](/images/c9before.png)
 
