@@ -3,9 +3,9 @@ title = "Introducción"
 weight = 10
 +++
 
-Many organizations, from small startups to large enterprises, are adopting more and more "serverless-first" architectures to obtain a faster time-to-market with optimized development and operation costs, and higher availability rates. But sometimes, this paradigm shift can be seen as a challenge in how our Engineering teams develop their microservices in an organized fashion while ensuring the best practices are still being applied, and how Operations teams can ensure to measure, troubleshoot, and monitor these workloads without having to acquire a new skillset.
+Muchas organizaciones, desde pequeñas startups a multinacionales gigantes, están cada vez más adoptando arquitecturas "serverless-first" para obtener un time-to-market más rápido y con menor coste de desarrollo y de operaciones, y una mayor tasa de disponibilidad. Sin embargo, a veces, este cambio de paradigma puede generar desafíos en cómo los equipos de Ingeniería desarrollan sus microservicios de manera organizada al mismo tiempo en que garantizan que las mejores prácticas siguen siendo aplicadas, y como equipos de Operaciones pueden garantizar la medición, el seguimiento y el troubleshooting de estas aplicaciones sin la necesidad de adquirir un nuevo conocimiento o nuevas herramientas. 
 
-This workshop will walk you through some of the best practices to instrument logging, tracing and monitoring in a serverless application in such way one can obtain the so called observability. AWS provides services that can help customers to address the requirements of the three main pillars of Observability:
+Este workshop te va a guiar por algunas de las mejores prácticas de instrumentación de tracing distribuído, seguimiento y logging centralizado en una de las aplicaciones serverless, de modo que sea posible obtener la llamada "Observability":
 
 {{%children style="h2" description="true" %}}
 
