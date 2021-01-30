@@ -1,5 +1,5 @@
 ---
-title: "Creaar una cuenta AWS"
+title: "Crear una cuenta AWS"
 chapter: false
 weight: 1
 ---
