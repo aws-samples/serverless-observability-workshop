@@ -75,7 +75,7 @@ Observa el endpoint de la URL de API porque puede ser un requisito en algún mó
 {{% /notice %}}
 
 
-#### Prueba la operación 'Put Item`
+#### Prueba la operación `Put Item`
 
 ```sh
 curl -X POST \
