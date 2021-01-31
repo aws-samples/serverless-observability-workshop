@@ -6,8 +6,8 @@ weight = 1
 
 # AWS Serverless Observability Workshop
 
-Bien venido! Neste workshop, iremos explorar algumas das técnicas que você pode adotar para monitorar suas aplicações Serverless utilizando serviços da AWS através de métricas de negócio e operacionais, logging centralizado, e orquestração de traces distribuidos pela sua aplicação.
+¡Bienvenido! En este workshop vamos a explorar algunas de las técnicas que vas a poder adoptar para monitorear tus aplicaciones Serverless usando servicios de AWS a través de métricas de negocios y operacionales, logging centralizado y orquestación de traces distribuidos por tu aplicación.
 
 # Importante
 
-Cada módulo deste workshop é desenhado para ser completamente independente um do outro, para que não se crie uma dependência de complitude do módulo anterior, com exceção do módulo `Pré-Requisitos`. Desta forma, você pode planejar seu dia/evento para completar ou entregar este workshop por inteiro ou apenas os módulos que te interessem.
+Cada módulo de este workshop está diseñado de manera independiente, en el intento de que no necesites finalizar el módulo anterior, con excepción del módulo `Pré-Requisitos`. De esta manera, puedes planear tu día o evento para completar o entregar este workshop por completo o solamente las unidades que te interesen más. 
