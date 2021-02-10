@@ -49,17 +49,17 @@ languageName = "English"
 
   [[Languages.en.menu.shortcuts]]
   name = "<i class='fas fa-tags'></i> Tags"
-  url = "tags"
+  url = "tags.html"
   weight = 1
   
   [[Languages.en.menu.shortcuts]]
   name = "<i class='fas fa-bookmark'></i> More Resources"
-  url = "more_resources"
+  url = "more_resources.html"
   weight = 2
 
   [[Languages.en.menu.shortcuts]]
   name = "<i class='fas fa-users'></i> Authors"
-  url = "authors"
+  url = "authors.html"
   weight = 3
 
   [[Languages.en.menu.shortcuts]]
@@ -79,17 +79,17 @@ languageName = "Español"
 
   [[Languages.es.menu.shortcuts]]
   name = "<i class='fas fa-tags'></i> Tags"
-  url = "tags"
+  url = "tags.html"
   weight = 1
   
   [[Languages.es.menu.shortcuts]]
   name = "<i class='fas fa-bookmark'></i> Más Recursos"
-  url = "more_resources"
+  url = "more_resources.html"
   weight = 2
 
   [[Languages.es.menu.shortcuts]]
   name = "<i class='fas fa-users'></i> Autores"
-  url = "authors"
+  url = "authors.html"
   weight = 3
 
   [[Languages.es.menu.shortcuts]]
@@ -109,17 +109,17 @@ languageName = "Português"
 
   [[Languages.pt.menu.shortcuts]]
   name = "<i class='fas fa-tags'></i> Tags"
-  url = "tags"
+  url = "tags.html"
   weight = 1
   
   [[Languages.pt.menu.shortcuts]]
   name = "<i class='fas fa-bookmark'></i> Mais Recursos"
-  url = "more_resources"
+  url = "more_resources.html"
   weight = 2
 
   [[Languages.pt.menu.shortcuts]]
   name = "<i class='fas fa-users'></i> Autores"
-  url = "authors"
+  url = "authors.html"
   weight = 3
 
   [[Languages.pt.menu.shortcuts]]
