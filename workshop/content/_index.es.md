@@ -4,8 +4,6 @@ chapter = true
 weight = 1
 +++
 
-# AWS Serverless Observability Workshop
-
 ¡Bienvenido! En este workshop vamos a explorar algunas de las técnicas que vas a poder adoptar para monitorear tus aplicaciones Serverless usando servicios de AWS a través de métricas de negocios y operacionales, logging centralizado y orquestación de traces distribuidos por tu aplicación.
 
 # Importante
