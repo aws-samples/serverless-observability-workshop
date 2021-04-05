@@ -22,8 +22,8 @@ Then, install, build and deploy the application
 # Install, Build and Deploy the application
 cd ~/environment/serverless-observability-workshop/code/cloudwatch-cdk
 npm outdated
-npm update
-npm install
+npm update --force
+npm install --force
 npm install -g typescript aws-cdk
 cdk deploy -c stack_name=monitoring-app
 ```
