@@ -12,13 +12,28 @@ Go to [Synthetics canary](https://console.aws.amazon.com/cloudwatch/home?#synthe
 
 1. Select **API canary** under **Blueprints**.
 1. Name it **my-api-canary**.
-1. Select the **GET** method.
-1. Add your API endpoint under **Application or endpoint URL** with the **/items** route.
-1. On **Schedule** configure it to run every **1 minute**.
+1. Check the **I'm using an Amazon API Gateway API** checkbox.
+1. Select the **Choose API and stage from API Gateway** option.
+1. Select the **monitoring-app** API.
+1. Select the **Prod** stage.
 
-![synthetics-2](/images/synthetics2.png)
+    Your API URL will be automatically selected.
 
-6. Accept all other default configurations and click **Create canary**.
+    ![synthetics-2](/images/synthetics2.png)
+
+1. Click on **Add HTTP Request**.
+1. Select **/items** under **Resource**.
+1. Select **GET** under **Method**.
+1. Accept all other default configurations and click  **Save**.
+
+    ![synthetics-timer](/images/synthetics_http_request.png)
+    ![synthetics-timer](/images/synthetics_http_request_1.png)
+
+1. On Schedule configure it to run every 1 minute.
+
+    ![synthetics-timer](/images/synthetics_timer.png)
+
+1. Accept all other default configurations and click **Create canary**.
 
 {{% notice tip %}}
 If you  didn't take a note of your API Url after deploying the sample app, you can always check for its CloudFormation Stack Output Variable of type the following command on your **Cloud9 environment terminal**.
