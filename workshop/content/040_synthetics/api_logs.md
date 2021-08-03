@@ -49,7 +49,7 @@ After a few minutes, you should be presented with a similar screen to observe yo
 
 ### Introducing Failures
 
-Let's see what happens if we accidentaly break our API? Since we are monitoring the GET method for the `/items/` route, we are going to modify our ***get-all-items.js*** Lambda function in order to introduce a random exception to make our canary fail.
+Let's see: what happens if we accidentally break our API? Since we are monitoring the GET method for the `/items/` route, we are going to modify our ***get-all-items.js*** Lambda function in order to introduce a random exception to make our canary fail.
 
 7. Switch back to your **Cloud9 environment** and open the file at ***/serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js***. Modify the `getAllItemsHandler()` method by throwing a new error right after it's HTTP method validation:
 
@@ -168,6 +168,6 @@ sam build && sam deploy
 
 #### Validate your Canary
 
-Again, after a few minutes you should notice that your canary is again in a `Passing` state.
+After a few minutes you should notice that your canary is again in a `Passing` state.
 
 ![synthetics-6](/images/synthetics6.png)
