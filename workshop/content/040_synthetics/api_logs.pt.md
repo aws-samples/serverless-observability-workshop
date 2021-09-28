@@ -9,12 +9,12 @@ Vá para a página [Synthetics canary](https://console.aws.amazon.com/cloudwatch
 
 ### Criação de uma API Canary
 
-1. Selecione ** Canário da API ** em ** Blueprints **.
-1. Nomeie-o como ** my-api-canary **.
-1. Marque a caixa de seleção ** Estou usando uma API Amazon API Gateway (I'm using an Amazon API Gateway API)**.
-1. Selecione a opção ** Escolher API e estágio do API GAteway (Choose API and stage from API Gateway) **.
-1. Selecione a API ** monitoring-app **.
-1. Selecione o estágio ** Prod **.
+1. Selecione **Canário da API** em **Blueprints**.
+1. Nomeie-o como **my-api-canary**.
+1. Marque a caixa de seleção **Estou usando uma API Amazon API Gateway (I'm using an Amazon API Gateway API)**.
+1. Selecione a opção **Escolher API e estágio do API GAteway (Choose API and stage from API Gateway)**.
+1. Selecione a API **monitoring-app**.
+1. Selecione o estágio **Prod**.
 
     Sua URL da API será selecionada automaticamente.
 
@@ -35,7 +35,7 @@ Vá para a página [Synthetics canary](https://console.aws.amazon.com/cloudwatch
 1. Aceite todas as outras configurações padrão e clique em **Criar canário**.
 
 {{% notice tip %}}
-Se você não tomou nota do URL da API após implantar o aplicativo sample app, você sempre pode verificar sua variável de saída (output) no CloudFormation utilizando o seguinte comando em seu **terminal de ambiente Cloud9**.
+Se você não tomou nota do URL da API após implantar o aplicativo sample app, você sempre pode verificar sua variável de saída (output) no CloudFormation utilizando o seguinte comando em seu **terminal de Ambiente Cloud9**.
 {{% /notice %}}
 
 ```sh
@@ -48,9 +48,9 @@ Depois de alguns minutos, você verá uma tela semelhante a abaixo para observar
 
 ### Introduzindo Falhas
 
-Vamos ver o que acontece se quebrarmos acidentalmente nossa API? Como estamos monitorando o método GET para a rota `/ items /`, vamos modificar nossa função Lambda ***get-all-items.js*** para introduzir uma exceção aleatória e fazer nosso canário falhar.
+Vamos ver o que acontece se quebrarmos acidentalmente nossa API? Como estamos monitorando o método GET para a rota `/items/`, vamos modificar nossa função Lambda ***get-all-items.js*** para introduzir uma exceção aleatória e fazer nosso canário falhar.
 
-7. Volte para o **ambiente Cloud9** e abra o arquivo em ***/serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js***. Modifique o método `getAllItemsHandler ()` lançando um novo erro logo após a validação do método HTTP:
+7. Volte para o **Ambiente Cloud9** e abra o arquivo em ***/serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js***. Modifique o método `getAllItemsHandler()` lançando um novo erro logo após a validação do método HTTP:
 
 ```javascript
     if (event.httpMethod !== 'GET') {
@@ -62,6 +62,7 @@ Vamos ver o que acontece se quebrarmos acidentalmente nossa API? Como estamos mo
 8. Salve suas alterações no arquivo ***serverless-observability-workshop/code/sample-app-tracing/src/handlers/get-all-items.js***.
 
 **Seu método getAllItemsHandler() deve estar assim:**
+
 {{% expand "Fully modified method (expand for code)" %}}
 ```javascript
 exports.getAllItemsHandler = async (event, context) => {
@@ -104,7 +105,7 @@ sam build && sam deploy
 
 #### Valide o seu Canário
 
-Depois de alguns minutos, você deve perceber que seu canário está em um estado de `Falha`.
+Depois de alguns minutos, você deve perceber que seu canário está em um estado de `Falha (Failed)`.
  
 ![synthetics-4](/images/synthetics4.png)
 
@@ -116,9 +117,9 @@ Clique no link **my-api-canary** para ver todas as informações adicionais sobr
 
 #### Rebaseamento do código da aplicação
 
-Para que possamos passar em nossos testes canário novamente, vamos voltar para o seu **ambiente Cloud9** e abrir o arquivo em ***/serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js*** mais uma vez.
+Para que possamos passar em nossos testes canário novamente, vamos voltar para o seu **Ambiente Cloud9** e abrir o arquivo em ***/serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js*** mais uma vez.
 
-9. Agora vamos remover o erro que acabamos de introduzir, modificando o handler do Lambda removendo o comando `throw new Error ()` que introduzimos no método `getAllItemsHandler ()`:
+9. Agora vamos remover o erro que acabamos de introduzir, modificando o handler do Lambda removendo o comando `throw new Error()` que introduzimos no método `getAllItemsHandler()`:
 
 ```javascript
 throw new Error('Sample exception introduction') // <- Remove exception throw 
