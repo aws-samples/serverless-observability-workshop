@@ -11,28 +11,28 @@ Vá para o [Console do CloudWatch Logs Insights](https://console.aws.amazon.com/
 
 Como você pode ver, um exemplo de consulta é automaticamente colocado no campo de consulta.
 
-Now simply click on **Run query** button to execute the query results. As expected, you will see results from the query.
+Agora, basta clicar no botão **Executar consulta (Run quer)** para executar os resultados da consulta. Como esperado, você verá os resultados da consulta.
 
-The sample query fetches the `@timestamp` and `@message` fields from the log data, orders by the timestamp field in descending order and displays the first 20 records.
+A consulta de amostra busca os campos `@timestamp` e` @message` dos dados de log, ordena pelo campo de timestamp em ordem decrescente e exibe os primeiros 20 registros.
 
 ![metrics-1](/images/query_logs_2.png)
 
-#### Querying API Gateway Custom Access Logging
+#### Consultando logs de acesso personalizado do API Gateway
 
-You can also switch your log group preference to the `/aws/apigateway/` log group in order to query for access logs of our API, while maintaining the same query statement.
+Você também pode mudar sua preferência de grupo de log para o grupo de log `/aws/apigateway/` para consultar os logs de acesso de nossa API, enquanto mantém a mesma instrução de consulta
 
 ![metrics-1](/images/query_logs_api.png)
 
 {{% notice tip %}}
-Learn more about Logs Insights syntax and queries [here](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html)
+Saiba mais sobre a sintaxe e as consultas no Logs Insights [aqui] (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html)
 {{% /notice %}}
 
 
-#### Simple list with filter and sort 
+#### Lista simples com filtro e classificação
 
-Select once again the `/aws/lambda/monitoring-app-getAllItemsFunction` log group.
+Selecione mais uma vez o grupo de log `/aws/lambda/monitoring-app-getAllItemsFunction`.
 
-Now paste this query into the log field. The following query applies a filter on the messages and fetches only the records that contain the string `operation` in the log event and displays the result ordered by the timestamp field in descending order
+Agora cole esta consulta no campo de log. A consulta a seguir aplica um filtro nas mensagens e busca apenas os registros que contêm a string `operação` no evento de registro e exibe o resultado ordenado pelo campo de carimbo de data / hora em ordem decrescente
 
 ```sql
 fields @timestamp, @message
@@ -43,9 +43,9 @@ fields @timestamp, @message
 
 ![metrics-1](/images/query_logs_3.png)
 
-#### List with aggregation, sort and timeseries
+#### Lista com agregação, classificação e série temporal
 
-Now paste this query into the log field. The following shows a result that contains the number of messages captured by 5 minute interval
+Agora cole esta consulta no campo de log. A seguinte imagem mostra um resultado que contém o número de mensagens capturadas em um intervalo de 5 minutos
 
 ```sql
 fields @timestamp, @message
@@ -56,22 +56,22 @@ fields @timestamp, @message
 
 ![metrics-1](/images/query_logs_4.png)
 
-You can also visualize the results by clicking on the `Visualization` tab in the results area as shown below.
+Você também pode visualizar os resultados clicando na guia `Visualização` na área de resultados conforme mostrado abaixo.
 
 ![metrics-1](/images/query_logs_5.png)
 
-Notice that you can also add the visualization to a `CloudWatch Dashboard`, export to csv and so on.
+Observe que você também pode adicionar a visualização a um `CloudWatch Dashboard`, exportar para csv e assim por diante.
 
 ![metrics-1](/images/query_logs_6.png)
 
-### Querying using AWS CLI
+### Consultando usando AWS CLI
 
-You can query the log groups using AWS CLI as well. The query below queries top 10 log records from a log group for a specific time period.
+Você também pode consultar os grupos de log usando o AWS CLI. A consulta a seguir mostra os 10 principais registros de um grupo de registros para um período de tempo específico.
 
-Make sure you replace the log group to the appropriate one you have on your account and change the start and end time parameter values to the right epoch time values. You can calculate epoch time values from this public website - https://www.epochconverter.com/
+Certifique-se de substituir o grupo de log apropriado que você tem em sua conta e alterar os valores dos parâmetros de tempo de início e término para os valores de tempo de época (epoch) corretos. Você pode calcular os valores de tempo de época (epoch) neste site público - https://www.epochconverter.com/
 
 {{% notice tip %}}
-For simplicity reasons, the timestamps below are set between `24th Aug, 2020` to `24th Aug, 2022`.
+Por razões de simplicidade, os carimbos (timestamps) de data / hora abaixo são definidos entre `24 de agosto de 2020` e` 24 de agosto de 2022`.
 {{% /notice %}}
 
 ```sh
@@ -79,7 +79,7 @@ export getAllItemsFunction=$(aws cloudformation describe-stack-resources --stack
 aws logs start-query --log-group-name /aws/lambda/$getAllItemsFunction --start-time '1598288209' --end-time '1661364126' --query-string 'fields @message | limit 10'
 ```
 
-The above query will return a queryId. Copy that query Id and replace the `<QUERY_ID>` string. in the below command and execute it to see log data results.
+A consulta acima retornará um queryId. Copie esse ID de consulta e substitua a string `<QUERY_ID>` no comando abaixo e execute-o para ver os resultados dos dados de registro.
 
 ```sh
 aws logs get-query-results --query-id <QUERY_ID>

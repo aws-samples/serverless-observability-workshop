@@ -1,17 +1,17 @@
 ---
-title: "Função Obter Item por ID `Get Item By ID Function`"
+title: "Função Obter Todos por ID `Get Item By ID`"
 weight: 78
 ---
 
-### Modify the application
+### Modifique o aplicativo
 
-Go back you your **Cloud9** environment and open your app workspace at ***serverless-observability-workshop/code/sample-app-tracing***.
+Volte para o seu ambiente **Cloud9** e abra o espaço de trabalho (workspace) do seu aplicativo em ***serverless-observability-workshop/code/sample-app-tracing***.
 
-#### Modify the Get Item By ID Function
+#### Modifique a função Obter todos os itens por ID `Get Item By ID`
 
-1. Lambda doesn't allow us to add custom annotations and metadata to its root segment, so we first need to create our custom subsegment by updating our handler.
+1. O Lambda não nos permite adicionar anotações personalizadas e metadados ao seu segmento raiz, então primeiro precisamos criar nosso subsegmento personalizado atualizando nosso manipulador (handler).
 
-1. Edit the ***serverless-observability-workshop/code/sample-app-tracing/src/handlers/get-by-id.js*** file to add an initial subsegment called `## Handler` using the `AWSXRay.captureAsyncFunc()` method on the entire handler method and closing the `subsegment` inside a new `finally` clause in our `try/catch`.
+1. Edite o arquivo ***serverless-observability-workshop/code/sample-app-tracing/src/handlers/get-by-id.js*** para adicionar um subsegmento inicial chamado `## Handler` usando o método `AWSXRay.captureAsyncFunc()` em todo o método manipulador (handler) e fechando o `subsegmento` dentro de uma nova cláusula `finally` em nosso` try / catch`.
 
     ```javascript
 
@@ -30,7 +30,7 @@ Go back you your **Cloud9** environment and open your app workspace at ***server
     }
     ```
 
-1. Next, we are ready to add our annotations in case of successful and failed executions to our given Item ID. Inside your `handler`, find and add in the end of your `try` and beginning of your `catch` statements the annotations for `ItemID` and `Status`:
+1. Em seguida, estamos prontos para adicionar nossas anotações em caso de execuções bem ou mal sucedidas ao nosso ID de item fornecido. Dentro de seu `handler`, encontre e adicione no final de seu` try` e início de suas instruções `catch` as anotações para` ItemsCount` e `Status`:
 
     ````javascript
         // Initialization
@@ -47,7 +47,7 @@ Go back you your **Cloud9** environment and open your app workspace at ***server
         }
     ````
 
-1. Next, let's modify the `getItemById()` method to receive the `subsegment` as a parameter and create an additional subsegment to capture any business logic inside this method. We will be also adding the item payload as metadata.
+1. A seguir, vamos modificar o método `getItemById()` para receber o `subsegmento` como um parâmetro e criar um subsegmento adicional para capturar qualquer lógica de negócios dentro deste método. Também estaremos adicionando a carga útil do item como metadados.
 
     ```javascript
     const getItemById = async (id, segment) => {
@@ -67,18 +67,17 @@ Go back you your **Cloud9** environment and open your app workspace at ***server
     }
     ```
 
-
-1. Finally, modify the `handler` method to pass the subsegment to the `getItemById()` method.
+1. Finalmente, modifique o método `handler` para passar o subsegmento para o método `getItemById()`.
    
     ```javascript
     const item = await getItemById(id, subsegment)
     ```
 
-1. Save your changes to the ***serverless-observability-workshop/code/sample-app-tracing/src/handlers/get-by-id.js*** file.
+1. Salve suas alterações no arquivo ***serverless-observability-workshop/code/sample-app-tracing/src/handlers/get-by-id.js***.
 
-**Your entire file should look like the code below:**
+**Seu arquivo inteiro deve ser semelhante ao código abaixo:**
 
-{{% expand "Fully modified file (expand for code)" %}}
+{{% expand "Arquivo totalmente modificado (expandir para o código)" %}}
 
 ```javascript
 const AWSXRay = require('aws-xray-sdk-core')

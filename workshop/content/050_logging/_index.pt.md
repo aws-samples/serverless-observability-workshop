@@ -1,13 +1,14 @@
 +++
-title = "Centralized Logging"
+title = "Logging Centralizado"
 chapter = true
 weight = 50
 +++
 
-# Centralized Logging
+# Logging Centralizado
 
-Centralized logging provides two important benefits. First, it places all of your log records in a single location and in a standardized format, greatly simplifying log analysis and correlation tasks. Second, it provides you with a secure storage area for your log data. In the event that a machine on your network becomes compromised, the intruder will not be able to tamper with the logs stored in the central log repository -- unless that machine is also compromised. Once you establish a central log repository, the next step is to introduce centralized analysis techniques. 
 
-In this module, we are going to enhance our sample application accomplishing the following goals:  
+O log centralizado oferece dois benefícios importantes. Primeiro, ele coloca todos os seus registros de log em um único local e em um formato padronizado, simplificando muito a análise de log e as tarefas de correlação. Em segundo lugar, ele fornece uma área de armazenamento segura para seus dados de registro. No caso de uma máquina em sua rede ser comprometida, o invasor não será capaz de adulterar os logs armazenados no repositório de log central - a menos que a máquina também esteja comprometida. Depois de estabelecer um repositório de log central, a próxima etapa é introduzir técnicas de análise centralizada.
+
+Neste módulo, vamos melhorar nosso aplicativo de exemplo, cumprindo os seguintes objetivos:
 
 {{%children style="h4" description="true"%}}
