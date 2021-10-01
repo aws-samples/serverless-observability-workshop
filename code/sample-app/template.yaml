@@ -89,6 +89,9 @@ Resources:
   SampleTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
+      ProvisionedThroughput:
+        ReadCapacityUnits: 10
+        WriteCapacityUnits: 5
       PrimaryKey:
         Name: id
         Type: String
