@@ -6,7 +6,7 @@ let log
 
 let _cold_start = true
 
-exports.notifiyNewItemHandler = async (event, context) => {
+exports.notifyNewItemHandler = async (event, context) => {
   return AWSXRay.captureAsyncFunc('## Handler', async (subsegment) => {
     log = logger_setup()
     let response
