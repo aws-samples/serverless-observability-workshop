@@ -15,7 +15,7 @@ Volte para o seu ambiente **Cloud9** e abra o espaço de trabalho (workspace) do
 
     ```javascript
 
-    exports.notifiyNewItemHandler = async (event, context) => {
+    exports.notifyNewItemHandler = async (event, context) => {
       return AWSXRay.captureAsyncFunc('## Handler', async (subsegment) => {
           // Initialization
           try{
@@ -79,7 +79,7 @@ Volte para o seu ambiente **Cloud9** e abra o espaço de trabalho (workspace) do
 const AWSXRay = require('aws-xray-sdk-core')
 const AWS = AWSXRay.captureAWS(require('aws-sdk'))
 
-exports.notifiyNewItemHandler = async (event, context) => {
+exports.notifyNewItemHandler = async (event, context) => {
     return AWSXRay.captureAsyncFunc('## Handler', async (subsegment) => {
         let response
         try {
