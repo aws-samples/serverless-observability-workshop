@@ -87,10 +87,10 @@ Resources:
             Path: /items
             Method: POST
 
-  notifiyNewItemFunction:
+  notifyNewItemFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/handlers/notify-item.notifiyNewItemHandler
+      Handler: src/handlers/notify-item.notifyNewItemHandler
       Description: A simple example that is triggered by a SNS message to notify of a new item insertion.
       Policies:
         - CloudWatchLambdaInsightsExecutionRolePolicy
