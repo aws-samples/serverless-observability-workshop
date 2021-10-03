@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk')
 
-exports.notifiyNewItemHandler = async (event, context) => {
+exports.notifyNewItemHandler = async (event, context) => {
   let response
   try {
     const record = JSON.parse(event.Records[0].Sns.Message)
