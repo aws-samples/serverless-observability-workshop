@@ -15,7 +15,7 @@ Go back you your **Cloud9** environment and open your app workspace at ***server
 
     ```javascript
 
-    exports.notifiyNewItemHandler = async (event, context) => {
+    exports.notifyNewItemHandler = async (event, context) => {
       return AWSXRay.captureAsyncFunc('## Handler', async (subsegment) => {
           // Initialization
           try{
@@ -80,7 +80,7 @@ Go back you your **Cloud9** environment and open your app workspace at ***server
 const AWSXRay = require('aws-xray-sdk-core')
 const AWS = AWSXRay.captureAWS(require('aws-sdk'))
 
-exports.notifiyNewItemHandler = async (event, context) => {
+exports.notifyNewItemHandler = async (event, context) => {
     return AWSXRay.captureAsyncFunc('## Handler', async (subsegment) => {
         let response
         try {
