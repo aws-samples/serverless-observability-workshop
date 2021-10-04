@@ -352,7 +352,7 @@ exports.logMetricEMF = async (name, unit = Unit.Count, value = 0, dimensions) =>
         metrics.putDimensions(buildEMFDimensions(dimensions))
         metrics.putMetric(name, value, unit)
         metrics.setNamespace(process.env.AWS_EMF_NAMESPACE !== undefined ? process.env.AWS_EMF_NAMESPACE : 'aws-embedded-metrics')
-        log.debug(`Logging custom metric ${name} via Embbeded Metric Format (EMF)`)
+        log.debug(`Logging custom metric ${name} via Embedded Metric Format (EMF)`)
         log.debug(metrics)
         await metrics.flush()
     } catch (err) {
