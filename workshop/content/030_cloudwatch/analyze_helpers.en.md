@@ -200,7 +200,7 @@ In order to log our metrics in a unique format that won't mess with the rest of 
  * because the processing application is designed with a RegEx based on default loggers. 
  * 
  * @example
- * Logs metric to count the number of successful item retrievals using default dimensions and namepsace.
+ * Logs metric to count the number of successful item retrievals using default dimensions and namespace.
  * logMetric(name = 'SuccessfulGetItem', unit = MetricUnit.Count, value = 1)
  * // Dimensions included: {service: 'service_undefined'} 
  * // Namespace used: MonitoringApp
