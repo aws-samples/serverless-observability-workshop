@@ -84,7 +84,7 @@ Let's define the following Business & Operational metrics:
 
     ```javascript
         try{
-            //After Sucessful Response Composition
+            //After Successful Response Composition
             //Metrics
             await logMetricEMF(name = 'SuccessfulGetAllItems', unit = Unit.Count, value = 1, { service: 'item_service', operation: 'get-all-items' })
         } catch (err) {
