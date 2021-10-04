@@ -77,7 +77,7 @@ The simplest way to push your metrics is by synchronously invoking the `putMetri
  * It takes up to 9 dimensions that will be used to further categorize a custom metric, besides the service dimension
  * 
  * @example
- * Puts metric to count the number of successful item retrievals using default dimensions and namepsace.
+ * Puts metric to count the number of successful item retrievals using default dimensions and namespace.
  * putMetric(name = 'SuccessfulGetItem', unit = MetricUnit.Count, value = 1)
  * // Dimensions created: {service: 'service_undefined'} 
  * // Namespace used: MonitoringApp
@@ -249,7 +249,7 @@ exports.logMetric = (name, unit = MetricUnit.Count, value = 0, options) => {
  * because the processing application is designed with a RegEx based on default loggers. 
  * 
  * @example
- * Logs metric to count the number of successful item retrievals using default dimensions and namepsace.
+ * Logs metric to count the number of successful item retrievals using default dimensions and namespace.
  * logMetric(name = 'SuccessfulGetItem', unit = MetricUnit.Count, value = 1)
  * // Dimensions included: {service: 'service_undefined'} 
  * // Namespace used: MonitoringApp
@@ -322,7 +322,7 @@ In order to leverage EMF to push metrics to CloudWatch through structured log, w
  * Logs Custom Metric on CloudWatch Metrics using Embedded Metric Format (EMF).
  *   
  * @example
- * Logs metric to count the number of successful item retrievals using default dimensions and namepsace.
+ * Logs metric to count the number of successful item retrievals using default dimensions and namespace.
  * logMetric(name = 'SuccessfulGetItem', unit = MetricUnit.Count, value = 1)
  * // Dimensions included: {service: 'service_undefined'} 
  * // Namespace used: MonitoringApp
