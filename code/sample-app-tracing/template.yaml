@@ -146,9 +146,9 @@ Resources:
 
   NotifyItemLogGroup:
     Type: AWS::Logs::LogGroup
-    DependsOn: notifiyNewItemFunction
+    DependsOn: notifyNewItemFunction
     Properties:
-      LogGroupName: !Sub /aws/lambda/${notifiyNewItemFunction}
+      LogGroupName: !Sub /aws/lambda/${notifyNewItemFunction}
       RetentionInDays: 7
 
 Outputs:
