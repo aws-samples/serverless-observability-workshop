@@ -28,13 +28,13 @@ weight = 13
 1. Go to your [CloudWatch Console](https://console.aws.amazon.com/cloudwatch/home).
 1. Click **Metrics**.
 1. On **Custom Namespaces**, click the `MonitoringApp` namespace.
-1. You should see a new metrics dimensions: `LogGroup`, `ServiveName`, `ServiceType`, `function_name`.
+1. You should see a new metrics dimensions: `LogGroup`, `ServiceName`, `ServiceType`, `function_name`.
 1. Click it and select all metrics available.
 
     ![metrics-1](/images/emf_metrics_1.png?width=60pc)
 
 1. Go back to the `MonitoringApp` namespace.
-1. You should see another new metrics dimensions: `LogGroup`, `ServiveName`, `ServiceType`, `operation`.
+1. You should see another new metrics dimensions: `LogGroup`, `ServiceName`, `ServiceType`, `operation`.
 1. Click it and select all metrics available.
 
     ![metrics-2](/images/emf_metrics_2.png?width=60pc)
