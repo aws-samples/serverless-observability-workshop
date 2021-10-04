@@ -36,14 +36,14 @@ exports.notifyNewItemHandler = async (event, context) => {
       //subsegment.addAnnotation('ItemID', id)
       subsegment.addAnnotation('Status', 'FAILED')
       //Logging
-      log.error({ "operation": "notify-item", 'method': 'notifiyNewItemHandler', "details": err })
+      log.error({ "operation": "notify-item", 'method': 'notifyNewItemHandler', "details": err })
 
       //Metrics
       await logMetricEMF(name = 'FailedGetNewItemNotification', unit = Unit.Count, value = 1, { service: 'item_service', operation: 'notify-item' })
     } finally {
       subsegment.close()
     }
-    log.info({ operation: 'notify-item', 'method': 'notifiyNewItemHandler', body: response })
+    log.info({ operation: 'notify-item', 'method': 'notifyNewItemHandler', body: response })
     return response
   }, AWSXRay.getSegment());
 }

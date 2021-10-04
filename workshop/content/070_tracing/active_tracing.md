@@ -12,7 +12,7 @@ Learn more about [X-Ray Active Tracing](https://docs.aws.amazon.com/xray/latest/
 
 ### Modify the application
 
-Go back you your **Cloud9** environment and open your app workspace at ***serverless-observability-workshop/code/sample-app-tracing***.
+Go back to your **Cloud9** environment and open your app workspace at ***serverless-observability-workshop/code/sample-app-tracing***.
 
 We are going to edit the ***serverless-observability-workshop/code/sample-app-tracing/template.yaml*** file to include `Active Tracing` for all `Lambda` functions and `API Gateway` stages we add in our template. Open the your YAML template and locate the Global section. Enable both `Tracing` attribute for Lambda and `TracingEnabled` for API Gateway.
 

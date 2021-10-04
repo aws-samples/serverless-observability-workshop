@@ -16,7 +16,7 @@ echo "export ApiUrl="$ApiUrl
 
 #### Run the Load Test
 
-Go back you your **Cloud9** environment and open a new terminal.
+In your **Cloud9** environment, run the following:
 
 ```sh
 cd ~/environment/serverless-observability-workshop/code/sample-app
