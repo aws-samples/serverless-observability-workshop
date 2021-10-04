@@ -4,8 +4,6 @@ chapter = true
 weight = 40
 +++
 
-# Canários Sintéticos
-
 Você pode usar o Amazon CloudWatch Synthetics para criar canários, scripts configuráveis que são executados de forma agendada, para monitorar seus endpoints e APIs. Os canários seguem as mesmas rotas e executam as mesmas ações que um cliente, o que possibilita  você verificar continuamente a experiência do cliente, mesmo quando não há tráfego de cliente em seus aplicativos. Usando canários, você pode descobrir problemas antes que seus clientes o façam.
 
 Canários são scripts Node.js. Eles criam funções Lambda em sua conta que usam Node.js como estrutura. Canários podem usar a biblioteca Puppeteer Node.js para executar funções em seus aplicativos. Canários funcionam em protocolos HTTP e HTTPS.
