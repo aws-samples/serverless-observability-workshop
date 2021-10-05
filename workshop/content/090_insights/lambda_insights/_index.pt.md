@@ -4,7 +4,6 @@ chapter = true
 weight = 91
 +++
 
-# Lambda Insights
 
 CloudWatch Lambda Insights é uma solução de monitoramento e solução de problemas para aplicativos serverless em execução via AWS Lambda. A solução coleta, agrega e resume as métricas de nível de sistema, incluindo tempo de CPU, memória, disco e rede. Ele também coleta, agrega e resume informações de diagnóstico, como inicializações a frio (cold start) e desligamentos de workers do Lambda, para ajudá-lo a isolar problemas com as funções do Lambda e resolvê-los rapidamente.
 
