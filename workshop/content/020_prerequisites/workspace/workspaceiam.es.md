@@ -79,7 +79,7 @@ Si el _Arn_ contiene el nombre de la función arriba y una ID de instancia, pued
 
 #### INVÁLIDO
 
-Si el_Arn contains `TeamRole`, `MasterRole`, o no corresponder a la salida del nombre de la función arriba, <span style="color: red;">**NO PROCEDAS**</span>. Vuelve y confirma las etapas en esta página. 
+Si el _Arn_ contiene `TeamRole`, `MasterRole`, o no corresponde a la salida del nombre de la función arriba, <span style="color: red;">**NO PROCEDAS**</span>. Vuelve y confirma las etapas en esta página. 
 
 {{< output >}}
 {

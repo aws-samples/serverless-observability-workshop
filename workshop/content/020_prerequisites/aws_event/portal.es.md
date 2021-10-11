@@ -8,7 +8,7 @@ weight: 20
 
 Este workshop crea una cuenta de AWS y un entorno Cloud9. Vas a necesitar del **Participant Hash** proporcionado en el momento de entrada, así como tu correo electrónico para rastrear tu sesión única. 
 
-Conéctate al portal haciendo clic en el botón o buscando  [https://dashboard.eventengine.run/](https://dashboard.eventengine.run/). Será exhibida la siguiente pantalla.
+Conéctate al portal haciendo clic en el botón o buscando  [https://dashboard.eventengine.run/](https://dashboard.eventengine.run/). La siguiente pantalla será mostrada.
 
 ![Event Engine](/images/event-engine-initial-screen.png)
 
