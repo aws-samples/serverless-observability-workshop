@@ -9,8 +9,8 @@ Una alarma basada en métrica observa una sola métrica de CloudWatch o el resul
 
 Ingrese a la [Consola de CloudWatch Alarmas](https://console.aws.amazon.com/cloudwatch/home?#alarmsV2:).
 
-1. Haga clic en **Crear alarma**.
-1. Click **Seleccionar Métrica**.
+1. Haga clic en **(Crear alarma) Create Alarm**.
+1. Click **(Seleccionar Métrica) Select Metric**.
 1. Esto te llevará a la página de inicio de Métricas, donde verás todos los espacios de nombres disponibles en la cuenta. Seleccione el espacio de nombres `MonitoringApp`
 
 ![alarm-1](/images/alarm_1.png?width=60pc)
@@ -28,11 +28,11 @@ Ingrese a la [Consola de CloudWatch Alarmas](https://console.aws.amazon.com/clou
 
 8. En la pantalla **Configurar las acciones**, puedes establecer qué acción quieres llevar a cabo cuando la alarma cambie a diferentes estados, como
 
-    - `En modo alarma`
-    - `CORRECTO`
-    - `Datos insuficientes`
+    - `(En modo alarma) In alarm`
+    - `(CORRECTO) OK`
+    - `(Datos insuficientes) Insufficient data`
 
-Las opciones disponibles para las acciones incluyen, - `Notificación` - `Acciòn de Auto Scaling` - `Acción de EC2` si la métrica proviene de una instancia EC2
+Las opciones disponibles para las acciones incluyen, - `(Notificación) Send a notification to an SNS topic` - `(Acciòn de Auto Scaling) Take an Auto scaling action` - `(Acción de EC2) EC2 action` si la métrica proviene de una instancia EC2
 
 9. Seleccionar **Crear un tema nuevo** para crear un nuevo tema de SNS al que enviar la notificación y proporcionar tu dirección de correo electrónico.
 
