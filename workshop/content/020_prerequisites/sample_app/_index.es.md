@@ -1,5 +1,5 @@
 +++
-title = "Deploy de la aplicación de ejemplo"
+title = "Despliegue de la aplicación de ejemplo"
 weight = 20
 +++
 
@@ -12,7 +12,7 @@ cd serverless-observability-workshop/code/sample-app
 ```
 
 {{% notice tip %}}
-Ahorra unos minutos para comprender cuáles recursos están provistos en el archivo `serverless-observability-workshop/code/sample-app/template.yaml` así como sus funciones de Lambda. 
+Toma unos minutos para comprender cuáles recursos están provistos en el archivo `serverless-observability-workshop/code/sample-app/template.yaml` así como sus funciones de Lambda. 
 {{% /notice %}}
 
 Después de implantar esta aplicación, serán provistos los siguientes recursos en nuestra cuenta de AWS:

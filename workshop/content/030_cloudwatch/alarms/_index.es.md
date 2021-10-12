@@ -4,7 +4,7 @@ chapter: true
 weight: 35
 ---
 
-#Alarmas
+# Alarmas
 
 Puedes añadir alarmas a los paneles de CloudWatch y supervisarlas visualmente. Cuando hay una alarma en un panel de control, se vuelve roja cuando está en estado ALARMA, lo que facilita la supervisión de su estado de forma proactiva. 
 
