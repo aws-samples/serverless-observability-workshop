@@ -16,11 +16,11 @@ Los datos de las métricas se conservan durante 15 meses, lo que le permite ver 
 
 ### Alarmas
 
-Puede añadir alarmas a los Dashboards de CloudWatch y supervisarlas visualmente. Cuando hay una alarma en un panel de control, se vuelve roja cuando está en estado ALARMA, lo que facilita la supervisión de su estado de forma proactiva.
+Puede añadir alarmas a los Dashboards (Paneles) de CloudWatch y supervisarlas visualmente. Cuando hay una alarma en un panel de control, se vuelve roja cuando está en estado ALARMA, lo que facilita la supervisión de su estado de forma proactiva.
 
 Las alarmas solo invocan acciones para cambios de estado sostenidos. Las alarmas de CloudWatch no invocan acciones simplemente porque se encuentran en un estado determinado, el estado debe haber cambiado y mantenido durante un número determinado de períodos.
 
 ### Dashboards
 
-Amazon CloudWatch Dashboards son páginas de inicio personalizables en la consola de CloudWatch que puede utilizar para supervisar sus recursos en una sola vista, incluso aquellos recursos que se encuentran distribuidos en distintas regiones. Puede utilizar los Dashboards de CloudWatch para crear vistas personalizadas de las métricas y las alarmas de sus recursos de AWS.
+Amazon CloudWatch Dashboards (Paneles) son páginas de inicio personalizables en la consola de CloudWatch que puede utilizar para supervisar sus recursos en una sola vista, incluso aquellos recursos que se encuentran distribuidos en distintas regiones. Puede utilizar los Dashboards de CloudWatch para crear vistas personalizadas de las métricas y las alarmas de sus recursos de AWS.
 

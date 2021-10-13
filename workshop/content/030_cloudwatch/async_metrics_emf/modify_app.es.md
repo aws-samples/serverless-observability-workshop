@@ -3,7 +3,7 @@ title = "Modificando el código de la aplicación"
 weight = 12
 +++
 
-IEn este paso, vamos a definir un par de métricas que queremos capturar entre nuestros tres servicios principales e instrumentaremos el método `logMetricEMF()` para enviarlas de forma asíncrona a CloudWatch Metrics, registrándolas primero en CloudWatch Logs y luego procesadas en segundo plano por el módulo de utilidades que implementamos en el paso anterior.
+En este paso, vamos a definir un par de métricas que queremos capturar entre nuestros tres servicios principales e instrumentaremos el método `logMetricEMF()` para enviarlas de forma asíncrona a CloudWatch Metrics, registrándolas primero en CloudWatch Logs y luego procesadas en segundo plano por el módulo de utilidades que implementamos en el paso anterior.
 
 ### Definiendo métricas
 
@@ -80,7 +80,7 @@ Definamos las siguientes métricas empresariales y operativas:
 
     ```
 
-1. A continuación, estamos listos para añadir nuestras métricas de negocio para recuperar listas de artículos exitosas o fallidas. Aún dentro del método  `getAllItemsHandler()`, encuentra y agrega al final del bloque `try` ay el comienzo del bloque `catch` las métricas de `SuccessfulGetAllItems` y `FailedGetAllItems`:
+1. A continuación, estamos listos para añadir nuestras métricas de negocio para recuperar listas de artículos exitosas o fallidas. Aún dentro del método  `getAllItemsHandler()`, encuentra y agrega al final del bloque `try` al comienzo del bloque `catch` las métricas de `SuccessfulGetAllItems` y `FailedGetAllItems`:
 
     ```javascript
         try{
@@ -94,7 +94,7 @@ Definamos las siguientes métricas empresariales y operativas:
         }
     ```
 
-1. Guarda los cambios en el archivo ***serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js*** file.
+1. Guarda los cambios en el archivo ***serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js***.
 
 **El método getAllItemsHandler debería verse como el siguiente**
 
