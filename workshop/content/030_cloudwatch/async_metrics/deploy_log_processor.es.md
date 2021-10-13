@@ -1,5 +1,5 @@
 +++
-title = "Implementación del procesador de registros (Log Processor)"
+title = "Implementación del (procesador de registros) Log Processor"
 weight = 11
 +++
 
