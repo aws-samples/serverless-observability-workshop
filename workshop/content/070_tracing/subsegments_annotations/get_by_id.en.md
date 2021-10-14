@@ -1,5 +1,5 @@
 ---
-title: "Função Obter Item por ID `Get Item By ID Function`"
+title: "Get Item By ID Function"
 weight: 78
 ---
 
