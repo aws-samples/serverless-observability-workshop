@@ -3,7 +3,7 @@ title = "Desencadenando una alarma"
 weight = 12
 +++
 
-Vuelve rápidamente a tu terminal de `Cloud9` y has un llamado al API `GetItemByID`. 
+Vuelve rápidamente a tu terminal de `Cloud9` y haz un llamado al API `GetItemByID`. 
 
 ### Exportar las variables de salida del stack
 

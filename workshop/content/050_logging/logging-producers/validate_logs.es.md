@@ -8,11 +8,11 @@ Ir a la [Consola de CloudWatch](https://console.aws.amazon.com/cloudwatch/home).
 1. Bajo **(Registros) Logs**, clic en **(Grupos de registro) Log Groups**.
 1. Seleccion la casilla de verificación **(Coincidencia exacta) Exact match** , ane ingresa el prefijo de su Stack, **monitoring-app** en nuestro caso.
 1. Deberías ver todos los grupos de registro disponibles para nuestras funciones de Lambda. 
-1. Has clic en aquel que contenga **GetAllItemsFunction** en su nombre.
+1. Haz clic en aquel que contenga **GetAllItemsFunction** en su nombre.
 
     ![metrics-1](/images/log_producer_1.png)
 
-1. Clic en el último (flujo de registro) Log Stream.
+1. Haz clic en el último (flujo de registro) Log Stream.
 
     ![metrics-2](/images/log_producer_2.png)
 

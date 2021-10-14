@@ -12,7 +12,7 @@ export ApiUrl=$(aws cloudformation describe-stacks --stack-name monitoring-app -
 echo "export ApiUrl="$ApiUrl
 ```
 
-#### Prueba la operación `Put Item`
+#### Probar la operación `Put Item`
 
 ```sh
 curl -X POST \

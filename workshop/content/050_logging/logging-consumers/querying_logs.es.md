@@ -11,7 +11,7 @@ Ir a la [consola de CloudWatch Logs Insights](https://console.aws.amazon.com/clo
 
 Como puedes ver, una consulta de muestra se coloca automáticamente en el campo de consulta.
 
-Ahora simplemente has clic en el botón **(Ejecutar la consulta) Run query**  para ejecutar los resultados de la consulta. Según lo esperado, verás los resultados de la consulta.
+Ahora simplemente haz clic en el botón **(Ejecutar la consulta) Run query**  para ejecutar los resultados de la consulta. Según lo esperado, verás los resultados de la consulta.
 
 La consulta de ejemplo recupera los campos `@timestamp` y `@message` de los datos de registro, ordena por el campo de marca de tiempo en orden descendente y muestra los primeros 20 registros.
 

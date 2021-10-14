@@ -1,5 +1,5 @@
 +++
-title = "Rastreo distribuido"
+title = "(Distributed Tracing) Rastreo distribuido"
 chapter = true
 weight = 70
 +++

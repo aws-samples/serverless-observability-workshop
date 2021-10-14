@@ -17,6 +17,6 @@ Puedes utilizar el CloudWatch Logs Insights para investigar datos enviados al Cl
 
 Una sola consulta puede llegar a contener hasta 20 log groups. El tiempo máximo de ejecución por consulta es de 15 minutos. Resultados de queries estarán disponibles por 7 días.
 
-Puedes salvar las queries que has creado, lo que podrá auxiliarte a ejecutar queries complejas siempre que necesite, sin la necesidad de crearlas de nuevo cuando quieras ejecutarlas.
+Puedes guardar las consultas que haz creado, lo que podrá auxiliarte a ejecutar queries complejas siempre que necesite, sin la necesidad de crearlas de nuevo cuando quieras ejecutarlas.
 
 [Aquí](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html) puedes conocer más acerca del CloudWatch Logs Insights. 

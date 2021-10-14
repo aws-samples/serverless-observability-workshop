@@ -47,7 +47,7 @@ Regresa al ambiente de **Cloud9** y abre el espacio de trabajo  ***serverless-ob
         }
     ````
 
-1. Ahora, modifiquemos el método `getItemById()` ara recibir también el `subsegment` omo parámetro y creemos un subsegmento adicional para capturar cualquier lógica empresarial dentro de este método. También añadiremos la carga útil del mensaje como metadatos.
+1. Ahora, modifiquemos el método `getItemById()` para recibir también el `subsegmento` como parámetro y creemos un subsegmento adicional para capturar cualquier lógica empresarial dentro de este método. También añadiremos la carga útil del mensaje como metadatos.
 
     ```javascript
     const getItemById = async (id, segment) => {
