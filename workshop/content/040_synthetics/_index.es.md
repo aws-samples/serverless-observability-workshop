@@ -6,7 +6,7 @@ weight = 40
 
 # (Monitoreo sintético) Synthetic Canaries
 
-Puede utilizar Amazon CloudWatch Synthetics para crear "canaries", secuencias de comandos configurables que se ejecutan según un cronograma, para supervisar sus puntos de conexión y API. Canarias sigue las mismas rutas y realiza las mismas acciones que un cliente, lo que te permite verificar continuamente la experiencia del cliente incluso cuando no tienes tráfico de clientes en tus aplicaciones. Al usar "canaries", puedes descubrir problemas antes que tus clientes.
+Puedes utilizar Amazon CloudWatch Synthetics para crear "canaries", secuencias de comandos configurables que se ejecutan según un cronograma, para supervisar sus puntos de conexión y API. "Canaries" sigue las mismas rutas y realiza las mismas acciones que un cliente, lo que te permite verificar continuamente la experiencia del cliente incluso cuando no tienes tráfico de clientes en tus aplicaciones. Al usar "canaries", puedes descubrir problemas antes que tus clientes.
 
 "Canaries" son scritps de Node.js. Crean funciones Lambda en tu cuenta que utilizan Node.js como marco de trabajo. "Canaries" puede utilizar la biblioteca Node.js de Puppeteer Node.js para realizar funciones en sus aplicaciones. "Canaries" trabaja sobre protocolos HTTP y HTTPS.
 

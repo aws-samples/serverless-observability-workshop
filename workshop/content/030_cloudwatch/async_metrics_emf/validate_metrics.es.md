@@ -7,7 +7,7 @@ weight = 13
 
 1. Ir a la [Consola de CloudWatch](https://console.aws.amazon.com/cloudwatch/home).
 1. Bajo el grupo **(Registros) Logs**, clic en **(Grupos de registros) Log Groups**.
-1. De clic en la casilla de verificación **(Coincidencia exacta) Exact match** , e  ingrese el prefijo del stack, **monitoring-app** in nuestro caso.
+1. Da clic en la casilla de verificación **(Coincidencia exacta) Exact match** , e  ingresa el prefijo del stack, **monitoring-app** en nuestro caso.
 1. Deberías ver todos los grupos de registros disponibles para nuestras funciones de Lambda. 
 1. Clic en el grupo de que contiene **GetAllItemsFunction** en el nombre.
 

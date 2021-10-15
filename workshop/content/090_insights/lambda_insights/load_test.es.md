@@ -31,4 +31,4 @@ Después de finalizar deberías ver tu terminal con un resultado como el siguien
 
 ![Lambda Insights](/images/li_2.png)
 
-¿Notó que la operación `/POST` no presentaba errores y mantenía su latencia relativamente baja mientras que las otras dos operaciones `/GET` presentaban una tasa de error y una latencia general muy elevadas? En el siguiente paso, trataremos de entender por qué.
+¿Notaste que la operación `/POST` no presentaba errores y mantenía su latencia relativamente baja mientras que las otras dos operaciones `/GET` presentaban una tasa de error y una latencia general muy elevadas? En el siguiente paso, trataremos de entender por qué.

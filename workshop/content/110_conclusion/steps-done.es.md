@@ -12,7 +12,7 @@ En este taller hemos:
 - Definido un patrón de registro para producir registros correctamente en toda nuestra aplicación.
 - Centralizado y analizado nuestros registros en CloudWatch Log Insights.
 - Habilitado el seguimiento activo en API Gateway y Lambda y subsegmentos instrumentados en nuestro código mediante AWS X-Ray.
-- Aprendí que ganar observabilidad en aplicaciones serverless no es imposible, solo tenemos que modificar un poco nuestra mentalidad.
+- Aprendido que ganar observabilidad en aplicaciones serverless no es imposible, solo tenemos que modificar un poco nuestra mentalidad.
 <!--
 - Implementado estrategias de disyuntores de código y nivel de servicio en nuestra aplicación.
 - Solución de problemas de llamadas de servicio de DynamoDB fallidas mediante AWS CloudWatch Contributor Insights.

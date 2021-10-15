@@ -1,10 +1,10 @@
 +++
-title = "Logging"
+title = "Logging (registro)"
 weight = 12
-description = "El logging centralizado posibilita el almacenamiento de todos los logs en un único sitio y en un formato estándar entre ellos, capaz de simplificar las actividades de análisis y correlaciones."
+description = "El logging (registro) centralizado posibilita el almacenamiento de todos los logs en un único sitio y en un formato estándar entre ellos, capaz de simplificar las actividades de análisis y correlaciones."
 +++
 
-El logging centralizado aporta dos importantes beneficios: en primer lugar, almacena todos los registros de logs en un formato estandarizado entre ellos, simplificando drásticamente las actividades de análisis y correlaciones. En segundo lugar, provee un almacenamiento seguro para todos tus datos. Caso una máquina se vea comprometida, el invasor no será capaz de hacer alteraciones en los logs almacenados en el depósito central - a menos que este depósito también sea comprometido. 
+El logging (registro) centralizado aporta dos importantes beneficios: en primer lugar, almacena todos los registros de logs en un formato estandarizado entre ellos, simplificando drásticamente las actividades de análisis y correlaciones. En segundo lugar, provee un almacenamiento seguro para todos tus datos. Caso una máquina se vea comprometida, el invasor no será capaz de hacer alteraciones en los logs almacenados en el depósito central - a menos que este depósito también sea comprometido. 
 Una vez creado este depósito, el próximo paso es introducir técnicas de análisis centralizadas. 
 
 CloudWatch Logs Insights permite que, interactivamente, busques y analices sus logs almacenados en el CloudWatch Logs. Podrás realizar queries para ayudarlo en la eficacia en la respuesta a problemas operacionales. En el caso de que ocurra un fallo, podrás utilizar CloudWatch Logs Insights para identificar las causas potenciales y validar las correcciones. 

@@ -12,9 +12,9 @@ Aprende más sobre [Amazon CloudWatch Lambda Insights](https://docs.aws.amazon.c
 
 ### Modificar la aplicación
 
-egresa a tu ambiente de **Cloud9** y abre el espacio de trabajo de la aplicación ***serverless-observability-workshop/code/sample-app***.
+Regresa a tu ambiente de **Cloud9** y abre el espacio de trabajo de la aplicación ***serverless-observability-workshop/code/sample-app***.
 
-Estamos editando el archivo ***serverless-observability-workshop/code/sample-app/template.yaml*** para incluir un `Lambda Layer` conteniendo todas las `Lambda Insights Extension` para todas las funciones  `Lambda` presentes en la plantilla. Open the your YAML template and locate the Global section. Abre la plantilla YAML y localiza la sección Global. Adiciona las `(capas) Layers` atribubidas a Lambda y especificar la versión deseada de la extensión.
+Estamos editando el archivo ***serverless-observability-workshop/code/sample-app/template.yaml*** para incluir un `Lambda Layer` conteniendo todas las `Lambda Insights Extension` para todas las funciones  `Lambda` presentes en la plantilla. Abre la plantilla YAML y localiza la sección Global. Adiciona las `(capas) Layers` atribubidas a Lambda y especificar la versión deseada de la extensión.
 
 ```yaml
 Globals:

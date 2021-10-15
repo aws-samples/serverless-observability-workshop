@@ -174,13 +174,13 @@ const buildDimensions = (service, extra_dimensions) => {
 ```
 {{% /expand  %}}
 
-#### Pushing Metric Asynchronously
+#### Enviando métricas asíncronamente
 
-However, it is important to take in consideration that creating Custom Metrics synchronously may impact on performance/execution time. For this reason, it is advisable to push your metrics asynchronously, which is accomplished by logging your metrics to `CloudWatch Logs` and then creating `subscription filters` that process these specific log entries and push them to CloudWatch Metrics in background. 
+Sin embargo, es importante tener en cuenta que la creación de métricas personalizadas de forma sincrónica puede afectar al rendimiento y al tiempo de ejecución. Por este motivo, es recomendable impulsar sus métricas de forma asíncrona, lo que se logra registrando sus métricas en `CloudWatch Logs` y luego creando `(filtros de suscripción) subscription filters` que procesan estas entradas de registro específicas y las llevan a CloudWatch Metrics en segundo plano.
 
 In order to log our metrics in a unique format that won't mess with the rest of our function logs, we are parsing our JSON object in the StatsD format. Once our payload is formed, we use the `logMetric()` method to log them to CloudWatch Logs.
 
-**You can visualize the full helper functions expanding the section below**
+**Puedes visualizar todas las funciones auxiliares ampliando la sección siguiente**
 
 {{% expand "Full helper functions (expand for code)" %}}
 ```javascript

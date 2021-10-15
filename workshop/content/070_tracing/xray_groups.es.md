@@ -3,7 +3,7 @@ title = "Crear grupos de X-Ray"
 weight = 80
 +++
 
-Con una expresión de filtro, puede definir criterios según los cuales aceptar trazas en el grupo.
+Con una expresión de filtro, puedes definir criterios según los cuales aceptar trazas en el grupo.
 
 Puede llamar al grupo por su nombre o por nombre de recurso de Amazon (ARN) para generar su propio gráfico de servicios, resúmenes de seguimiento y métricas de Amazon CloudWatch. Una vez creado un grupo, las trazas entrantes se comparan con la expresión de filtro del grupo a medida que se almacenan en el servicio X-Ray. Las métricas del número de seguimientos que coinciden con cada criterio se publican en CloudWatch cada minuto.
 
@@ -15,7 +15,7 @@ La actualización de la expresión de filtro de un grupo no cambia los datos que
 
     ![Service Lens](/images/xray_group.png)
 
-2. En la nueva ventana, asigne al grupo el nombre **Higherlatency** e introduzca la siguiente expresión. Se trata de una expresión sencilla que filtra únicamente las solicitudes que presentan un tiempo de respuesta superior a 2 segundos.
+2. En la nueva ventana, asigna al grupo el nombre **Higherlatency** e introduzce la siguiente expresión. Se trata de una expresión sencilla que filtra únicamente las solicitudes que presentan un tiempo de respuesta superior a 2 segundos.
 
     ```SQL
     responsetime > 2

@@ -51,7 +51,7 @@ Inserta las configuraciones a seguir cuando sea solicitado:
 
 ```
 
-Sigue este [deep link to CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=sam-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) para acompañar la implantación de la stack.
+Sigue este [deep link a CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=sam-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) para acompañar la implantación de la stack.
 
 ![Sample Architecture](/images/samstacks.png)
 

@@ -3,7 +3,7 @@ title = "Modificando el código de la aplicación"
 weight = 12
 +++
 
-En este paso, vamos a definir un par de métricas que queremos capturar entre nuestros tres servicios principales, e instrumentaremos el método `logMetric () `para enviarlas de forma asíncrona a CloudWatch Metrics, registrándolas primero en CloudWatch Logs y luego procesadas en segundo plano por el módulo de utilidad que implementado en el paso anterior.
+En este paso, vamos a definir un par de métricas que queremos capturar entre nuestros tres servicios principales, e instrumentaremos el método `logMetric()` para enviarlas de forma asíncrona a CloudWatch Metrics, registrándolas primero en CloudWatch Logs y luego procesadas en segundo plano por el módulo de utilidad que implementado en el paso anterior.
 
 ### Definiendo métricas
 

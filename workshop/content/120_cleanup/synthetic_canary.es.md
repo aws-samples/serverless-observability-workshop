@@ -1,5 +1,5 @@
 ---
-title: "Delete the Synthetic Canary API"
+title: "Eliminar el API de Synthetic Canary"
 chapter: false
 weight: 72
 ---
