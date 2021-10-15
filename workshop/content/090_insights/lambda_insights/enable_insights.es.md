@@ -1,12 +1,12 @@
 +++
-title = "Enabling Lambda Insights"
+title = "Habilitando Lambda Insights"
 weight = 91
 +++
 
 `Amazon CloudWatch Lambda Insights` CloudWatch Lambda Insights es una solución de supervisión y solución de problemas para aplicaciones serverless que se ejecutan en AWS Lambda. La solución recopila, agrega y resume métricas a nivel del sistema, incluidos el tiempo de CPU, la memoria, el disco y la red. También recopila, agrega y resume información de diagnóstico, como los arranques en frío y los apagados de los trabajadores de Lambda, para ayudarle a aislar los problemas de las funciones de Lambda y resolverlos rápidamente.
 
 {{% notice tip %}}
-Aprende más sobre [Amazon CloudWatch Lambda Insights](https://docs.aws.amazon.com/lambda/latest/dg/monitoring-insights.html) from our documentation.
+Aprende más sobre [Amazon CloudWatch Lambda Insights](https://docs.aws.amazon.com/lambda/latest/dg/monitoring-insights.html) en la documentación.
 {{% /notice %}}
 
 
