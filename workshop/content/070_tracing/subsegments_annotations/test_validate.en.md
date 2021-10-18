@@ -57,13 +57,17 @@ curl -X GET $ApiUrl/items/6 | jq
 
 Go to [ServiceLens Traces](https://console.aws.amazon.com/cloudwatch/home?#servicelens:traces) page.
 
-Scroll down the **Filter type** list. You are now able to visualize the three different annotations we created as additional filters for your traces.
+Scroll to the **Refine query by** dropdown and select **User annotations**. You are now able to visualize the three different annotations we created as additional filters for your traces.
 
 ![Service Lens](/images/subsegment_1.png)
 
-- Select **Status**.
-- Select **SUCCESS**.
-- Click **Add to filter**.
+To refine your query you can add conditions on user annotations.
+For example, to filter only the traces with a **Status** annotation equal to **SUCCESS** you can
+
+- Select **Status** from the list of User annotations.
+- Click **Add to query**. This will add the selected annotation as an extra filter in the query textarea.
+- Edit the query adding the condition **= "SUCCESS"**.
+- Click on **Run query**.
 
 ![Service Lens](/images/subsegment_2.png)
 

@@ -3,7 +3,7 @@ title = "Modifying the Application Code"
 weight = 12
 +++
 
-In this step, we are going to define a couple of metrics that we want to capture amongst our three core services, and will instrument the `logMetricEMF()` method to push them asynchronously to CloudWatch Metrics, having them first logged to CloudWatch Logs and then processed in background by the utility module we deployed in the previous step.
+In this step, we are going to define a couple of metrics that we want to capture amongst our three core services, and will instrument the `logMetricEMF()` method to embed such custom metrics alongside detailed log event data and push them asynchronously to CloudWatch Logs. With this setup CloudWatch will automatically extract the custom metrics without the need of separate components to deploy and maintain.
 
 ### Defining Metrics
 
