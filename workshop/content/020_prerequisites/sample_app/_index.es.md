@@ -1,5 +1,5 @@
 +++
-title = "Deploy de la aplicación de ejemplo"
+title = "Despliegue de la aplicación de ejemplo"
 weight = 20
 +++
 
@@ -12,7 +12,7 @@ cd serverless-observability-workshop/code/sample-app
 ```
 
 {{% notice tip %}}
-Ahorra unos minutos para comprender cuáles recursos están provistos en el archivo `serverless-observability-workshop/code/sample-app/template.yaml` así como sus funciones de Lambda. 
+Toma unos minutos para comprender cuáles recursos están provistos en el archivo `serverless-observability-workshop/code/sample-app/template.yaml` así como sus funciones de Lambda. 
 {{% /notice %}}
 
 Después de implantar esta aplicación, serán provistos los siguientes recursos en nuestra cuenta de AWS:
@@ -51,7 +51,7 @@ Inserta las configuraciones a seguir cuando sea solicitado:
 
 ```
 
-Sigue este [deep link to CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=sam-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) para acompañar la implantación de la stack.
+Sigue este [deep link a CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=sam-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) para acompañar la implantación de la stack.
 
 ![Sample Architecture](/images/samstacks.png)
 

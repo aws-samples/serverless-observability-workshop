@@ -102,6 +102,6 @@ You are now able to dig into the details of a specific request you want to troub
 
 ![Service Lens](/images/tracing_sdk_5.png)
 
-You can also see the response time and additional annotations and metadada of each `segment` and `subsegment` for each node of the request trace. Analyzing a bit further, you can see the `AWS X-Ray SDK` captured the calls we did to both `DynamoDB` and `SNS`, as well as the `API Operations` we performed. 
+You can also see the response time and additional annotations and metadata of each `segment` and `subsegment` for each node of the request trace. Analyzing a bit further, you can see the `AWS X-Ray SDK` captured the calls we did to both `DynamoDB` and `SNS`, as well as the `API Operations` we performed. 
 
 ![Service Lens](/images/tracing_sdk_6.png)

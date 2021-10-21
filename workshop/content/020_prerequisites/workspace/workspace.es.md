@@ -35,7 +35,7 @@ Ad blockers, javascript dissablers y tracking blockers deben estar desactivados 
 
 ![c9before](/images/cfn-stack-2.png)
 
-- Espera hasta que su Stack esté con status de creación `CREATE_COMPLETE`
+- Espera hasta que el stack esté con status de creación `CREATE_COMPLETE`
 
 ![c9before](/images/cfn-stack-3.png)
 

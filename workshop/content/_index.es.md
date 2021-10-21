@@ -8,4 +8,4 @@ weight = 1
 
 # Importante
 
-Cada módulo de este workshop está diseñado de manera independiente, en el intento de que no necesites finalizar el módulo anterior, con excepción del módulo `Pré-Requisitos`. De esta manera, puedes planear tu día o evento para completar o entregar este workshop por completo o solamente las unidades que te interesen más. 
+Cada módulo de este workshop está diseñado de manera independiente, en el intento de que no necesites finalizar el módulo anterior, con excepción del módulo `Prerrequisitos`. De esta manera, puedes planear tu día o evento para completar o entregar este workshop por completo o solamente las unidades que te interesen más. 
