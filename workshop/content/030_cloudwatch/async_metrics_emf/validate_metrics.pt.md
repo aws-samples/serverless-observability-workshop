@@ -1,6 +1,6 @@
 +++
 title = "Validar métricas no console"
-weight = 13
+weight = 15
 +++
 
 ### Validar saída EMF em CloudWatch Logs

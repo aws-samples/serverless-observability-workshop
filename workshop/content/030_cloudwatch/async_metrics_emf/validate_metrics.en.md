@@ -1,7 +1,35 @@
 +++
-title = "Validate Metrics in the Console"
-weight = 13
+title = "Deploy & Validate Metrics in the Console"
+weight = 15
 +++
+
+### Deploy the application
+
+```sh
+cd ~/environment/serverless-observability-workshop/code/sample-app
+sam build && sam deploy
+```
+
+### Export the stack output variables
+
+To invoke our API's, we first need to fetch the `ApiUrl` output variable that our CloudFormation stack gives us. So let us iterate through our stack and export all output variables as environment variables:
+
+```sh
+export ApiUrl=$(aws cloudformation describe-stacks --stack-name monitoring-app --output json | jq '.Stacks[].Outputs[] | select(.OutputKey=="ApiUrl") | .OutputValue' | sed -e 's/^"//'  -e 's/"$//')
+echo "export ApiUrl="$ApiUrl
+```
+
+### Test the `Get Item By ID` operation
+
+```sh
+curl -X GET $ApiUrl/items/1 | jq
+```
+
+### Test the `Get All Items` operation
+
+```sh
+curl -X GET $ApiUrl/items/ | jq
+```
 
 ### Validate EMF Output in CloudWatch Logs
 
