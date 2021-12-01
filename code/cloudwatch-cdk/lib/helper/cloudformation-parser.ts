@@ -10,8 +10,11 @@ export class CloudFormationHelper {
             if (data.StackResources) {
                 data.StackResources.forEach(resource => {
                     if (resource.LogicalResourceId === 'getAllItemsFunction') functions.getAllItemsFunction = resource.PhysicalResourceId
+                    if (resource.LogicalResourceId === 'GetAllItemsLogGroup') functions.getAllItemsLogGroup = String(resource.PhysicalResourceId).replace("/aws/lambda/","")
                     if (resource.LogicalResourceId === 'getByIdFunction') functions.getByIdFunction = resource.PhysicalResourceId
+                    if (resource.LogicalResourceId === 'GetByIdLogGroup') functions.getByIdLogGroup = String(resource.PhysicalResourceId).replace("/aws/lambda/","")
                     if (resource.LogicalResourceId === 'putItemFunction') functions.putItemFunction = resource.PhysicalResourceId
+                    if (resource.LogicalResourceId === 'PutItemLogGroup') functions.putItemLogGroup = String(resource.PhysicalResourceId).replace("/aws/lambda/","")
                 });
             }
         }
