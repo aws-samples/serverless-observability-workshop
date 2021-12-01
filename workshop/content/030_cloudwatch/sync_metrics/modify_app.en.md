@@ -20,10 +20,11 @@ Let's define the following Business & Operational metrics:
 1. Open the Lambda function located on ***/serverless-observability-workshop/code/sample-app/src/handlers/put-item.js*** and start by importing the required `MetricUnit` and `putMetric` dependencies in the beginning of the file and initializing a `_cold_start` variable to capture cold starts in our lambda executions:
 
     ```javascript
-    const AWS = require('aws-sdk')
+    const AWSXRay = require('aws-xray-sdk-core')
+    const AWS = AWSXRay.captureAWS(require('aws-sdk'))
     const docClient = new AWS.DynamoDB.DocumentClient()
     const { MetricUnit } = require('../lib/helper/models')
-    const { putMetric } = require('../lib/logging/logger')
+    const { logger_setup, putMetric, logMetric } = require('../lib/logging/logger')
 
     let _cold_start = true
     ```
@@ -73,6 +74,14 @@ Let's define the following Business & Operational metrics:
 
     {{% expand "Full putItemHandler method (expand for code)" %}}
   ```javascript
+    const AWSXRay = require('aws-xray-sdk-core')
+    const AWS = AWSXRay.captureAWS(require('aws-sdk'))
+    const docClient = new AWS.DynamoDB.DocumentClient()
+    const { MetricUnit } = require('../lib/helper/models')
+    const { logger_setup, putMetric, logMetric } = require('../lib/logging/logger')
+
+    let _cold_start = true
+
     exports.putItemHandler = async (event, context) => {
       let response
       try {
