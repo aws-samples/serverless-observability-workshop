@@ -8,11 +8,6 @@ weight: 14
 **Puedes saltar este paso si estás haciendo este workshop desde un evento en AWS (Immersion Day, re:Invent, Summit, etc.) utilizando el Event Engine.**
 {{% /notice %}}
 
-{{% notice warning %}}
-El workspace de Cloud9 debe ser creado por un usuario de IAM con privilegios de administrador, o sea, no el usuario root de la cuenta. Certifícate que estás conectado como usuario de IAM, no como usuario root de la cuenta.
-{{% /notice %}}
-
-
 {{% notice tip %}}
 Ad blockers, javascript dissablers y tracking blockers deben estar desactivados para el dominio Cloud9, o la conexión con el workspace podrá verse afectada. Cloud9 requiere uso de cookies de terceros. Podrás agregar a la whitelist los [dominios específicos.]( https://docs.aws.amazon.com/cloud9/latest/user-guide/troubleshooting.html#troubleshooting-env-loading).
 {{% /notice %}}

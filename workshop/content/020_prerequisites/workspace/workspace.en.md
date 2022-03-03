@@ -8,13 +8,6 @@ weight: 14
 **If you are running this workshop at an AWS Event (Immersion Day, re:Invent, Summit, etc) using Event Engine, you must skip this step.**
 {{% /notice %}}
 
-{{% notice warning %}}
-The Cloud9 workspace should be built by an IAM user with Administrator privileges,
-not the root account user. Please ensure you are logged in as an IAM user, not the root
-account user.
-{{% /notice %}}
-
-
 {{% notice tip %}}
 Ad blockers, javascript disablers, and tracking blockers should be disabled for
 the cloud9 domain, or connecting to the workspace might be impacted.
