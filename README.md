@@ -1,4 +1,3 @@
-![Build](https://github.com/aws-samples/serverless-observability-workshop/workflows/Build/badge.svg)
 
 # AWS Serverless Observability Workshop 
 
