@@ -15,7 +15,7 @@ Ingrese a la [Consola de CloudWatch Alarmas](https://console.aws.amazon.com/clou
 
 ![alarm-1](/images/alarm_1.png?width=60pc)
 
-4. Selecciona las dimensiones `FunctionName, FunctionVersion, operation, service` y  selecciona la métrica `SuccessfulGetItem` creada en el ejercicio anterior.
+4. Selecciona las dimensiones `LogGroup, ServiceName, ServiceType, operation` y selecciona la métrica `SuccessfulGetItem` creada en el ejercicio anterior.
 
 ![alarm-2](/images/alarm_2.png?width=60pc)
 ![alarm-3](/images/alarm_3.png?width=60pc)
@@ -28,9 +28,9 @@ Ingrese a la [Consola de CloudWatch Alarmas](https://console.aws.amazon.com/clou
 
 8. En la pantalla **Configurar las acciones**, puedes establecer qué acción quieres llevar a cabo cuando la alarma cambie a diferentes estados, como
 
-    - `(En modo alarma) In alarm`
-    - `(CORRECTO) OK`
-    - `(Datos insuficientes) Insufficient data`
+   - `(En modo alarma) In alarm`
+   - `(CORRECTO) OK`
+   - `(Datos insuficientes) Insufficient data`
 
 Las opciones disponibles para las acciones incluyen, - `(Notificación) Send a notification to an SNS topic` - `(Acciòn de Auto Scaling) Take an Auto scaling action` - `(Acción de EC2) EC2 action` si la métrica proviene de una instancia EC2
 
@@ -46,9 +46,8 @@ Las opciones disponibles para las acciones incluyen, - `(Notificación) Send a n
 ![alarm-4](/images/alarm_name.png?width=50pc)
 
 14. Revisa tu configuración y haz clic en **Crear alarma**.
-15. Abre tu bandeja de entrada de correo electrónico y confirma tu suscripción a temas de SNS 
-![alarm-4](/images/alarm_confirm.png?width=50pc)
-
+15. Abre tu bandeja de entrada de correo electrónico y confirma tu suscripción a temas de SNS
+    ![alarm-4](/images/alarm_confirm.png?width=50pc)
 
 {{% notice warning %}}
 Si no confirmas tu suscripción por correo electrónico, no recibirás ningún correo electrónico de notificación de las alarmas activadas. **Recuerda siempre revisar también tu carpeta de correo no deseado**.

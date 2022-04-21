@@ -15,7 +15,7 @@ Go to your [CloudWatch Alarms Console](https://console.aws.amazon.com/cloudwatch
 
 ![alarm-1](/images/alarm_1.png?width=60pc)
 
-4. Select `FunctionName, FunctionVersion, operation, service` dimension and select the `SuccessfulGetItem` metric we created in the previous exercise.
+4. Select `LogGroup, ServiceName, ServiceType, operation` dimension and select the `SuccessfulGetItem` metric we created in the previous exercise.
 
 ![alarm-2](/images/alarm_2.png?width=60pc)
 ![alarm-3](/images/alarm_3.png?width=60pc)
@@ -28,9 +28,9 @@ Go to your [CloudWatch Alarms Console](https://console.aws.amazon.com/cloudwatch
 
 8. In the **Configure actions** screen, you can set what action you want to take when the alarm changes to different states such as
 
-    - `In alarm`
-    - `OK`
-    - `Insufficient data`
+   - `In alarm`
+   - `OK`
+   - `Insufficient data`
 
 The available options for actions include, - `Send a notification to an SNS topic` - `Take an Auto scaling action` - `EC2 action` if the metric is from an EC2 instance
 
@@ -46,9 +46,8 @@ The available options for actions include, - `Send a notification to an SNS topi
 ![alarm-4](/images/alarm_name.png?width=50pc)
 
 14. Review your settings and click **Create alarm**.
-15. Open you e-mail inbox and confirm your SNS topic subscription 
-![alarm-4](/images/alarm_confirm.png?width=50pc)
-
+15. Open you e-mail inbox and confirm your SNS topic subscription
+    ![alarm-4](/images/alarm_confirm.png?width=50pc)
 
 {{% notice warning %}}
 If you don't confirm your e-mail subscription, you will not receive any notification emails for triggered alarms. **Always remember to also check your spam folder**.
