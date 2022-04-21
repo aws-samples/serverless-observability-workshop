@@ -46,12 +46,12 @@ Insira as seguintes configurações quando solicitado:
         getByIdFunction may not have authorization defined, Is this okay? [y/N]: Y
         putItemFunction may not have authorization defined, Is this okay? [y/N]: Y
         Save arguments to configuration file [Y/n]: Y
-        SAM configuration file [samconfig.toml]: 
-        SAM configuration environment [default]: 
+        SAM configuration file [samconfig.toml]:
+        SAM configuration environment [default]:
 
 ```
 
-Siga [este deep link para o CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=sam-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) para acompanhar a implantação da stack.
+Siga [este deep link para o CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=monitoring-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) para acompanhar a implantação da stack.
 
 ![Sample Architecture](/images/samstacks.png)
 
@@ -74,21 +74,20 @@ echo "export ApiUrl="$ApiUrl
 Observe o endpoint da URL da API porque ele pode acabar sendo um requisito em um módulo posterior.
 {{% /notice %}}
 
-
 #### Teste a operação `Put Item`
 
 ```sh
 curl -X POST \
   $ApiUrl/items/ \
   -d '{
-        "id":"1",  
+        "id":"1",
         "name": "Sample test item"
   }'
 
 curl -X POST \
   $ApiUrl/items/ \
   -d '{
-        "id":"2",  
+        "id":"2",
         "name": "Second test item"
   }'
 ```

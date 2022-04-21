@@ -3,7 +3,7 @@ title = "Despliegue de la aplicación de ejemplo"
 weight = 20
 +++
 
-### Clonar el depósito del GitHub 
+### Clonar el depósito del GitHub
 
 ```sh
 cd ~/environment
@@ -12,7 +12,7 @@ cd serverless-observability-workshop/code/sample-app
 ```
 
 {{% notice tip %}}
-Toma unos minutos para comprender cuáles recursos están provistos en el archivo `serverless-observability-workshop/code/sample-app/template.yaml` así como sus funciones de Lambda. 
+Toma unos minutos para comprender cuáles recursos están provistos en el archivo `serverless-observability-workshop/code/sample-app/template.yaml` así como sus funciones de Lambda.
 {{% /notice %}}
 
 Después de implantar esta aplicación, serán provistos los siguientes recursos en nuestra cuenta de AWS:
@@ -46,12 +46,12 @@ Inserta las configuraciones a seguir cuando sea solicitado:
         getByIdFunction may not have authorization defined, Is this okay? [y/N]: Y
         putItemFunction may not have authorization defined, Is this okay? [y/N]: Y
         Save arguments to configuration file [Y/n]: Y
-        SAM configuration file [samconfig.toml]: 
-        SAM configuration environment [default]: 
+        SAM configuration file [samconfig.toml]:
+        SAM configuration environment [default]:
 
 ```
 
-Sigue este [deep link a CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=sam-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) para acompañar la implantación de la stack.
+Sigue este [deep link a CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=monitoring-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) para acompañar la implantación de la stack.
 
 ![Sample Architecture](/images/samstacks.png)
 
@@ -71,9 +71,8 @@ echo "export ApiUrl="$ApiUrl
 ```
 
 {{% notice warning %}}
-Observa el endpoint de la URL de API porque puede ser un requisito en algún módulo posteriormente. 
+Observa el endpoint de la URL de API porque puede ser un requisito en algún módulo posteriormente.
 {{% /notice %}}
-
 
 #### Prueba la operación `Put Item`
 
@@ -81,25 +80,25 @@ Observa el endpoint de la URL de API porque puede ser un requisito en algún mó
 curl -X POST \
   $ApiUrl/items/ \
   -d '{
-        "id":"1",  
+        "id":"1",
         "name": "Sample test item"
   }'
 
 curl -X POST \
   $ApiUrl/items/ \
   -d '{
-        "id":"2",  
+        "id":"2",
         "name": "Second test item"
   }'
 ```
 
-#### Prueba la operación `Get All Items` 
+#### Prueba la operación `Get All Items`
 
 ```sh
 curl -X GET $ApiUrl/items/ | jq
 ```
 
-#### Prueba la operación `Get Item by Id` 
+#### Prueba la operación `Get Item by Id`
 
 ```sh
 curl -X GET $ApiUrl/items/1 | jq
