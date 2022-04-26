@@ -3,7 +3,7 @@ title = "Deploy the sample app"
 weight = 20
 +++
 
-### Clone the GitHub Repository 
+### Clone the GitHub Repository
 
 ```sh
 cd ~/environment
@@ -46,12 +46,12 @@ Enter the following settings when prompted:
         getByIdFunction may not have authorization defined, Is this okay? [y/N]: Y
         putItemFunction may not have authorization defined, Is this okay? [y/N]: Y
         Save arguments to configuration file [Y/n]: Y
-        SAM configuration file [samconfig.toml]: 
-        SAM configuration environment [default]: 
+        SAM configuration file [samconfig.toml]:
+        SAM configuration environment [default]:
 
 ```
 
-Follow [this deep link to CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=sam-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) to keep up with the stack deployment.
+Follow [this deep link to CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=monitoring-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) to keep up with the stack deployment.
 
 ![Sample Architecture](/images/samstacks.png)
 
@@ -74,21 +74,20 @@ echo "export ApiUrl="$ApiUrl
 Note down your API Url endpoint because it might end up being a requirement in a later module.
 {{% /notice %}}
 
-
 #### Test the `Put Item` operation
 
 ```sh
 curl -X POST \
   $ApiUrl/items/ \
   -d '{
-        "id":"1",  
+        "id":"1",
         "name": "Sample test item"
   }'
 
 curl -X POST \
   $ApiUrl/items/ \
   -d '{
-        "id":"2",  
+        "id":"2",
         "name": "Second test item"
   }'
 ```

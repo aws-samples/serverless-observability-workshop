@@ -15,7 +15,7 @@ Vá para seu [CloudWatch Alarms Console](https://console.aws.amazon.com/cloudwat
 
 ![alarm-1](/images/alarm_1.png?width=60pc)
 
-4. Selecione `FunctionName, FunctionVersion, operation, service` dimensão e selecione a métrica `SuccessfulGetItem` que criamos no exercício anterior.
+4. Selecione `LogGroup, ServiceName, ServiceType, operation` dimensão e selecione a métrica `SuccessfulGetItem` que criamos no exercício anterior.
 
 ![alarm-2](/images/alarm_2.png?width=60pc)
 ![alarm-3](/images/alarm_3.png?width=60pc)
@@ -28,9 +28,9 @@ Vá para seu [CloudWatch Alarms Console](https://console.aws.amazon.com/cloudwat
 
 8. Na figura **Configure actions**, você pode definir a ação que deseja tomar quando o alarme muda para diferentes estados, como
 
-    - `In alarm`
-    - `OK`
-    - `Insufficient data`
+   - `In alarm`
+   - `OK`
+   - `Insufficient data`
 
 As opções disponíveis para ações incluem, - `Send a notification to an SNS topic` - `Take an Auto scaling action` - `EC2 action` se a métrica é de uma instância EC2
 
@@ -46,9 +46,8 @@ As opções disponíveis para ações incluem, - `Send a notification to an SNS 
 ![alarm-4](/images/alarm_name.png?width=50pc)
 
 14. Revise suas configurações e clique em **Create alarm**.
-15. Abra sua caixa de entrada de e-mail e confirme sua inscrição no tópico SNS 
-![alarm-4](/images/alarm_confirm.png?width=50pc)
-
+15. Abra sua caixa de entrada de e-mail e confirme sua inscrição no tópico SNS
+    ![alarm-4](/images/alarm_confirm.png?width=50pc)
 
 {{% notice warning %}}
 Se você não confirmar sua assinatura de e-mail, não receberá nenhum e-mail de notificação para alarmes disparados. **Lembre-se sempre de verificar também sua pasta de spam**.
