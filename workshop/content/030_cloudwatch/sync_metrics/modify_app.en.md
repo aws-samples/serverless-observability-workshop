@@ -30,7 +30,7 @@ Let's define the following Business & Operational metrics:
 
     #### Adding PutMetric
 
-1. Now, inside the `putItemHandler()` we are going to test whether it's the first execution of a given Lambda container and label it as `Cold Start`, also pushing this information as a CloudWatch Metric using our `putMetric()` method. Add and `if` statement checking whether the `_cold_start` variable is `true` or `false` right after the beginning of the `try` block.
+1. Now, inside the `putItemHandler()` we are going to test whether it's the first execution of a given Lambda container and label it as `Cold Start`, also pushing this information as a CloudWatch Metric using our `putMetric()` method. Add an `if` statement checking whether the `_cold_start` variable is `true` or `false` right after the beginning of the `try` block.
 
     ```javascript
     exports.putItemHandler = async (event, context) => {
