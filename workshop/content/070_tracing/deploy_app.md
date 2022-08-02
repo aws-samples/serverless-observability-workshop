@@ -53,17 +53,6 @@ After we deploy this application, the following resources will be provisioned in
            Save arguments to samconfig.toml [Y/n]: Y
    ```
 
-1. Wait for a few minutes and then enter the following when prompted again:
-
-   ```sh
-   Changeset created successfully. arn:aws:cloudformation:us-east-1:1234567890:changeSet/samcli-deploy135353414/3d893bb8-2ecf-4491-9022-0644f5534da
-
-
-   Previewing CloudFormation changeset before deployment
-   ======================================================
-   Deploy this changeset? [y/N]: Y
-   ```
-
 1. Follow [this deep link to CloudFormation](https://console.aws.amazon.com/cloudformation/home#/stacks?filteringText=monitoring-&filteringStatus=active&viewNested=true&hideStacks=false&stackId=) to keep up with the stack deployment.
 
 ![Sample Architecture](/images/samstacks_tracing.png)
