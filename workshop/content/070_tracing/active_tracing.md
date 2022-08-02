@@ -21,7 +21,7 @@ Globals:
   Function:
     Runtime: nodejs12.x
     Timeout: 100
-    Tracing: Active # <----- ADD FOR LAMBDA
+    Tracing: Active # <----- ADD X-Ray Active Tracing for all Lambdas here
     MemorySize: 128
     CodeUri: ./
     Environment:
@@ -32,8 +32,11 @@ Globals:
         ENABLE_DEBUG: false
         # Enable usage of KeepAlive to reduce overhead of short-lived actions, like DynamoDB queries
         AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
-  Api:                    # <----- ADD FOR API
-    TracingEnabled: true  # <----- ADD FOR API  
+  
+  Api:
+    Type: AWS::Serverless::Api
+    Properties:
+      TracingEnabled: true      #  <------ ADD X-Ray Active Tracing for API GW here
 ```
 
 Save your changes to the ***serverless-observability-workshop/code/sample-app-tracing/template.yaml*** file.
