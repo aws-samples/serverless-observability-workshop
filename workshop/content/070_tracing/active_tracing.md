@@ -44,7 +44,7 @@ Save your changes to the ***serverless-observability-workshop/code/sample-app-tr
 ```sh
 cd ~/environment/serverless-observability-workshop/code/sample-app-tracing
 sam build
-sam deploy
+sam deploy -g
 ```
 
 ### Test the APIs 
