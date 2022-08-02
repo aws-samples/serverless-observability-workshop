@@ -50,7 +50,9 @@ After we deploy this application, the following resources will be provisioned in
            getAllItemsFunction may not have authorization defined, Is this okay? [y/N]: Y
            getByIdFunction may not have authorization defined, Is this okay? [y/N]: Y
            putItemFunction may not have authorization defined, Is this okay? [y/N]: Y
+           Save arguments to configuration file [Y/n]: Y
            Save arguments to samconfig.toml [Y/n]: Y
+           SAM configuration environment [default]: Y
    ```
 
 1. Wait for a few minutes and then enter the following when prompted again:
