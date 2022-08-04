@@ -49,6 +49,8 @@ curl -X GET $ApiUrl/items/ | jq
 #### Test the `Get Item by Id` operation
 
 ```sh
+curl -X POST $ApiUrl/items/50 | jq
+curl -X POST $ApiUrl/items/60 | jq
 curl -X GET $ApiUrl/items/5 | jq
 curl -X GET $ApiUrl/items/6 | jq
 ```
