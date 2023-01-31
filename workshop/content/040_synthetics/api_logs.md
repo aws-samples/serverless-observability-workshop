@@ -60,7 +60,7 @@ Let's see: what happens if we accidentally break our API? Since we are monitorin
     throw new Error('Sample exception introduction') // <- Sample exception throw 
 ```
 
-8. Save your changes to the ***serverless-observability-workshop/code/sample-app-tracing/src/handlers/get-all-items.js*** file.
+8. Save your changes to the ***serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js*** file.
 
 **Your getAllItemsHandler() method should look like this:**
 {{% expand "Fully modified method (expand for code)" %}}
@@ -125,7 +125,7 @@ In order for us to be able to pass our canary tests again, we are going to switc
 throw new Error('Sample exception introduction') // <- Remove exception throw 
 ```
 
-10. Save your changes to the ***serverless-observability-workshop/code/sample-app-tracing/src/handlers/get-all-items.js*** file.
+10. Save your changes to the ***serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js*** file.
 
 **Your getAllItemsHandler() method should look like this:**
 {{% expand "Fully modified method (expand for code)" %}}

@@ -59,7 +59,7 @@ Veamos: ¿qué pasa si rompemos accidentalmente nuestra API? Como estamos monito
     throw new Error('Sample exception introduction') // <- Sample exception throw 
 ```
 
-8. Guarda los cambios en el archivo ***serverless-observability-workshop/code/sample-app-tracing/src/handlers/get-all-items.js***.
+8. Guarda los cambios en el archivo ***serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js***.
 
 **El método getAllItemsHandler() debería verse como el que está a continuación:**
 {{% expand "Fully modified method (expand for code)" %}}
@@ -124,7 +124,7 @@ Para que podamos volver a pasar nuestras pruebas del canary, vamos a volver al *
 throw new Error('Sample exception introduction') // <- Remove exception throw 
 ```
 
-10. Guardar los cambios en el archivo ***serverless-observability-workshop/code/sample-app-tracing/src/handlers/get-all-items.js***.
+10. Guardar los cambios en el archivo ***serverless-observability-workshop/code/sample-app/src/handlers/get-all-items.js***.
 
 **El método getAllItemsHandler() debería verse como el que está a continuación:**
 {{% expand "Fully modified method (expand for code)" %}}
