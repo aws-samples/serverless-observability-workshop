@@ -63,7 +63,7 @@ export class CloudwatchCdkStack extends cdk.Stack {
       namespace: namespace,
       metricName: metricName,
       period: period,
-      dimensions: dimensions,
+      dimensionsMap: dimensions,
       label: label,
       statistic: statistic
     })
