@@ -48,12 +48,13 @@ export class CloudwatchCdkStack extends cdk.Stack {
       width: 24,
       metrics: [
         this.buildMetric('MonitoringApp', '# of ColdStarts', functionName, 'ColdStart', 'sum', cdk.Duration.hours(1), { LogGroup: logGroup, ServiceType: 'AWS::Lambda::Function', ServiceName: 'item_service', function_name: functionName }),
-        this.buildMetric('AWS/Lambda', 'ColdStart Duration', functionName, 'InitDuration', 'avg', cdk.Duration.hours(1), { FunctionName: functionName, FunctionVersion: '$LATEST' }),
-        this.buildMetric('AWS/Lambda', 'Billed Duration', functionName, 'BilledDuration', 'avg', cdk.Duration.hours(1), { FunctionName: functionName, FunctionVersion: '$LATEST' }),
-        this.buildMetric('AWS/Lambda', 'Memory Size', functionName, 'MemorySize', 'avg', cdk.Duration.hours(1), { FunctionName: functionName, FunctionVersion: '$LATEST' }),
-        this.buildMetric('AWS/Lambda', 'Memory Used', functionName, 'MemoryUsed', 'avg', cdk.Duration.hours(1), { FunctionName: functionName, FunctionVersion: '$LATEST' }),
-        this.buildMetric('AWS/Lambda', 'Estimated Cost ($)', functionName, 'EstimatedCost', 'sum', cdk.Duration.hours(1), { FunctionName: functionName, FunctionVersion: '$LATEST' })
+        this.buildMetric('AWS/Lambda', 'Errors', functionName, 'Errors', 'sum', cdk.Duration.hours(1), { FunctionName: functionName}),
+        this.buildMetric('AWS/Lambda', 'Concurrent Executions', '.', 'ConcurrentExecutions', 'sum', cdk.Duration.hours(1), { FunctionName: functionName }),
+        this.buildMetric('AWS/Lambda', 'Invocations', functionName, 'Invocations', 'sum', cdk.Duration.hours(1), { FunctionName: functionName,}),
+        this.buildMetric('AWS/Lambda', 'Duration', functionName, 'Duration', 'avg', cdk.Duration.hours(1), { FunctionName: functionName }),
+        this.buildMetric('AWS/Lambda', 'Throttles', functionName, 'Throttles', 'sum', cdk.Duration.hours(1), { FunctionName: functionName }),
       ]
+      
     })
   }
 
