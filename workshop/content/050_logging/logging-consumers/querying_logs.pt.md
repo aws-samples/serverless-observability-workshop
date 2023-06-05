@@ -71,12 +71,12 @@ Você também pode consultar os grupos de log usando o AWS CLI. A consulta a seg
 Certifique-se de substituir o grupo de log apropriado que você tem em sua conta e alterar os valores dos parâmetros de tempo de início e término para os valores de tempo de época (epoch) corretos. Você pode calcular os valores de tempo de época (epoch) neste site público - https://www.epochconverter.com/
 
 {{% notice tip %}}
-Por razões de simplicidade, os carimbos (timestamps) de data / hora abaixo são definidos entre `24 de agosto de 2020` e` 24 de agosto de 2022`.
+Por razões de simplicidade, os carimbos (timestamps) de data / hora abaixo são definidos entre `24 de agosto de 2022` e agora.
 {{% /notice %}}
 
 ```sh
 export getAllItemsFunction=$(aws cloudformation describe-stack-resources --stack-name monitoring-app --output json | jq '.StackResources[] | select(.LogicalResourceId=="getAllItemsFunction") | .PhysicalResourceId' | sed -e 's/^"//'  -e 's/"$//')
-aws logs start-query --log-group-name /aws/lambda/$getAllItemsFunction --start-time '1598288209' --end-time '1661364126' --query-string 'fields @message | limit 10'
+aws logs start-query --log-group-name /aws/lambda/$getAllItemsFunction --start-time '1661364126' --end-time "$(date +%s)" --query-string 'fields @message | limit 10'
 ```
 
 A consulta acima retornará um queryId. Copie esse ID de consulta e substitua a string `<QUERY_ID>` no comando abaixo e execute-o para ver os resultados dos dados de registro.

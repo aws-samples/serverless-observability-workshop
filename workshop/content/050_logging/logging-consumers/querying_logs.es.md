@@ -71,12 +71,12 @@ También puedes consultar los grupos de registros mediante la CLI de AWS. La con
 Asegúrate de sustituir el grupo de registros por el que tenga en su cuenta y cambie los valores de los parámetros de hora de inicio y finalización por los valores de época correctos. Puede calcular los valores temporales de época desde este sitio web público - https://www.epochconverter.com/
 
 {{% notice tip %}}
-Por razones de simplicidad, las marcas de tiempo que aparecen a continuación se establecen entre `24th Aug, 2020` y `24th Aug, 2022`.
+Por razones de simplicidad, las marcas de tiempo que aparecen a continuación se establecen entre `24th Aug, 2022` y ahora.
 {{% /notice %}}
 
 ```sh
 export getAllItemsFunction=$(aws cloudformation describe-stack-resources --stack-name monitoring-app --output json | jq '.StackResources[] | select(.LogicalResourceId=="getAllItemsFunction") | .PhysicalResourceId' | sed -e 's/^"//'  -e 's/"$//')
-aws logs start-query --log-group-name /aws/lambda/$getAllItemsFunction --start-time '1598288209' --end-time '1661364126' --query-string 'fields @message | limit 10'
+aws logs start-query --log-group-name /aws/lambda/$getAllItemsFunction --start-time '1661364126' --end-time "$(date +%s)" --query-string 'fields @message | limit 10'
 ```
 
 La consulta anterior devolverá un queryId. Copia ese ID de consulta y reemplaza la cadena `<QUERY_ID>`. en el siguiente comando y ejecútalo para ver los resultados de los datos de registro.
