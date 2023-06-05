@@ -20,7 +20,7 @@ Vamos editar o arquivo ***serverless-observability-workshop/code/sample-app-trac
 ```yaml
 Globals:
   Function:
-    Runtime: nodejs12.x
+    Runtime: nodejs18.x
     Timeout: 100
     Tracing: Active # <----- ADD FOR LAMBDA
     MemorySize: 128

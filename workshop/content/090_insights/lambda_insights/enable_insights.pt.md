@@ -19,7 +19,7 @@ Vamos editar o arquivo ***serverless-observability-workshop/code/sample-app/temp
 ```yaml
 Globals:
   Function:
-    Runtime: nodejs12.x
+    Runtime: nodejs18.x
     Timeout: 100
     MemorySize: 128
     CodeUri: ./
