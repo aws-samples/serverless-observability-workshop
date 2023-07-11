@@ -1,0 +1,38 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sample-app-pt", "sample-app-pt\sample-app-pt.csproj", "{1DC84BE8-8F1B-4E6F-BAC5-5A286C546031}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sample-app-pt.Tests", "sample-app-pt.Tests\sample-app-pt.Tests.csproj", "{6B1405E9-CA6B-4812-B60A-CB81C9580A77}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionFolder", "{982EB903-16B2-4C5C-9E9C-F05142F5CD07}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+		template.yaml = template.yaml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DC84BE8-8F1B-4E6F-BAC5-5A286C546031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DC84BE8-8F1B-4E6F-BAC5-5A286C546031}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DC84BE8-8F1B-4E6F-BAC5-5A286C546031}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DC84BE8-8F1B-4E6F-BAC5-5A286C546031}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B1405E9-CA6B-4812-B60A-CB81C9580A77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B1405E9-CA6B-4812-B60A-CB81C9580A77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B1405E9-CA6B-4812-B60A-CB81C9580A77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B1405E9-CA6B-4812-B60A-CB81C9580A77}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F6D1803A-F61C-4C29-A564-2BCB2ADB9637}
+	EndGlobalSection
+EndGlobal
