@@ -1,46 +1,68 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  Sample SAM Template with Powertools for AWS Lambda (.NET) for SampleSolution
+  Sample SAM Template for SampleApp
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
-    Timeout: 10
-    MemorySize: 256
-    Runtime: dotnet6
+    Timeout: 100
     Tracing: Active
+    Environment: 
+      Variables:
+        POWERTOOLS_SERVICE_NAME: powertools-dotnet-sample-app
+        POWERTOOLS_LOG_LEVEL: Debug
+        POWERTOOLS_METRICS_NAMESPACE: SampleApp
+        # POWERTOOLS_LOGGER_LOG_EVENT: true
+        # POWERTOOLS_LOGGER_CASE: PascalCase # Allowed values are: CamelCase, PascalCase and SnakeCase
+        # POWERTOOLS_LOGGER_SAMPLE_RATE: 0
   Api:
-    # More info about OpenApiVersion: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-api.html#sam-api-openapiversion
-    OpenApiVersion: 3.0.1
     TracingEnabled: true
-
 Resources:
-  HelloWorldFunction:
+  NetCodeWebAPIServerless:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      Handler: HelloWorld::HelloWorld.Function::FunctionHandler
-      CodeUri: ./src/HelloWorld/
-      Description: Hello World function w/ Powertools for AWS Lambda (.NET)  # for more information on Powertools for AWS Lambda (.NET): https://github.com/awslabs/aws-lambda-powertools-dotnet
-      Architectures:
-      - x86_64
+      Description: A simple example includes a .NET Core WebAPI App with DynamoDB
+        table.
+      CodeUri: ./src/SampleApp/
+      Handler: SampleApp
+      Runtime: dotnet6
+      MemorySize: 1024
       Tracing: Active
-      Events:
-        HelloWorld:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-          Properties:
-            Path: /hello
-            Method: get
-      Environment: # Powertools env vars: https://awslabs.github.io/aws-lambda-powertools-python/#environment-variables
+      Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
         Variables:
-          POWERTOOLS_SERVICE_NAME: PowertoolsHelloWorld
-          POWERTOOLS_LOG_LEVEL: Info
-          POWERTOOLS_LOGGER_CASE: PascalCase # Allowed values are: CamelCase, PascalCase and SnakeCase (Default)
-          POWERTOOLS_TRACER_CAPTURE_RESPONSE: true
-          POWERTOOLS_TRACER_CAPTURE_ERROR: true     # To disable tracing (CaptureMode = TracingCaptureMode.Disabled)
-          POWERTOOLS_METRICS_NAMESPACE: samplesolution
-      Tags:
-        LambdaPowertools: dotnet
+          POWERTOOLS_SERVICE_NAME: SampleApp
+          SAMPLE_TABLE: !Ref SampleTable
+      Policies:
+        # Give Create/Read/Update/Delete Permissions to the SampleTable
+      - DynamoDBCrudPolicy:
+          TableName: !Ref SampleTable
+      Events:
+        ProxyResource:
+          Type: HttpApi
+          Properties:
+            PayloadFormatVersion: '2.0'
+            Path: /{proxy+}
+            Method: ANY
+        RootResource:
+          PayloadFormatVersion: '2.0'
+          Type: HttpApi
+          Properties:
+            Path: /
+            Method: ANY
+
+  # DynamoDB table to store item: {id: &lt;ID&gt;, name: &lt;NAME&gt;}
+  SampleTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: SampleAppItem
+      PrimaryKey:
+        Name: Id
+        Type: Number
+      ProvisionedThroughput:
+        ReadCapacityUnits: 2
+        WriteCapacityUnits: 2
+
   ApplicationResourceGroup:
     Type: AWS::ResourceGroups::Group
     Properties:
@@ -55,15 +77,9 @@ Resources:
         Ref: ApplicationResourceGroup
       AutoConfigurationEnabled: 'true'
 Outputs:
-  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
-  # Find out more about other implicit resources you can reference within SAM
-  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  HelloWorldApi:
-    Description: API Gateway endpoint URL for Prod stage for Hello World function
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
-  HelloWorldFunction:
-    Description: Hello World Lambda Function ARN
-    Value: !GetAtt HelloWorldFunction.Arn
-  HelloWorldFunctionIamRole:
-    Description: Implicit IAM Role created for Hello World function
-    Value: !GetAtt HelloWorldFunctionRole.Arn
+  ApiUrl:
+    Description: API Gateway endpoint URL
+    Value: !Sub "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/"
+  SampleTable:
+    Description: Sample Data Table ARN
+    Value: !GetAtt SampleTable.Arn

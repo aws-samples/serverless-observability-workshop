@@ -1,51 +1,11 @@
-# SampleSolution
-
-Congratulations, you have just created a Serverless "Hello World" application using the AWS Serverless Application Model (AWS SAM) for the `dotnet6` runtime, and options to bootstrap it with [**Powertools for AWS Lambda (.NET)**](https://awslabs.github.io/aws-lambda-powertools-dotnet/) (Powertools) utilities for Logging, Tracing and Metrics.
-
-Powertools for AWS Lambda (.NET) is a developer toolkit to implement Serverless best practices and increase developer velocity.
-
-## Powertools for AWS Lambda (.NET) features
-
-Powertools for AWS Lambda (.NET) provides three core utilities:
-
-* **[Tracing](https://awslabs.github.io/aws-lambda-powertools-dotnet/core/tracer/)** - Decorators and utilities to trace Lambda function handlers, and both synchronous and asynchronous functions
-* **[Logging](https://awslabs.github.io/aws-lambda-powertools-dotnet/core/logger/)** - Structured logging made easier, and decorator to enrich structured logging with key Lambda context details
-* **[Metrics](https://awslabs.github.io/aws-lambda-powertools-dotnet/core/metrics/)** - Custom Metrics created asynchronously via CloudWatch Embedded Metric Format (EMF)
-
-Find the complete project's [documentation here](https://awslabs.github.io/aws-lambda-powertools-dotnet/).
-
-### Installing Powertools for AWS Lambda (.NET)
-
-Powertools for AWS Lambda utilities are available as NuGet packages. You can install the packages from the NuGet gallery or from within the Visual Studio IDE. Search `AWS.Lambda.Powertools*` to see various utilities available. Powertools for AWS Lambda (.NET) is available on NuGet.
-
-* [AWS.Lambda.Powertools.Logging](https://www.nuget.org/packages?q=AWS.Lambda.Powertools.Logging):
-
-    `dotnet add package AWS.Lambda.Powertools.Logging`
-
-* [AWS.Lambda.Powertools.Metrics](https://www.nuget.org/packages?q=AWS.Lambda.Powertools.Metrics):
-
-    `dotnet add package AWS.Lambda.Powertools.Metrics`
-
-* [AWS.Lambda.Powertools.Tracing](https://www.nuget.org/packages?q=AWS.Lambda.Powertools.Tracing):
-
-    `dotnet add package AWS.Lambda.Powertools.Tracing`
-
-### Powertools for AWS Lambda (.NET) Examples
-
-We have provided examples focused specifically on each of the utilities. Each solution comes with an AWS Serverless Application Model (AWS SAM) templates to run your functions as a Zip package using the AWS Lambda .NET 6 managed runtime; or as a container package using the AWS base images for .NET.
-
-* **[Logging example](examples/Logging/)**
-* **[Metrics example](examples/Metrics/)**
-* **[Tracing example](examples/Tracing/)**
-
-## Working with this project
+# SampleApp
 
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
 
-* src - Code for the application's Lambda function.
-* events - Invocation events that you can use to invoke the function.
-* test - Unit tests for the application code.
-* template.yaml - A template that defines the application's AWS resources.
+- src - Code for the application's Lambda function.
+- events - Invocation events that you can use to invoke the function.
+- test - Unit tests for the application code. 
+- template.yaml - A template that defines the application's AWS resources.
 
 The application uses several AWS resources, including Lambda functions and an API Gateway API. These resources are defined in the `template.yaml` file in this project. You can update the template to add AWS resources through the same deployment process that updates your application code.
 
@@ -64,14 +24,14 @@ The AWS Toolkit is an open source plug-in for popular IDEs that uses the SAM CLI
 * [VS Code](https://docs.aws.amazon.com/toolkit-for-vscode/latest/userguide/welcome.html)
 * [Visual Studio](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/welcome.html)
 
-### Deploy the sample application
+## Deploy the sample application
 
 The Serverless Application Model Command Line Interface (SAM CLI) is an extension of the AWS CLI that adds functionality for building and testing Lambda applications. It uses Docker to run your functions in an Amazon Linux environment that matches Lambda. It can also emulate your application's build environment and API.
 
 To use the SAM CLI, you need the following tools.
 
 * SAM CLI - [Install the SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
-* .NET 6 - [Install .NET 6](https://www.microsoft.com/net/download)
+* .NET Core - [Install .NET Core](https://www.microsoft.com/net/download)
 * Docker - [Install Docker community edition](https://hub.docker.com/search/?type=edition&offering=community)
 
 To build and deploy your application for the first time, run the following in your shell:
@@ -85,78 +45,98 @@ The first command will build the source of your application. The second command 
 
 * **Stack Name**: The name of the stack to deploy to CloudFormation. This should be unique to your account and region, and a good starting point would be something matching your project name.
 * **AWS Region**: The AWS region you want to deploy your app to.
+* **Parameter AppBucketName**: This template includes a parameter to name the S3 bucket you will create as a part of the new application. This name needs to be globally unique.
 * **Confirm changes before deploy**: If set to yes, any change sets will be shown to you before execution for manual review. If set to no, the AWS SAM CLI will automatically deploy application changes.
 * **Allow SAM CLI IAM role creation**: Many AWS SAM templates, including this example, create AWS IAM roles required for the AWS Lambda function(s) included to access AWS services. By default, these are scoped down to minimum required permissions. To deploy an AWS CloudFormation stack which creates or modifies IAM roles, the `CAPABILITY_IAM` value for `capabilities` must be provided. If permission isn't provided through this prompt, to deploy this example you must explicitly pass `--capabilities CAPABILITY_IAM` to the `sam deploy` command.
 * **Save arguments to samconfig.toml**: If set to yes, your choices will be saved to a configuration file inside the project, so that in the future you can just re-run `sam deploy` without parameters to deploy changes to your application.
 
-You can find your API Gateway Endpoint URL in the output values displayed after deployment.
-
-### Use the SAM CLI to build and test locally
+## Use the SAM CLI to build and test locally
 
 Build your application with the `sam build` command.
 
 ```bash
-SampleSolution$ sam build
+SampleApp$ sam build
 ```
 
-The SAM CLI installs dependencies defined in `src/HelloWorld.csproj`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
+The SAM CLI installs dependencies defined in `src/SampleApp/SampleApp.csproj`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
 
 Test a single function by invoking it directly with a test event. An event is a JSON document that represents the input that the function receives from the event source. Test events are included in the `events` folder in this project.
 
 Run functions locally and invoke them with the `sam local invoke` command.
 
 ```bash
-SampleSolution$ sam local invoke HelloWorldFunction --event events/event.json
+SampleApp$ sam local invoke NetCodeWebAPIServerless --event events/event.json
 ```
 
-The SAM CLI can also emulate your application's API. Use the `sam local start-api` to run the API locally on port 3000.
+The AWS SAM CLI can also emulate your application's API. Use the `sam local start-api` command to run the API locally on port 3000.
 
 ```bash
-SampleSolution$ sam local start-api
-SampleSolution$ curl http://localhost:3000/
+SampleApp$ sam local start-api
+SampleApp$ curl http://localhost:3000/
 ```
 
-The SAM CLI reads the application template to determine the API's routes and the functions that they invoke. The `Events` property on each function's definition includes the route and method for each path.
+## Add a resource to your application
+
+The application template uses AWS SAM to define application resources. AWS SAM is an extension of AWS CloudFormation with a simpler syntax for configuring common serverless application resources, such as functions, triggers, and APIs. For resources that aren't included in the [AWS SAM specification](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md), you can use the standard [AWS CloudFormation resource types](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html).
+
+Update `template.yaml` to add a dead-letter queue to your application. In the **Resources** section, add a resource named **MyQueue** with the type **AWS::SQS::Queue**. Then add a property to the **AWS::Serverless::Function** resource named **DeadLetterQueue** that targets the queue's Amazon Resource Name (ARN), and a policy that grants the function permission to access the queue.
 
 ```yaml
-      Events:
-        HelloWorld:
-          Type: Api
-          Properties:
-            Path: /hello
-            Method: get
+Resources:
+  MyQueue:
+    Type: AWS::SQS::Queue
+  NetCodeWebAPIServerless:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/SampleApp/
+      Handler: SampleApp::SampleApp.Function::FunctionHandler
+      Runtime: dotnet6
+      MemorySize: 1042
+      DeadLetterQueue:
+        Type: SQS
+        TargetArn: !GetAtt MyQueue.Arn
+      Policies:
+        - SQSSendMessagePolicy:
+            QueueName: !GetAtt MyQueue.QueueName
 ```
 
-### Add a resource to your application
+The dead-letter queue is a location for Lambda to send events that could not be processed. It's only used if you invoke your function asynchronously, but it's useful here to show how you can modify your application's resources and function configuration.
 
-The application template uses AWS Serverless Application Model (AWS SAM) to define application resources. AWS SAM is an extension of AWS CloudFormation with a simpler syntax for configuring common serverless application resources such as functions, triggers, and APIs. For resources not included in [the SAM specification](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md), you can use standard [AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html) resource types.
+Deploy the updated application.
 
-### Fetch, tail, and filter Lambda function logs
+```bash
+SampleApp$ sam build
+SampleApp$ sam deploy
+```
+
+Open the [**Applications**](https://console.aws.amazon.com/lambda/home#/applications) page of the Lambda console, and choose your application. When the deployment completes, view the application resources on the **Overview** tab to see the new resource. Then, choose the function to see the updated configuration that specifies the dead-letter queue.
+
+## Fetch, tail, and filter Lambda function logs
 
 To simplify troubleshooting, SAM CLI has a command called `sam logs`. `sam logs` lets you fetch logs generated by your deployed Lambda function from the command line. In addition to printing the logs on the terminal, this command has several nifty features to help you quickly find the bug.
 
 `NOTE`: This command works for all AWS Lambda functions; not just the ones you deploy using SAM.
 
 ```bash
-SampleSolution$ sam logs -n HelloWorldFunction --stack-name SampleSolution --tail
+SampleApp$ sam logs -n NetCodeWebAPIServerless --stack-name SampleApp --tail
 ```
 
 You can find more information and examples about filtering Lambda function logs in the [SAM CLI Documentation](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-logging.html).
 
-### Unit tests
+## Unit tests
 
 Tests are defined in the `test` folder in this project.
 
 ```bash
-SampleSolution$ dotnet test test/HelloWorld.Test
+SampleApp$ dotnet test test/SampleApp.Tests/SampleApp.Tests.csproj 
 ```
 
-### Cleanup
+## Cleanup
 
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
 
 ```bash
-sam delete --stack-name SampleSolution
+sam delete --stack-name SampleApp
 ```
 
 ## Resources

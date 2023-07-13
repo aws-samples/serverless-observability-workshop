@@ -10,12 +10,6 @@ Globals:
     Tracing: Active
     Environment: 
       Variables:
-        POWERTOOLS_SERVICE_NAME: powertools-dotnet-sample-app
-        POWERTOOLS_LOG_LEVEL: Debug
-        POWERTOOLS_METRICS_NAMESPACE: SampleApp
-        # POWERTOOLS_LOGGER_LOG_EVENT: true
-        # POWERTOOLS_LOGGER_CASE: PascalCase # Allowed values are: CamelCase, PascalCase and SnakeCase
-        # POWERTOOLS_LOGGER_SAMPLE_RATE: 0
   Api:
     TracingEnabled: true
 Resources:

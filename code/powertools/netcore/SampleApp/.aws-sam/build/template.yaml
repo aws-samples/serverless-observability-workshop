@@ -8,10 +8,7 @@ Globals:
     Timeout: 100
     Tracing: Active
     Environment:
-      Variables:
-        POWERTOOLS_SERVICE_NAME: powertools-dotnet-sample-app
-        POWERTOOLS_LOG_LEVEL: Debug
-        POWERTOOLS_METRICS_NAMESPACE: SampleApp
+      Variables: null
   Api:
     TracingEnabled: true
 Resources:
