@@ -1,7 +1,7 @@
 
 # AWS Serverless Observability Workshop
 
-This repository is part of workshop [Serverless Observability Workshop](https://serverless-observability.workshop.aws/en/). This repo have [AWS Serverless Application](https://aws.amazon.com/serverless/sam/) to deploy a demo application for education propose about how to instrument, collect, and analyze metrics, traces, and log of your serverless application to understand what are happen and prevent failures
+This repository is part of workshop [Serverless Observability Workshop](https://serverless-observability.workshop.aws/en/). This repo have [AWS Serverless Application](https://aws.amazon.com/serverless/sam/) to deploy a demo application for education purpose about how to instrument, collect, and analyze metrics, traces, and log of your serverless application to understand what are happen and prevent failures
 
 ### Components
 - Amazon CloudWatch
@@ -23,7 +23,7 @@ Make sure you have the necessary IAM permissions to deploy all the resources tha
 - In the AWS Region that you want to deploy the solution, create a AWS Cloud9 environment.
 
 #### Deploying
-*Remember:* This repo is part of an [Workshop](https://serverless-observability.workshop.aws/en/) and have some steps there to help the solution works perfectly.
+**Remember:** This repo is part of an [Workshop](https://serverless-observability.workshop.aws/en/) and have some steps there to help the solution works perfectly.
 
 1. Clone the repo in your Cloud9 env:
     ```shell
