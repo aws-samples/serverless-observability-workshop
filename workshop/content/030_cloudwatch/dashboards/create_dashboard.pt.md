@@ -25,7 +25,7 @@ npm outdated
 npm update --force
 npm install --force
 npm install -g typescript aws-cdk
-cdk deploy -c stack_name=monitoring-app
+export AWS_REGION=$(curl http://169.254.169.254/latest/meta-data/placement/region) cdk deploy -c stack_name=monitoring-app
 ```
 
 {{% notice tip %}}
