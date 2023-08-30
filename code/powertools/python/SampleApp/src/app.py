@@ -3,14 +3,7 @@ import json
 import boto3
 
 from utils.router import Router
-
-from decimal import Decimal
-
-class DecimalEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, Decimal):
-            return float(obj)
-        return super(DecimalEncoder, self).default(obj)
+from utils.encoder import DecimalEncoder
 
 client = boto3.resource('dynamodb')
 table = client.Table(os.environ.get('SAMPLE_TABLE'))
