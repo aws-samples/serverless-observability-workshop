@@ -23,7 +23,7 @@ Make sure you have the necessary IAM permissions to deploy all the resources tha
 - In the AWS Region that you want to deploy the solution, create a AWS Cloud9 environment.
 
 #### Deploying
-**Remember:** This repo is part of an [Workshop](https://serverless-observability.workshop.aws/en/) and have some steps there to help the solution works perfectly.
+**Remember:** This repo is part of an [Workshop](https://serverless-observability.workshop.aws/en/) and have some steps there to help solution works perfectly.
 
 1. Clone the repo in your Cloud9 env:
     ```shell
