@@ -27,9 +27,11 @@ Resources:
       Architectures:
         - x86_64
       MemorySize: 1024
+      Tracing: Active
       Environment:
         Variables:
           JAVA_TOOL_OPTIONS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
+          POWERTOOLS_SERVICE_NAME: SampleApp
       Policies:
         - DynamoDBWritePolicy:
             TableName: !Ref SampleTable

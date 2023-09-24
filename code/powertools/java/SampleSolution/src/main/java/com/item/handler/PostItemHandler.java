@@ -24,6 +24,9 @@ import software.amazon.cloudwatchlogs.emf.logger.MetricsLogger;
 import software.amazon.cloudwatchlogs.emf.model.DimensionSet;
 import software.amazon.cloudwatchlogs.emf.model.Unit;
 import software.amazon.lambda.powertools.metrics.MetricsUtils;
+import software.amazon.lambda.powertools.tracing.Tracing;
+import software.amazon.lambda.powertools.tracing.TracingUtils;
+
 import static software.amazon.lambda.powertools.metrics.MetricsUtils.withSingleMetric;
 
 import java.util.HashMap;
@@ -48,6 +51,7 @@ public class PostItemHandler implements RequestHandler<APIGatewayProxyRequestEve
 
     @Logging(logEvent = true)
     @Metrics(namespace = "SampleApp", service = "Items", captureColdStart = true)
+    @Tracing
     @Override 
     public APIGatewayProxyResponseEvent handleRequest(final APIGatewayProxyRequestEvent input, final Context context) {
 
@@ -75,6 +79,9 @@ public class PostItemHandler implements RequestHandler<APIGatewayProxyRequestEve
             metricsLogger.putMetric("SuccessfulPutItem", 1, Unit.COUNT);
             metricsLogger.putMetadata("correlation_id", input.getRequestContext().getRequestId());
 
+            TracingUtils.putAnnotation("Item Id", String.valueOf(item.getId()));
+            TracingUtils.putMetadata("Item Name", item.getName());
+
             return new APIGatewayProxyResponseEvent()
                     .withStatusCode(200)
                     .withBody("Created item: " + JSON.std.asString(item));
@@ -88,6 +95,7 @@ public class PostItemHandler implements RequestHandler<APIGatewayProxyRequestEve
 
     }
 
+    @Tracing
     private void createItem(Item item) {
         PutItemRequest putItemRequest = PutItemRequest.builder().item(
                 Map.of("Id", AttributeValue.fromN(String.valueOf(item.getId())),

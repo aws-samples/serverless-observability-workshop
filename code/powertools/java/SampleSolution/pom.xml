@@ -77,6 +77,16 @@
             <artifactId>powertools-metrics</artifactId>
             <version>${power.tools.version}</version>
         </dependency> 
+        <dependency>
+            <groupId>software.amazon.lambda</groupId>
+            <artifactId>powertools-tracing</artifactId>
+            <version>${power.tools.version}</version>
+        </dependency> 
+        <dependency>
+            <groupId>software.amazon.lambda</groupId>
+            <artifactId>powertools-serialization</artifactId>
+            <version>${power.tools.version}</version>
+        </dependency>
     </dependencies>
 
     <profiles>
@@ -121,6 +131,10 @@
                                 <aspectLibrary>
                                     <groupId>software.amazon.lambda</groupId>
                                     <artifactId>powertools-metrics</artifactId>
+                                </aspectLibrary>
+                                <aspectLibrary>
+                                    <groupId>software.amazon.lambda</groupId>
+                                    <artifactId>powertools-tracing</artifactId>
                                 </aspectLibrary>
                             </aspectLibraries>
                         </configuration>
