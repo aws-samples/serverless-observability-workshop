@@ -10,8 +10,9 @@ Globals:
     Tracing: Active
     Environment: 
       Variables:
-        POWERTOOLS_SERVICE_NAME: powertools-java-sample-app
+        POWERTOOLS_SERVICE_NAME: SampleApp
         POWERTOOLS_LOG_LEVEL: Debug
+        POWERTOOLS_METRICS_NAMESPACE: SampleApp
   Api:
     TracingEnabled: true
 
@@ -26,6 +27,9 @@ Resources:
       Architectures:
         - x86_64
       MemorySize: 1024
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
       Policies:
         - DynamoDBWritePolicy:
             TableName: !Ref SampleTable
