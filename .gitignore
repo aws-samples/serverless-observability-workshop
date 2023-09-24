@@ -160,3 +160,4 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrnc
+code/powertools/java/SampleSolution/.aws-sam/build.toml
