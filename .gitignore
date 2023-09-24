@@ -147,6 +147,7 @@ nupkg/
 
 #java
 *.class
+code/powertools/java/SampleSolution/target/
 
 # Build results
 [Dd]ebug/
