@@ -7,8 +7,6 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
 import com.fasterxml.jackson.jr.ob.JSON;
 import com.item.entity.Item;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import software.amazon.awssdk.auth.credentials.EnvironmentVariableCredentialsProvider;
 import software.amazon.awssdk.core.SdkSystemSetting;
 import software.amazon.awssdk.http.crt.AwsCrtAsyncHttpClient;
@@ -24,7 +22,6 @@ import java.util.stream.Collectors;
 
 public class GetAllItemsHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
-    private final Logger logger = LoggerFactory.getLogger(GetAllItemsHandler.class);
     private final DynamoDbAsyncClient dynamoDbClient;
 
     public GetAllItemsHandler() {
@@ -40,14 +37,14 @@ public class GetAllItemsHandler implements RequestHandler<APIGatewayProxyRequest
 
         try {
 
-            logger.info("Received request: {}", JSON.std.asString(input));
+            System.out.println("Received request: " + JSON.std.asString(input));
             List<Item> items = getAllItems();
 
             return new APIGatewayProxyResponseEvent()
                     .withStatusCode(200)
                     .withBody("Received items: " + JSON.std.asString(items));
         } catch (Exception e) {
-            logger.error("Error while processing the request", e);
+            System.out.println("Error while processing the request: " +  e.getMessage());
             return new APIGatewayProxyResponseEvent()
                     .withStatusCode(400)
                     .withBody("Error processing the request");
@@ -67,7 +64,7 @@ public class GetAllItemsHandler implements RequestHandler<APIGatewayProxyRequest
                     .collect(Collectors.toList());
 
         } catch (InterruptedException | ExecutionException e) {
-            logger.error("Exception:", e.getMessage());
+            System.out.println("Exception: " +  e.getMessage());
             throw new RuntimeException("Error creating Get All Items request - " + e.getMessage());
         }
 

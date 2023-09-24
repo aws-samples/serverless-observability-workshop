@@ -7,8 +7,6 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
 import com.fasterxml.jackson.jr.ob.JSON;
 import com.item.entity.Item;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import software.amazon.awssdk.auth.credentials.EnvironmentVariableCredentialsProvider;
 import software.amazon.awssdk.core.SdkSystemSetting;
 import software.amazon.awssdk.http.crt.AwsCrtAsyncHttpClient;
@@ -22,7 +20,6 @@ import java.util.concurrent.ExecutionException;
 
 public class GetItemByIdHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
-    private final Logger logger = LoggerFactory.getLogger(GetItemByIdHandler.class);
     private final DynamoDbAsyncClient dynamoDbClient;
 
     public GetItemByIdHandler() {
@@ -38,9 +35,9 @@ public class GetItemByIdHandler implements RequestHandler<APIGatewayProxyRequest
 
         try {
 
-            logger.info("Received request: {}", JSON.std.asString(input));
+            System.out.println("Received request: " + JSON.std.asString(input));
             int id = Integer.valueOf(input.getPathParameters().get("id"));
-            logger.info("Received request for id: {}", id);
+            System.out.println("Received request for id: " + id);
 
             Item item = getItemById(id);
             if (item == null) {
@@ -52,7 +49,7 @@ public class GetItemByIdHandler implements RequestHandler<APIGatewayProxyRequest
                     .withStatusCode(200)
                     .withBody("Received item: " + JSON.std.asString(item));
         } catch (Exception e) {
-            logger.error("Error while processing the request", e);
+            System.out.println("Error while processing the request: "+ e.getMessage());
             return new APIGatewayProxyResponseEvent()
                     .withStatusCode(400)
                     .withBody("Error processing the request");
@@ -68,12 +65,12 @@ public class GetItemByIdHandler implements RequestHandler<APIGatewayProxyRequest
         Item item = null;
         try {
             GetItemResponse result = dynamoDbClient.getItem(getItemRequest).get();
-            logger.info("DDB Response: {}", result.item());
+            System.out.println("DDB Response: " + result.item());
             if (result.hasItem()) {
                 item = new Item(Integer.valueOf(result.item().get("Id").n()), result.item().get("itemName").s());
             }
         } catch (InterruptedException | ExecutionException e) {
-            logger.error("Exception:", e.getMessage());
+            System.out.println("Exception: "+ e.getMessage());
             throw new RuntimeException("Error creating Get All Items request - " + e.getMessage());
         }
 
