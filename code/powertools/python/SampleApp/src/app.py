@@ -16,7 +16,6 @@ def get_item(**kargs):
             ':id_val': item_id
         }
     )
-    print(data)
     return {"statusCode": 200, "body": json.dumps(data.get('Items'), cls=DecimalEncoder)}
 
 def list_items(**kargs):

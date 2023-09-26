@@ -161,4 +161,4 @@ msbuild.log
 msbuild.err
 msbuild.wrnc
 
-.aws-sam
+.aws-sam/

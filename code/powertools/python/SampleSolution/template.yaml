@@ -11,6 +11,11 @@ Globals:
     Timeout: 100
     MemorySize: 1024
     Tracing: Active
+    Environment: 
+      Variables:
+        POWERTOOLS_SERVICE_NAME: powertools-python-sample-app
+        LOG_LEVEL: Debug
+        POWERTOOLS_METRICS_NAMESPACE: SampleApp
   Api:
     TracingEnabled: true
 
