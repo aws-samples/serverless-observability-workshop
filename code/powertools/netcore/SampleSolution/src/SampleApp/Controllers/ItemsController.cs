@@ -6,6 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using SampleApp.Entities;
 using SampleApp.Repositories;
 
+using Amazon.Lambda.Core;
+using Amazon.Lambda.APIGatewayEvents;
+
+// Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
+[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 namespace SampleApp.Controllers;
 
 [Route("api/[controller]")]
@@ -105,44 +110,44 @@ public class ItemsController : ControllerBase
 
     }
 
-    // PUT api/items/5
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, [FromBody] Item item)
-    {
-        if (id == int.MinValue || item == null) return ValidationProblem("Invalid request payload");
+    //// PUT api/items/5
+    //[HttpPut("{id}")]
+    //public async Task<IActionResult> Put(int id, [FromBody] Item item)
+    //{
+    //    if (id == int.MinValue || item == null) return ValidationProblem("Invalid request payload");
 
-        // Retrieve the item.
-        var itemRetrieved = await itemRepository.GetByIdAsync(id);
+    //    // Retrieve the item.
+    //    var itemRetrieved = await itemRepository.GetByIdAsync(id);
 
-        if (itemRetrieved == null)
-        {
-            var errorMsg = $"Invalid input! No item found with id:{id}";
-            return NotFound(errorMsg);
-        }
+    //    if (itemRetrieved == null)
+    //    {
+    //        var errorMsg = $"Invalid input! No item found with id:{id}";
+    //        return NotFound(errorMsg);
+    //    }
 
-        item.Id = itemRetrieved.Id;
+    //    item.Id = itemRetrieved.Id;
 
-        await itemRepository.UpdateAsync(item);
-        return Ok();
-    }
+    //    await itemRepository.UpdateAsync(item);
+    //    return Ok();
+    //}
 
-    // DELETE api/items/5
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
-    {
-        if (id == int.MinValue) return ValidationProblem("Invalid request payload");
+    //// DELETE api/items/5
+    //[HttpDelete("{id}")]
+    //public async Task<IActionResult> Delete(int id)
+    //{
+    //    if (id == int.MinValue) return ValidationProblem("Invalid request payload");
 
-        var itemRetrieved = await itemRepository.GetByIdAsync(id);
+    //    var itemRetrieved = await itemRepository.GetByIdAsync(id);
 
-        if (itemRetrieved == null)
-        {
-            var errorMsg = $"Invalid input! No item found with id:{id}";
-            return NotFound(errorMsg);
-        }
+    //    if (itemRetrieved == null)
+    //    {
+    //        var errorMsg = $"Invalid input! No item found with id:{id}";
+    //        return NotFound(errorMsg);
+    //    }
 
-        await itemRepository.DeleteAsync(itemRetrieved);
-        return Ok();
-    }
+    //    await itemRepository.DeleteAsync(itemRetrieved);
+    //    return Ok();
+    //}
 
     [Tracing(CaptureMode = TracingCaptureMode.Disabled)]
     private static async Task<string> GetCallingIP()
