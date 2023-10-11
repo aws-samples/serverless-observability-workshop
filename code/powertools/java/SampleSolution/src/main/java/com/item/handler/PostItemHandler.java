@@ -39,6 +39,7 @@ public class PostItemHandler implements RequestHandler<APIGatewayProxyRequestEve
     MetricsLogger metricsLogger = MetricsUtils.metricsLogger();
 
     private final DynamoDbAsyncClient dynamoDbClient;
+    String tableName = System.getenv("SAMPLE_APP_TABLE");
 
     public PostItemHandler() {
         dynamoDbClient = DynamoDbAsyncClient
@@ -100,7 +101,7 @@ public class PostItemHandler implements RequestHandler<APIGatewayProxyRequestEve
         PutItemRequest putItemRequest = PutItemRequest.builder().item(
                 Map.of("Id", AttributeValue.fromN(String.valueOf(item.getId())),
                         "itemName", AttributeValue.fromS(item.getName())))
-                .tableName("SampleAppItem")
+                .tableName(tableName)
                 .build();
 
         try {

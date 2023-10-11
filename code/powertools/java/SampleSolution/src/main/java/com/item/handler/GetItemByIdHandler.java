@@ -21,6 +21,7 @@ import java.util.concurrent.ExecutionException;
 public class GetItemByIdHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
     private final DynamoDbAsyncClient dynamoDbClient;
+    String tableName = System.getenv("SAMPLE_APP_TABLE");
 
     public GetItemByIdHandler() {
         dynamoDbClient = DynamoDbAsyncClient
@@ -59,7 +60,7 @@ public class GetItemByIdHandler implements RequestHandler<APIGatewayProxyRequest
 
     private Item getItemById(int id) {
 
-        GetItemRequest getItemRequest = GetItemRequest.builder().tableName("SampleAppItem")
+        GetItemRequest getItemRequest = GetItemRequest.builder().tableName(tableName)
                 .key(Map.of("Id", AttributeValue.fromN(String.valueOf(id)))).build();
 
         Item item = null;

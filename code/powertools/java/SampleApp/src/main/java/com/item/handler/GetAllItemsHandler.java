@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 public class GetAllItemsHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
     private final DynamoDbAsyncClient dynamoDbClient;
+    String tableName = System.getenv("SAMPLE_APP_TABLE");
 
     public GetAllItemsHandler() {
         dynamoDbClient = DynamoDbAsyncClient
@@ -54,7 +55,7 @@ public class GetAllItemsHandler implements RequestHandler<APIGatewayProxyRequest
 
     private List<Item> getAllItems() {
 
-        ScanRequest scanRequest = ScanRequest.builder().tableName("SampleAppItem").build();
+        ScanRequest scanRequest = ScanRequest.builder().tableName(tableName).build();
 
         List<Item> items = new ArrayList<>();
         try {
