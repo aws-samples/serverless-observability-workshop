@@ -145,6 +145,10 @@ nupkg/
 *.userosscache
 *.sln.docstates
 
+#java
+*.class
+code/powertools/java/SampleSolution/target/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -160,3 +164,4 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrnc
+code/powertools/java/SampleSolution/.aws-sam/build.toml
