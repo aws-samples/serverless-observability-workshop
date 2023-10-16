@@ -34,8 +34,8 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class PostItemHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
+    
     private static final Logger logger = LogManager.getLogger(PostItemHandler.class);
-
     MetricsLogger metricsLogger = MetricsUtils.metricsLogger();
 
     private final DynamoDbAsyncClient dynamoDbClient;
@@ -74,10 +74,10 @@ public class PostItemHandler implements RequestHandler<APIGatewayProxyRequestEve
             logger.info("Request Details");
 
             createItem(item);
-            // withSingleMetric("SuccessfulPutItem", 1, Unit.COUNT, "SampleApp", (metric) -> {
-            //     metric.setDimensions(DimensionSet.of("Service", "Items"));
-            // });
-            metricsLogger.putMetric("SuccessfulPutItem", 1, Unit.COUNT);
+            withSingleMetric("SuccessfulPutItem", 1, Unit.COUNT, "SampleApp", (metric) -> {
+                metric.setDimensions(DimensionSet.of("Service", "Items"));
+            });
+
             metricsLogger.putMetadata("correlation_id", input.getRequestContext().getRequestId());
 
             TracingUtils.putAnnotation("Item Id", String.valueOf(item.getId()));
@@ -89,6 +89,7 @@ public class PostItemHandler implements RequestHandler<APIGatewayProxyRequestEve
         } catch (Exception e) {
             logger.error("Error while processing the request {}", e.getMessage());
             metricsLogger.putMetric("FailedPutItem", 1, Unit.COUNT);
+
             return new APIGatewayProxyResponseEvent()
                     .withStatusCode(400)
                     .withBody("Error processing the request");
