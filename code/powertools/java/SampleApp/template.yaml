@@ -12,6 +12,12 @@ Globals:
     TracingEnabled: true
 
 Resources:
+# API Gateway
+  Api:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+
   PostItemFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -33,6 +39,7 @@ Resources:
         ItemPostEvent:
           Type: Api
           Properties:
+            RestApiId: !Ref Api
             Path: /items
             Method: POST
 
@@ -57,6 +64,7 @@ Resources:
         ItemPostEvent:
           Type: Api
           Properties:
+            RestApiId: !Ref Api
             Path: /items
             Method: GET
 
@@ -81,6 +89,7 @@ Resources:
         ItemPostEvent:
           Type: Api
           Properties:
+            RestApiId: !Ref Api
             Path: /items/{id}
             Method: GET
 
@@ -99,7 +108,7 @@ Resources:
 Outputs:
   ApiUrl:
     Description: API Gateway endpoint URL
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/"
+    Value: !Sub "https://${Api}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
   SampleTable:
     Description: Sample Data Table ARN
     Value: !GetAtt SampleTable.Arn
