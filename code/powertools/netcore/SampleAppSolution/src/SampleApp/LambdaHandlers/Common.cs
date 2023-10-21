@@ -4,6 +4,7 @@ using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
 using Amazon.Lambda.APIGatewayEvents;
 using SampleApp.Repositories;
+using AWS.Lambda.Powertools.Tracing;
 
 namespace SampleApp.LambdaHandlers
 {
@@ -11,6 +12,7 @@ namespace SampleApp.LambdaHandlers
     {
         private static readonly HttpClient client = new HttpClient();
 
+        [Tracing(CaptureMode = TracingCaptureMode.Disabled)]
         public static async Task<string> GetCallingIP()
         {
             try

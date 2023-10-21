@@ -1,0 +1,132 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Sample SAM Template for SampleApp
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 100
+    Tracing: Active
+    Environment: 
+      Variables:
+        POWERTOOLS_SERVICE_NAME: powertools-dotnet-sample-app
+        POWERTOOLS_LOG_LEVEL: Debug
+        POWERTOOLS_SERVICE_NAME: ItemsService
+  Api:
+    TracingEnabled: true
+Resources:
+  # API Gateway
+  Api:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+  # Lambda Functions
+  GetAllItemsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/SampleApp/
+      Handler: SampleApp::SampleApp.LambdaHandlers.GetAllItemsFunction::FunctionHandler
+      Runtime: dotnet6
+      Architectures:
+        - x86_64
+      MemorySize: 256
+      Environment:
+        Variables:
+          POWERTOOLS_SERVICE_NAME: GetAllItemsFunction
+          SAMPLE_TABLE: !Ref SampleTable
+      Policies:
+        # Give Create/Read/Update/Delete Permissions to the SampleTable
+      - DynamoDBCrudPolicy:
+          TableName: !Ref SampleTable
+      Events:
+        SampleApp:
+          Type: Api
+          Properties:
+            Path: /api/items
+            Method: GET
+            RestApiId:
+              Ref: Api
+  GetItemByIDFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/SampleApp/
+      Handler: SampleApp::SampleApp.LambdaHandlers.GetItemByIDFunction::FunctionHandler
+      Runtime: dotnet6
+      Architectures:
+        - x86_64
+      MemorySize: 256
+      Environment:
+        Variables:
+          POWERTOOLS_SERVICE_NAME: GetItemByIDFunction
+          SAMPLE_TABLE: !Ref SampleTable
+      Policies:
+        # Give Create/Read/Update/Delete Permissions to the SampleTable
+      - DynamoDBCrudPolicy:
+          TableName: !Ref SampleTable
+      Events:
+        SampleApp:
+          Type: Api
+          Properties:
+            Path: /api/items/{id}
+            Method: GET
+            RestApiId:
+              Ref: Api
+  PutItemFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src/SampleApp/
+      Handler: SampleApp::SampleApp.LambdaHandlers.PutItemFunction::FunctionHandler
+      Runtime: dotnet6
+      Architectures:
+        - x86_64
+      MemorySize: 256
+      Environment:
+        Variables:
+          POWERTOOLS_SERVICE_NAME: PutItemFunction
+          SAMPLE_TABLE: !Ref SampleTable
+      Policies:
+        # Give Create/Read/Update/Delete Permissions to the SampleTable
+      - DynamoDBCrudPolicy:
+          TableName: !Ref SampleTable
+      Events:
+        SampleApp:
+          Type: Api
+          Properties:
+            Path: /api/items
+            Method: POST
+            RestApiId:
+              Ref: Api
+
+  # DynamoDB table to store item: {id: &lt;ID&gt;, name: &lt;NAME&gt;}
+  SampleTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: SampleAppItem
+      PrimaryKey:
+        Name: Id
+        Type: Number
+      ProvisionedThroughput:
+        ReadCapacityUnits: 2
+        WriteCapacityUnits: 2
+
+  ApplicationResourceGroup:
+    Type: AWS::ResourceGroups::Group
+    Properties:
+      Name:
+        Fn::Sub: ApplicationInsights-SAM-${AWS::StackName}
+      ResourceQuery:
+        Type: CLOUDFORMATION_STACK_1_0
+  ApplicationInsightsMonitoring:
+    Type: AWS::ApplicationInsights::Application
+    Properties:
+      ResourceGroupName:
+        Ref: ApplicationResourceGroup
+      AutoConfigurationEnabled: 'true'
+Outputs:
+  ApiUrl:
+    Description: "API Gateway endpoint URL for Prod stage"
+    Value: !Sub "https://${Api}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+  SampleTable:
+    Description: Sample Data Table ARN
+    Value: !GetAtt SampleTable.Arn
