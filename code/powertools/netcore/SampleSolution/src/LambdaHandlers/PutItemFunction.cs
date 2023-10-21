@@ -41,15 +41,18 @@ namespace LambdaHandlers
                     {"FunctionContext", "$LATEST"}
                 });
 
-            
+
+            Logger.LogInformation("Getting ip address from external service"); //this log entry may not have additional info
+            var location = await Common.GetCallingIP();
 
             var additionalInfo = new Dictionary<string, object>()
             {
-                {"AdditionalInfo", new Dictionary<string, object>{{ "Id", item.Id }, { "Name", item.Name }}}
+                {"AdditionalInfo", new Dictionary<string, object>{{ "RequestLocation", location }, { "ItemID", item.Id }}}
             };
             Logger.AppendKeys(additionalInfo);
 
-            Logger.LogDebug("Request Body"); //this log entry will have additional info
+            Logger.LogDebug("ip address successfuly captured"); //this log entry will have additional info
+
 
             using (var scope = _serviceProvider.CreateScope())
             {
@@ -59,26 +62,16 @@ namespace LambdaHandlers
                 if (result)
                 {
                     Metrics.AddMetric("SuccessfulPutItem", 1, MetricUnit.Count);
-                    Metrics.AddMetadata("Item.Id", item.Id);
+                    Metrics.AddMetadata("request_location", location);
 
-                    return new APIGatewayProxyResponse
-                    {
-                        Body = JsonSerializer.Serialize<Item>(item),
-                        StatusCode = (int)HttpStatusCode.OK,
-                        Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
-                    };
-
+                    return Common.APIResponse(HttpStatusCode.OK, JsonSerializer.Serialize<Item>(item));
                 }
                 else
                 {
                     Logger.LogError("Fail to persist");
                     Metrics.AddMetric("FailedPutItem", 1, MetricUnit.Count);
-                    return new APIGatewayProxyResponse
-                    {
-                        Body = "Fail to Persist",
-                        StatusCode = (int)HttpStatusCode.BadRequest,
-                        Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
-                    };
+
+                    return Common.APIResponse(HttpStatusCode.BadRequest, "Fail to Persist");
                 }
             }
 

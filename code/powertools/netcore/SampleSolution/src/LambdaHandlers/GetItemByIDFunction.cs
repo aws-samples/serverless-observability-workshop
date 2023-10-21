@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -33,21 +32,7 @@ namespace LambdaHandlers
 
                 var result = await itemRepository.GetByIdAsync(int.Parse(id));
 
-                if (result == null)
-                {
-                    return new APIGatewayProxyResponse
-                    {
-                        StatusCode = (int)HttpStatusCode.NotFound,
-                        Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
-                    };
-                }
-
-                return new APIGatewayProxyResponse
-                {
-                    Body = JsonSerializer.Serialize(result),
-                    StatusCode = (int)HttpStatusCode.OK,
-                    Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
-                };
+                return (result == null) ? Common.APIResponse(HttpStatusCode.NotFound, null) : Common.APIResponse(HttpStatusCode.OK, JsonSerializer.Serialize(result));
             }
         }
     }

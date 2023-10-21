@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -27,7 +26,11 @@ namespace LambdaHandlers
         [Tracing]
         public async Task<APIGatewayProxyResponse> FunctionHandler(APIGatewayProxyRequest apigProxyEvent, ILambdaContext context)
         {
-            Foo();
+            var location = await Common.GetCallingIP();
+            Logger.LogInformation("Getting ip address from external service");
+            Logger.LogInformation($"Location: {location}");
+            Tracing.AddAnnotation("Location", location);
+            Tracing.AddMetadata("Location", location);
 
             using (var scope = _serviceProvider.CreateScope())
             {
@@ -36,24 +39,9 @@ namespace LambdaHandlers
                 var body = await itemRepository.GetItemsAsync();
                 var result = JsonSerializer.Serialize(body);
 
-                Logger.LogInformation($"Retrieved {body.Count} items from DynamoDB");
-                Tracing.AddAnnotation("ItemsReturned", body.Count);
-                Tracing.AddMetadata("Headers", apigProxyEvent.Headers);
-
-                return new APIGatewayProxyResponse
-                {
-                    Body = result,
-                    StatusCode = (int)HttpStatusCode.OK,
-                    Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
-                };
-
+                return Common.APIResponse(HttpStatusCode.OK, result);
             }
-        }
+        }      
 
-        [Tracing(SegmentName = "Foo")]
-        private void Foo()
-        {
-            Tracing.AddAnnotation("Item", "Bar");
-        }
     }
 }
