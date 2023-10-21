@@ -46,7 +46,7 @@ Resources:
         SampleApp:
           Type: Api
           Properties:
-            Path: /items
+            Path: /api/items
             Method: GET
             RestApiId:
               Ref: Api
@@ -71,7 +71,7 @@ Resources:
         SampleApp:
           Type: Api
           Properties:
-            Path: /items/{id}
+            Path: /api/items/{id}
             Method: GET
             RestApiId:
               Ref: Api
@@ -96,7 +96,7 @@ Resources:
         SampleApp:
           Type: Api
           Properties:
-            Path: /items
+            Path: /api/items
             Method: POST
             RestApiId:
               Ref: Api
@@ -127,15 +127,9 @@ Resources:
         Ref: ApplicationResourceGroup
       AutoConfigurationEnabled: 'true'
 Outputs:
-  Api:
-    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${Api}.execute-api.${AWS::Region}.amazonaws.com/Prod/items/"
-  GetAllItemsFunction:
-    Description: "Hello World Lambda Function ARN"
-    Value: !GetAtt GetAllItemsFunction.Arn
-  GetAllItemsFunctionIamRole:
-    Description: "Implicit IAM Role created for Hello World function"
-    Value: !GetAtt GetAllItemsFunctionRole.Arn
+  ApiUrl:
+    Description: "API Gateway endpoint URL for Prod stage"
+    Value: !Sub "https://${Api}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
   SampleTable:
     Description: Sample Data Table ARN
     Value: !GetAtt SampleTable.Arn

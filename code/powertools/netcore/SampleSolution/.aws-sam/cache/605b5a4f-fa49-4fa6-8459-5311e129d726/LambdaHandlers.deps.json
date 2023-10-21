@@ -9,6 +9,9 @@
     ".NETCoreApp,Version=v6.0/linux-x64": {
       "LambdaHandlers/1.0.0": {
         "dependencies": {
+          "AWS.Lambda.Powertools.Logging": "1.3.2",
+          "AWS.Lambda.Powertools.Metrics": "1.4.2",
+          "AWS.Lambda.Powertools.Tracing": "1.3.2",
           "Amazon.Lambda.APIGatewayEvents": "2.6.0",
           "Amazon.Lambda.Core": "2.1.0",
           "Amazon.Lambda.Serialization.SystemTextJson": "2.3.1",
@@ -35,14 +38,13 @@
           }
         }
       },
-      "Amazon.Lambda.AspNetCoreServer/6.1.0": {
+      "Amazon.Lambda.AspNetCoreServer/8.1.0": {
         "dependencies": {
           "Amazon.Lambda.APIGatewayEvents": "2.6.0",
           "Amazon.Lambda.ApplicationLoadBalancerEvents": "2.1.0",
           "Amazon.Lambda.Core": "2.1.0",
           "Amazon.Lambda.Logging.AspNetCore": "3.1.0",
-          "Amazon.Lambda.Serialization.SystemTextJson": "2.3.1",
-          "System.IO.Pipelines": "4.7.2"
+          "Amazon.Lambda.Serialization.SystemTextJson": "2.3.1"
         },
         "runtime": {
           "lib/net6.0/Amazon.Lambda.AspNetCoreServer.dll": {
@@ -51,12 +53,12 @@
           }
         }
       },
-      "Amazon.Lambda.AspNetCoreServer.Hosting/1.0.0": {
+      "Amazon.Lambda.AspNetCoreServer.Hosting/1.6.0": {
         "dependencies": {
           "Amazon.Lambda.APIGatewayEvents": "2.6.0",
-          "Amazon.Lambda.AspNetCoreServer": "6.1.0",
+          "Amazon.Lambda.AspNetCoreServer": "8.1.0",
           "Amazon.Lambda.Core": "2.1.0",
-          "Amazon.Lambda.RuntimeSupport": "1.4.0"
+          "Amazon.Lambda.RuntimeSupport": "1.8.6"
         },
         "runtime": {
           "lib/net6.0/Amazon.Lambda.AspNetCoreServer.Hosting.dll": {
@@ -87,16 +89,14 @@
           }
         }
       },
-      "Amazon.Lambda.RuntimeSupport/1.4.0": {
+      "Amazon.Lambda.RuntimeSupport/1.8.6": {
         "dependencies": {
-          "Amazon.Lambda.Core": "2.1.0",
-          "NSwag.MSBuild": "12.0.4",
-          "System.Runtime.Loader": "4.3.0"
+          "Amazon.Lambda.Core": "2.1.0"
         },
         "runtime": {
           "lib/net6.0/Amazon.Lambda.RuntimeSupport.dll": {
-            "assemblyVersion": "1.4.0.0",
-            "fileVersion": "1.4.0.0"
+            "assemblyVersion": "1.8.6.0",
+            "fileVersion": "1.8.6.0"
           }
         }
       },
@@ -127,92 +127,93 @@
           }
         }
       },
-      "AWS.Lambda.Powertools.Common/1.1.1": {
+      "AWS.Lambda.Powertools.Logging/1.3.2": {
         "dependencies": {
-          "AspectInjector": "2.8.1"
-        },
-        "runtime": {
-          "lib/net6.0/AWS.Lambda.Powertools.Common.dll": {
-            "assemblyVersion": "1.1.1.0",
-            "fileVersion": "1.1.1.0"
-          }
-        }
-      },
-      "AWS.Lambda.Powertools.Logging/1.1.1": {
-        "dependencies": {
-          "AWS.Lambda.Powertools.Common": "1.1.1",
+          "AspectInjector": "2.8.1",
           "Microsoft.Extensions.Logging": "7.0.0"
         },
         "runtime": {
           "lib/net6.0/AWS.Lambda.Powertools.Logging.dll": {
-            "assemblyVersion": "1.1.1.0",
-            "fileVersion": "1.1.1.0"
-          }
-        }
-      },
-      "AWS.Lambda.Powertools.Metrics/1.3.2": {
-        "dependencies": {
-          "AWS.Lambda.Powertools.Common": "1.1.1"
-        },
-        "runtime": {
-          "lib/net6.0/AWS.Lambda.Powertools.Metrics.dll": {
             "assemblyVersion": "1.3.2.0",
             "fileVersion": "1.3.2.0"
           }
         }
       },
-      "AWS.Lambda.Powertools.Tracing/1.1.1": {
+      "AWS.Lambda.Powertools.Metrics/1.4.2": {
         "dependencies": {
-          "AWS.Lambda.Powertools.Common": "1.1.1",
-          "AWSSDK.XRay": "3.7.102.25",
-          "AWSXRayRecorder.Core": "2.13.0"
+          "AspectInjector": "2.8.1"
+        },
+        "runtime": {
+          "lib/net6.0/AWS.Lambda.Powertools.Metrics.dll": {
+            "assemblyVersion": "1.4.2.0",
+            "fileVersion": "1.4.2.0"
+          }
+        }
+      },
+      "AWS.Lambda.Powertools.Tracing/1.3.2": {
+        "dependencies": {
+          "AWSSDK.XRay": "3.7.200.36",
+          "AWSXRayRecorder.Core": "2.14.0",
+          "AWSXRayRecorder.Handlers.AwsSdk": "2.12.0",
+          "AspectInjector": "2.8.1"
         },
         "runtime": {
           "lib/net6.0/AWS.Lambda.Powertools.Tracing.dll": {
-            "assemblyVersion": "1.1.1.0",
-            "fileVersion": "1.1.1.0"
+            "assemblyVersion": "1.3.2.0",
+            "fileVersion": "1.3.2.0"
           }
         }
       },
-      "AWSSDK.Core/3.7.103.6": {
+      "AWSSDK.Core/3.7.204": {
         "runtime": {
           "lib/netcoreapp3.1/AWSSDK.Core.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.7.103.6"
+            "fileVersion": "3.7.204.0"
           }
         }
       },
-      "AWSSDK.DynamoDBv2/3.7.3.7": {
+      "AWSSDK.DynamoDBv2/3.7.203.1": {
         "dependencies": {
-          "AWSSDK.Core": "3.7.103.6"
+          "AWSSDK.Core": "3.7.204"
         },
         "runtime": {
           "lib/netcoreapp3.1/AWSSDK.DynamoDBv2.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.7.3.7"
+            "fileVersion": "3.7.203.1"
           }
         }
       },
-      "AWSSDK.XRay/3.7.102.25": {
+      "AWSSDK.XRay/3.7.200.36": {
         "dependencies": {
-          "AWSSDK.Core": "3.7.103.6"
+          "AWSSDK.Core": "3.7.204"
         },
         "runtime": {
           "lib/netcoreapp3.1/AWSSDK.XRay.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.7.102.25"
+            "fileVersion": "3.7.200.36"
           }
         }
       },
-      "AWSXRayRecorder.Core/2.13.0": {
+      "AWSXRayRecorder.Core/2.14.0": {
         "dependencies": {
-          "AWSSDK.Core": "3.7.103.6",
+          "AWSSDK.Core": "3.7.204",
           "Amazon.Lambda.SQSEvents": "2.1.0"
         },
         "runtime": {
           "lib/net6.0/AWSXRayRecorder.Core.dll": {
-            "assemblyVersion": "2.13.0.0",
-            "fileVersion": "2.13.0.0"
+            "assemblyVersion": "2.14.0.0",
+            "fileVersion": "2.14.0.0"
+          }
+        }
+      },
+      "AWSXRayRecorder.Handlers.AwsSdk/2.12.0": {
+        "dependencies": {
+          "AWSXRayRecorder.Core": "2.14.0"
+        },
+        "runtime": {
+          "lib/net6.0/AWSXRayRecorder.Handlers.AwsSdk.dll": {
+            "assemblyVersion": "2.12.0.0",
+            "fileVersion": "2.12.0.0"
           }
         }
       },
@@ -285,104 +286,11 @@
           }
         }
       },
-      "Microsoft.NETCore.Platforms/1.1.0": {},
-      "Microsoft.NETCore.Targets/1.1.0": {},
-      "NSwag.MSBuild/12.0.4": {},
-      "runtime.any.System.IO/4.3.0": {},
-      "runtime.any.System.Reflection/4.3.0": {},
-      "runtime.any.System.Reflection.Primitives/4.3.0": {},
-      "runtime.any.System.Runtime/4.3.0": {
-        "dependencies": {
-          "System.Private.Uri": "4.3.0"
-        }
-      },
-      "runtime.any.System.Text.Encoding/4.3.0": {},
-      "runtime.any.System.Threading.Tasks/4.3.0": {},
-      "runtime.native.System/4.3.0": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0",
-          "Microsoft.NETCore.Targets": "1.1.0"
-        }
-      },
-      "runtime.unix.System.Private.Uri/4.3.0": {
-        "dependencies": {
-          "runtime.native.System": "4.3.0"
-        }
-      },
-      "System.IO/4.3.0": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0",
-          "Microsoft.NETCore.Targets": "1.1.0",
-          "System.Runtime": "4.3.0",
-          "System.Text.Encoding": "4.3.0",
-          "System.Threading.Tasks": "4.3.0",
-          "runtime.any.System.IO": "4.3.0"
-        }
-      },
-      "System.IO.Pipelines/4.7.2": {},
-      "System.Private.Uri/4.3.0": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0",
-          "Microsoft.NETCore.Targets": "1.1.0",
-          "runtime.unix.System.Private.Uri": "4.3.0"
-        }
-      },
-      "System.Reflection/4.3.0": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0",
-          "Microsoft.NETCore.Targets": "1.1.0",
-          "System.IO": "4.3.0",
-          "System.Reflection.Primitives": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "runtime.any.System.Reflection": "4.3.0"
-        }
-      },
-      "System.Reflection.Primitives/4.3.0": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0",
-          "Microsoft.NETCore.Targets": "1.1.0",
-          "System.Runtime": "4.3.0",
-          "runtime.any.System.Reflection.Primitives": "4.3.0"
-        }
-      },
-      "System.Runtime/4.3.0": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0",
-          "Microsoft.NETCore.Targets": "1.1.0",
-          "runtime.any.System.Runtime": "4.3.0"
-        }
-      },
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
-      "System.Runtime.Loader/4.3.0": {
-        "dependencies": {
-          "System.IO": "4.3.0",
-          "System.Reflection": "4.3.0",
-          "System.Runtime": "4.3.0"
-        }
-      },
-      "System.Text.Encoding/4.3.0": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0",
-          "Microsoft.NETCore.Targets": "1.1.0",
-          "System.Runtime": "4.3.0",
-          "runtime.any.System.Text.Encoding": "4.3.0"
-        }
-      },
-      "System.Threading.Tasks/4.3.0": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0",
-          "Microsoft.NETCore.Targets": "1.1.0",
-          "System.Runtime": "4.3.0",
-          "runtime.any.System.Threading.Tasks": "4.3.0"
-        }
-      },
       "SampleApp/1.0.0": {
         "dependencies": {
-          "AWS.Lambda.Powertools.Logging": "1.1.1",
-          "AWS.Lambda.Powertools.Metrics": "1.3.2",
-          "AWS.Lambda.Powertools.Tracing": "1.1.1",
-          "AWSSDK.DynamoDBv2": "3.7.3.7",
-          "Amazon.Lambda.AspNetCoreServer.Hosting": "1.0.0"
+          "AWSSDK.DynamoDBv2": "3.7.203.1",
+          "Amazon.Lambda.AspNetCoreServer.Hosting": "1.6.0"
         },
         "runtime": {
           "SampleApp.dll": {}
@@ -410,19 +318,19 @@
       "path": "amazon.lambda.applicationloadbalancerevents/2.1.0",
       "hashPath": "amazon.lambda.applicationloadbalancerevents.2.1.0.nupkg.sha512"
     },
-    "Amazon.Lambda.AspNetCoreServer/6.1.0": {
+    "Amazon.Lambda.AspNetCoreServer/8.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-z5yHgHrWx06l3KWAAlqNX2ys44hPm1ZyiSzKw0pdCvXvaz9c9KcadeBxn91LGAfMgB8wpH39bL8WgYXo845s5A==",
-      "path": "amazon.lambda.aspnetcoreserver/6.1.0",
-      "hashPath": "amazon.lambda.aspnetcoreserver.6.1.0.nupkg.sha512"
+      "sha512": "sha512-yPI0K7H3iNq3GhqsAdfKP0vfZmGkf+Qj8Fs+wfQ1vI6yLBF2sO4bbIcCdB1rdwQG/4Tdvv60c5RrW6MRP9XJQg==",
+      "path": "amazon.lambda.aspnetcoreserver/8.1.0",
+      "hashPath": "amazon.lambda.aspnetcoreserver.8.1.0.nupkg.sha512"
     },
-    "Amazon.Lambda.AspNetCoreServer.Hosting/1.0.0": {
+    "Amazon.Lambda.AspNetCoreServer.Hosting/1.6.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Tn3Gt27HDc1UDFfZB7ihZjbdGLRBgUOKyrhMHKg6mRWaYWiH1fgAfBtAKeIPC6xChqj2Tm4c8Kq6DTrLNMLbGw==",
-      "path": "amazon.lambda.aspnetcoreserver.hosting/1.0.0",
-      "hashPath": "amazon.lambda.aspnetcoreserver.hosting.1.0.0.nupkg.sha512"
+      "sha512": "sha512-sHutrlaMLVzgEMmlDr4Bnqb/zg3wW8jTHKdHbYR4GWgA9aiNp6+qrymSDU2AtnccQ1WtEhv63nbW8myQtAnb+Q==",
+      "path": "amazon.lambda.aspnetcoreserver.hosting/1.6.0",
+      "hashPath": "amazon.lambda.aspnetcoreserver.hosting.1.6.0.nupkg.sha512"
     },
     "Amazon.Lambda.Core/2.1.0": {
       "type": "package",
@@ -438,12 +346,12 @@
       "path": "amazon.lambda.logging.aspnetcore/3.1.0",
       "hashPath": "amazon.lambda.logging.aspnetcore.3.1.0.nupkg.sha512"
     },
-    "Amazon.Lambda.RuntimeSupport/1.4.0": {
+    "Amazon.Lambda.RuntimeSupport/1.8.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-xmpJ+iQWEL/vDRoBIxsGoLAX9k7al7uS6Xd3xcj3IWB4mPAUx4/J4RQO5jZ7vKnD8SjnYvRe8i6dyh788r2BVA==",
-      "path": "amazon.lambda.runtimesupport/1.4.0",
-      "hashPath": "amazon.lambda.runtimesupport.1.4.0.nupkg.sha512"
+      "sha512": "sha512-8EYcoXqadmtzdkTzcTmUWfzWXLHlQ+cmuCDTrdoyWvX5bjT5yFjFolpYCBnMZBerDRWSr8N3TfGrvn5eWwbRlw==",
+      "path": "amazon.lambda.runtimesupport/1.8.6",
+      "hashPath": "amazon.lambda.runtimesupport.1.8.6.nupkg.sha512"
     },
     "Amazon.Lambda.Serialization.SystemTextJson/2.3.1": {
       "type": "package",
@@ -466,61 +374,61 @@
       "path": "aspectinjector/2.8.1",
       "hashPath": "aspectinjector.2.8.1.nupkg.sha512"
     },
-    "AWS.Lambda.Powertools.Common/1.1.1": {
+    "AWS.Lambda.Powertools.Logging/1.3.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-1KGngCZMxMUuDmjewwJY8AbiieQsdqYIAGjbH9IY7YOlRWkwvTIIQ6WGSZT5vZ/I8oL5GUk6i804JQV63v2M3A==",
-      "path": "aws.lambda.powertools.common/1.1.1",
-      "hashPath": "aws.lambda.powertools.common.1.1.1.nupkg.sha512"
+      "sha512": "sha512-DgNDUQiwXbCuPuwGC5X5efNe3CTQ/NPbxE6lQoXm2LtwBRqr4g0P0IWGGMOR3uJCp4NmRDwYO5avlZH2JamWkQ==",
+      "path": "aws.lambda.powertools.logging/1.3.2",
+      "hashPath": "aws.lambda.powertools.logging.1.3.2.nupkg.sha512"
     },
-    "AWS.Lambda.Powertools.Logging/1.1.1": {
+    "AWS.Lambda.Powertools.Metrics/1.4.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-VNnkHD9FjlH/NG7jgtYSHz55A/zkGB4cpgtsrqw8BKwdOwxhUski4TUU18OwfUBp0hAuZ/OZxKcs5ZZE0YcnlA==",
-      "path": "aws.lambda.powertools.logging/1.1.1",
-      "hashPath": "aws.lambda.powertools.logging.1.1.1.nupkg.sha512"
+      "sha512": "sha512-/tO8OPeKThMRzlB4BfgozILlgAdfe2NPPS2A6xjEL6sH2kS5wPi9A4HeVYrC0oo5pwZ/zvoUYV47LQ/12Ak4SQ==",
+      "path": "aws.lambda.powertools.metrics/1.4.2",
+      "hashPath": "aws.lambda.powertools.metrics.1.4.2.nupkg.sha512"
     },
-    "AWS.Lambda.Powertools.Metrics/1.3.2": {
+    "AWS.Lambda.Powertools.Tracing/1.3.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-hC0OrtYNpu8/GRHa5giCf8DnwdC5mgpv/73lSAM81xiYtBoLet/swLAhhhgdOrAnK67CSbb/8m0UxtvGxsrwbg==",
-      "path": "aws.lambda.powertools.metrics/1.3.2",
-      "hashPath": "aws.lambda.powertools.metrics.1.3.2.nupkg.sha512"
+      "sha512": "sha512-bCnccx1Hn9hgWQeJ7vzZ5Bh4sqAjwpj0Of2NzSrsc63AXfDXMzMDD9DmKOJD/7Dxjzxs2D+tL0ne4ORJwdeZKA==",
+      "path": "aws.lambda.powertools.tracing/1.3.2",
+      "hashPath": "aws.lambda.powertools.tracing.1.3.2.nupkg.sha512"
     },
-    "AWS.Lambda.Powertools.Tracing/1.1.1": {
+    "AWSSDK.Core/3.7.204": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-BfGMcbzhvqPRNb8OLVlitkoikwOe79z7QZlsISCJnvqezFz0j3+ulOAyG/Y0Y4GatUkZf/717v2EDSHGk1dXHw==",
-      "path": "aws.lambda.powertools.tracing/1.1.1",
-      "hashPath": "aws.lambda.powertools.tracing.1.1.1.nupkg.sha512"
+      "sha512": "sha512-lr9Ttgl7sP+8JKlAXsusDfVXOGWRGB7y14tN7zUuRP1IeXacIogFxOsfDTbecuvut/LnwYOj8J3s0h7R+oHiDw==",
+      "path": "awssdk.core/3.7.204",
+      "hashPath": "awssdk.core.3.7.204.nupkg.sha512"
     },
-    "AWSSDK.Core/3.7.103.6": {
+    "AWSSDK.DynamoDBv2/3.7.203.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-c9taEwfYXx7o94lDJrr9gJ94vGjwWiWjWKGIR0jOlIBZ6mtoW0sMXpqdbxvSa1eI9cU66wMfSmIEPrcvguwbHw==",
-      "path": "awssdk.core/3.7.103.6",
-      "hashPath": "awssdk.core.3.7.103.6.nupkg.sha512"
+      "sha512": "sha512-HlpkMKxMitX6qZZhTyLfyzfQy58UBJZcC9xaH/04i2AiCfCgtJQwGNKUJvzifrqE5JFAowtLcFRwz4i1y+B2ag==",
+      "path": "awssdk.dynamodbv2/3.7.203.1",
+      "hashPath": "awssdk.dynamodbv2.3.7.203.1.nupkg.sha512"
     },
-    "AWSSDK.DynamoDBv2/3.7.3.7": {
+    "AWSSDK.XRay/3.7.200.36": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-IiZTySbKLqIfkCXlU0wh38/G0X3ILgjbw3zkfC9FU2+fGsZ30ojWRYChxo+Db4K1vbgLiAHpX9G3kU3KnUdUeg==",
-      "path": "awssdk.dynamodbv2/3.7.3.7",
-      "hashPath": "awssdk.dynamodbv2.3.7.3.7.nupkg.sha512"
+      "sha512": "sha512-hzCxmNclLKIkMv+OEz4iWmfJ5R65Nt6EJGAUK3HSILyfHexyEPoYCjJ9MjzeNrSevySAm1+Ce840zzp3tm/mxw==",
+      "path": "awssdk.xray/3.7.200.36",
+      "hashPath": "awssdk.xray.3.7.200.36.nupkg.sha512"
     },
-    "AWSSDK.XRay/3.7.102.25": {
+    "AWSXRayRecorder.Core/2.14.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-5x6KA5w/qVXIPzTsJBKCZfFEwxeeLZZoHF2CD6g/2I2Zc8uDizJgmjlxoLd/nTLx/i4TPEhWcBPcpCNfpxzNkA==",
-      "path": "awssdk.xray/3.7.102.25",
-      "hashPath": "awssdk.xray.3.7.102.25.nupkg.sha512"
+      "sha512": "sha512-Ze+j7Pt+PCCP3zx17ncHGaRoWzIDsDsD2Pjawrxz2eox9ClNEWO36HCsRRXrZ63NVZ/J7AxXuD/x2hXrdgdUIQ==",
+      "path": "awsxrayrecorder.core/2.14.0",
+      "hashPath": "awsxrayrecorder.core.2.14.0.nupkg.sha512"
     },
-    "AWSXRayRecorder.Core/2.13.0": {
+    "AWSXRayRecorder.Handlers.AwsSdk/2.12.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-nwshtBicwFsB+TaSOzX3eG54JIfhKgRwIh5oQaO5WuQuqjehXCMdigLBgzeDhC/oRTawGwBQdNwU6My2mKX8Dg==",
-      "path": "awsxrayrecorder.core/2.13.0",
-      "hashPath": "awsxrayrecorder.core.2.13.0.nupkg.sha512"
+      "sha512": "sha512-KqnFSk0lRCw97acEZpcRo3mKt2wodIsKJrHOPtF8bsRaXgVx6Avhg+erggksgWKvTTI1ytbZVsOKXeRda3E+kw==",
+      "path": "awsxrayrecorder.handlers.awssdk/2.12.0",
+      "hashPath": "awsxrayrecorder.handlers.awssdk.2.12.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Configuration.Abstractions/2.1.0": {
       "type": "package",
@@ -571,152 +479,12 @@
       "path": "microsoft.extensions.primitives/7.0.0",
       "hashPath": "microsoft.extensions.primitives.7.0.0.nupkg.sha512"
     },
-    "Microsoft.NETCore.Platforms/1.1.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
-      "path": "microsoft.netcore.platforms/1.1.0",
-      "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
-    },
-    "Microsoft.NETCore.Targets/1.1.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-aOZA3BWfz9RXjpzt0sRJJMjAscAUm3Hoa4UWAfceV9UTYxgwZ1lZt5nO2myFf+/jetYQo4uTP7zS8sJY67BBxg==",
-      "path": "microsoft.netcore.targets/1.1.0",
-      "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
-    },
-    "NSwag.MSBuild/12.0.4": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-4Gqf64I2j3Y5UyxtdvPW4H8h8RgY2e6Cp6++T30/v0aXS9UhErPKg35GKz3nSKRUesjYQh7Duy3cPnDCDdGlMg==",
-      "path": "nswag.msbuild/12.0.4",
-      "hashPath": "nswag.msbuild.12.0.4.nupkg.sha512"
-    },
-    "runtime.any.System.IO/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-SDZ5AD1DtyRoxYtEcqQ3HDlcrorMYXZeCt7ZhG9US9I5Vva+gpIWDGMkcwa5XiKL0ceQKRZIX2x0XEjLX7PDzQ==",
-      "path": "runtime.any.system.io/4.3.0",
-      "hashPath": "runtime.any.system.io.4.3.0.nupkg.sha512"
-    },
-    "runtime.any.System.Reflection/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-hLC3A3rI8jipR5d9k7+f0MgRCW6texsAp0MWkN/ci18FMtQ9KH7E2vDn/DH2LkxsszlpJpOn9qy6Z6/69rH6eQ==",
-      "path": "runtime.any.system.reflection/4.3.0",
-      "hashPath": "runtime.any.system.reflection.4.3.0.nupkg.sha512"
-    },
-    "runtime.any.System.Reflection.Primitives/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Nrm1p3armp6TTf2xuvaa+jGTTmncALWFq22CpmwRvhDf6dE9ZmH40EbOswD4GnFLrMRS0Ki6Kx5aUPmKK/hZBg==",
-      "path": "runtime.any.system.reflection.primitives/4.3.0",
-      "hashPath": "runtime.any.system.reflection.primitives.4.3.0.nupkg.sha512"
-    },
-    "runtime.any.System.Runtime/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-fRS7zJgaG9NkifaAxGGclDDoRn9HC7hXACl52Or06a/fxdzDajWb5wov3c6a+gVSlekRoexfjwQSK9sh5um5LQ==",
-      "path": "runtime.any.system.runtime/4.3.0",
-      "hashPath": "runtime.any.system.runtime.4.3.0.nupkg.sha512"
-    },
-    "runtime.any.System.Text.Encoding/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-+ihI5VaXFCMVPJNstG4O4eo1CfbrByLxRrQQTqOTp1ttK0kUKDqOdBSTaCB2IBk/QtjDrs6+x4xuezyMXdm0HQ==",
-      "path": "runtime.any.system.text.encoding/4.3.0",
-      "hashPath": "runtime.any.system.text.encoding.4.3.0.nupkg.sha512"
-    },
-    "runtime.any.System.Threading.Tasks/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-OhBAVBQG5kFj1S+hCEQ3TUHBAEtZ3fbEMgZMRNdN8A0Pj4x+5nTELEqL59DU0TjKVE6II3dqKw4Dklb3szT65w==",
-      "path": "runtime.any.system.threading.tasks/4.3.0",
-      "hashPath": "runtime.any.system.threading.tasks.4.3.0.nupkg.sha512"
-    },
-    "runtime.native.System/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-c/qWt2LieNZIj1jGnVNsE2Kl23Ya2aSTBuXMD6V7k9KWr6l16Tqdwq+hJScEpWER9753NWC8h96PaVNY5Ld7Jw==",
-      "path": "runtime.native.system/4.3.0",
-      "hashPath": "runtime.native.system.4.3.0.nupkg.sha512"
-    },
-    "runtime.unix.System.Private.Uri/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-ooWzobr5RAq34r9uan1r/WPXJYG1XWy9KanrxNvEnBzbFdQbMG7Y3bVi4QxR7xZMNLOxLLTAyXvnSkfj5boZSg==",
-      "path": "runtime.unix.system.private.uri/4.3.0",
-      "hashPath": "runtime.unix.system.private.uri.4.3.0.nupkg.sha512"
-    },
-    "System.IO/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-3qjaHvxQPDpSOYICjUoTsmoq5u6QJAFRUITgeT/4gqkF1bajbSmb1kwSxEA8AHlofqgcKJcM8udgieRNhaJ5Cg==",
-      "path": "system.io/4.3.0",
-      "hashPath": "system.io.4.3.0.nupkg.sha512"
-    },
-    "System.IO.Pipelines/4.7.2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-rGIIhoY3lUdn9rWeuGdgeZZ0P+SpJ1wZI5g8TnXqgvuhFgUP7iP9Nt5FZebYInQZQxqnwjPxdYYBE5l/8PJmqQ==",
-      "path": "system.io.pipelines/4.7.2",
-      "hashPath": "system.io.pipelines.4.7.2.nupkg.sha512"
-    },
-    "System.Private.Uri/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-I4SwANiUGho1esj4V4oSlPllXjzCZDE+5XXso2P03LW2vOda2Enzh8DWOxwN6hnrJyp314c7KuVu31QYhRzOGg==",
-      "path": "system.private.uri/4.3.0",
-      "hashPath": "system.private.uri.4.3.0.nupkg.sha512"
-    },
-    "System.Reflection/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-KMiAFoW7MfJGa9nDFNcfu+FpEdiHpWgTcS2HdMpDvt9saK3y/G4GwprPyzqjFH9NTaGPQeWNHU+iDlDILj96aQ==",
-      "path": "system.reflection/4.3.0",
-      "hashPath": "system.reflection.4.3.0.nupkg.sha512"
-    },
-    "System.Reflection.Primitives/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-5RXItQz5As4xN2/YUDxdpsEkMhvw3e6aNveFXUn4Hl/udNTCNhnKp8lT9fnc3MhvGKh1baak5CovpuQUXHAlIA==",
-      "path": "system.reflection.primitives/4.3.0",
-      "hashPath": "system.reflection.primitives.4.3.0.nupkg.sha512"
-    },
-    "System.Runtime/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-JufQi0vPQ0xGnAczR13AUFglDyVYt4Kqnz1AZaiKZ5+GICq0/1MH/mO/eAJHt/mHW1zjKBJd7kV26SrxddAhiw==",
-      "path": "system.runtime/4.3.0",
-      "hashPath": "system.runtime.4.3.0.nupkg.sha512"
-    },
     "System.Runtime.CompilerServices.Unsafe/6.0.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
       "path": "system.runtime.compilerservices.unsafe/6.0.0",
       "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
-    },
-    "System.Runtime.Loader/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-DHMaRn8D8YCK2GG2pw+UzNxn/OHVfaWx7OTLBD/hPegHZZgcZh3H6seWegrC4BYwsfuGrywIuT+MQs+rPqRLTQ==",
-      "path": "system.runtime.loader/4.3.0",
-      "hashPath": "system.runtime.loader.4.3.0.nupkg.sha512"
-    },
-    "System.Text.Encoding/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-BiIg+KWaSDOITze6jGQynxg64naAPtqGHBwDrLaCtixsa5bKiR8dpPOHA7ge3C0JJQizJE+sfkz1wV+BAKAYZw==",
-      "path": "system.text.encoding/4.3.0",
-      "hashPath": "system.text.encoding.4.3.0.nupkg.sha512"
-    },
-    "System.Threading.Tasks/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-LbSxKEdOUhVe8BezB/9uOGGppt+nZf6e1VFyw6v3DN6lqitm0OSn2uXMOdtP0M3W4iMcqcivm2J6UgqiwwnXiA==",
-      "path": "system.threading.tasks/4.3.0",
-      "hashPath": "system.threading.tasks.4.3.0.nupkg.sha512"
     },
     "SampleApp/1.0.0": {
       "type": "project",

@@ -1,14 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
-using Amazon.Runtime.Internal;
 using AWS.Lambda.Powertools.Logging;
 using AWS.Lambda.Powertools.Metrics;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using SampleApp.Entities;
 using SampleApp.Repositories;
@@ -22,7 +19,7 @@ namespace LambdaHandlers
 
         public PutItemFunction()
         {
-            Core.Initialize(out _serviceProvider);
+            Common.Initialize(out _serviceProvider);
         }
 
         [Logging(LogEvent = true)]
@@ -62,7 +59,7 @@ namespace LambdaHandlers
                 if (result)
                 {
                     Metrics.AddMetric("SuccessfulPutItem", 1, MetricUnit.Count);
-                    Metrics.AddMetadata("RequestBody", apigProxyEvent.Body);
+                    Metrics.AddMetadata("Item.Id", item.Id);
 
                     return new APIGatewayProxyResponse
                     {

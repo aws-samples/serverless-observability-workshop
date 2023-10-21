@@ -20,35 +20,40 @@ namespace LambdaHandlers
 
         public GetAllItemsFunction()
         {
-            Core.Initialize(out _serviceProvider);
+            Common.Initialize(out _serviceProvider);
         }
 
         [Logging(LogEvent = true)]
         [Tracing]
         public async Task<APIGatewayProxyResponse> FunctionHandler(APIGatewayProxyRequest apigProxyEvent, ILambdaContext context)
         {
+            Foo();
 
             using (var scope = _serviceProvider.CreateScope())
             {
                 var itemRepository = scope.ServiceProvider.GetRequiredService<IItemRepository>();
 
-                Logger.LogInformation("Getting ip address from external service");
-                //Logger.LogInformation($"Location: {location}");
-                //Tracing.AddAnnotation("Location", location);
-                //Tracing.AddMetadata("Location", location);
-
-                //if (limit <= 0 || limit > 100) return BadRequest("The limit should been between [1-100]");
-
                 var body = await itemRepository.GetItemsAsync();
+                var result = JsonSerializer.Serialize(body);
+
+                Logger.LogInformation($"Retrieved {body.Count} items from DynamoDB");
+                Tracing.AddAnnotation("ItemsReturned", body.Count);
+                Tracing.AddMetadata("Headers", apigProxyEvent.Headers);
 
                 return new APIGatewayProxyResponse
                 {
-                    Body = JsonSerializer.Serialize(body),
+                    Body = result,
                     StatusCode = (int)HttpStatusCode.OK,
                     Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
                 };
 
             }
+        }
+
+        [Tracing(SegmentName = "Foo")]
+        private void Foo()
+        {
+            Tracing.AddAnnotation("Item", "Bar");
         }
     }
 }

@@ -11,18 +11,19 @@
 
 	  <!-- Generate ready to run images during publishing to improvement cold starts. -->
 	  <PublishReadyToRun>true</PublishReadyToRun>
+	  <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Amazon.Lambda.AspNetCoreServer.Hosting" Version="1.0.0" />
-    <PackageReference Include="AWS.Lambda.Powertools.Logging" Version="1.1.1" />
-    <PackageReference Include="AWS.Lambda.Powertools.Metrics" Version="1.3.2" />
-    <PackageReference Include="AWS.Lambda.Powertools.Tracing" Version="1.1.1" />
-    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.3.7" />
+    <PackageReference Include="Amazon.Lambda.AspNetCoreServer.Hosting" Version="1.6.0" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.203.1" />
   </ItemGroup>
 
   <ItemGroup>
     <InternalsVisibleTo Include="SampleApp.Tests" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Properties\launchSettings.json" />
+  </ItemGroup>
 </Project>

@@ -1,11 +1,11 @@
+using System;
 using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
 using Microsoft.Extensions.DependencyInjection;
 using SampleApp.Repositories;
-using System;
 
-public static class Core
+public static class Common
 {
 
     public static void Initialize(out ServiceProvider serviceProvider)

@@ -1,13 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
-using Amazon.Runtime.Internal;
 using AWS.Lambda.Powertools.Logging;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using SampleApp.Repositories;
 
@@ -20,7 +17,7 @@ namespace LambdaHandlers
 
         public GetItemByIDFunction()
         {
-            Core.Initialize(out _serviceProvider);
+            Common.Initialize(out _serviceProvider);
         }
 
         public async Task<APIGatewayProxyResponse> FunctionHandler(APIGatewayProxyRequest apigProxyEvent, ILambdaContext context)
