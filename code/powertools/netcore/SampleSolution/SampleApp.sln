@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DEAF7F92-411
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApp", "src\SampleApp\SampleApp.csproj", "{FC5B185F-DEBF-46D8-B864-9EF757827789}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5527D965-E863-4E48-8EC1-713E276D1BBD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaHandlers", "src\LambdaHandlers\LambdaHandlers.csproj", "{469507B7-8C72-4995-81C9-64C7D8F2B593}"
 EndProject
 Global
