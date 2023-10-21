@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
-using Microsoft.Extensions.DependencyInjection;
 using SampleApp.Entities;
 using SampleApp.Repositories;
 
-namespace LambdaHandlers
+namespace SampleApp.LambdaHandlers
 {
 
     public class PutItemFunction
@@ -30,6 +26,8 @@ namespace LambdaHandlers
             Console.WriteLine("ip address successfuly captured");
 
             var item = JsonSerializer.Deserialize<Item>(apigProxyEvent.Body);
+
+            if (item == null) return Common.APIResponse(HttpStatusCode.BadRequest, "Fail to validate body");
 
             using (var scope = _serviceProvider.CreateScope())
             {

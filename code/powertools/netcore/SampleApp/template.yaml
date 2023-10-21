@@ -20,15 +20,14 @@ Resources:
   GetAllItemsFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: ./src/LambdaHandlers/
-      Handler: LambdaHandlers::LambdaHandlers.GetAllItemsFunction::FunctionHandler
+      CodeUri: ./src/SampleApp/
+      Handler: SampleApp::SampleApp.LambdaHandlers.GetAllItemsFunction::FunctionHandler
       Runtime: dotnet6
       Architectures:
         - x86_64
       MemorySize: 256
       Environment:
         Variables:
-          POWERTOOLS_SERVICE_NAME: SampleApp.GetAllItemsFunction
           SAMPLE_TABLE: !Ref SampleTable
       Policies:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
@@ -45,15 +44,14 @@ Resources:
   GetItemByIDFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: ./src/LambdaHandlers/
-      Handler: LambdaHandlers::LambdaHandlers.GetItemByIDFunction::FunctionHandler
+      CodeUri: ./src/SampleApp/
+      Handler: SampleApp::SampleApp.LambdaHandlers.GetItemByIDFunction::FunctionHandler
       Runtime: dotnet6
       Architectures:
         - x86_64
       MemorySize: 256
       Environment:
         Variables:
-          POWERTOOLS_SERVICE_NAME: SampleApp-GetItemByIDFunction
           SAMPLE_TABLE: !Ref SampleTable
       Policies:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
@@ -70,15 +68,14 @@ Resources:
   PutItemFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: ./src/LambdaHandlers/
-      Handler: LambdaHandlers::LambdaHandlers.PutItemFunction::FunctionHandler
+      CodeUri: ./src/SampleApp/
+      Handler: SampleApp::SampleApp.LambdaHandlers.PutItemFunction::FunctionHandler
       Runtime: dotnet6
       Architectures:
         - x86_64
       MemorySize: 256
       Environment:
         Variables:
-          POWERTOOLS_SERVICE_NAME: SampleApp-PutItemFunction
           SAMPLE_TABLE: !Ref SampleTable
       Policies:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
