@@ -9,32 +9,37 @@ const client = new DynamoDBClient({ region: "us-east-1" });
 const ddbDocClient = DynamoDBDocument.from(client);
 
 const logger = new Logger();
-const metrics = new Metrics();
+const metrics = new Metrics({
+  namespace: 'SampleApp',
+  serviceName: 'Items',
+});
 const tracer = new Tracer();
 
 export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-      /* This SampleAPP contains
-    1 - Running logs
-    2 - Working metrics
-    3 - Working Tracer
-    4 - Running DynamoDB search by item
-    5 - You can create more segments and subsegments for Tracer
-    6 - You can customize other items you want, such as the type of event and things like that
-    */
+
 
     let response: APIGatewayProxyResult;
+    
+    const singleMetric = metrics.singleMetric();
+    // This metric will have the "FunctionContext" dimension, and no "metricUnit" dimension:
+    singleMetric.addDimension('FunctionContext', '$LATEST');
+    singleMetric.addMetric('TotalExecutions', MetricUnits.Count, 1);
 
     // you can copy and paste this line anywhere in the code to create a log line
-    logger.info("Create a log line");
-    logger.info("Event received: " + JSON.stringify(event, null, 2));
+    let location = event.requestContext.identity.sourceIp;
+    let body = JSON.parse(event.body)
 
+    logger.appendKeys({
+       AdditionalInfo: {
+         RequestLocation: location,
+         ItemID: body.id,
+       }
+    });
+    
+    logger.debug("ip address successfuly captured"); //this log entry will have additional info
 
      // ColdStart is an automatic metric that Lambda Powertools creates, you can create more metrics
     metrics.captureColdStartMetric();
-
-    // This line creates metrics, put the metric you want in the part of the code you want
-    // MetricsUnits is the type of metric, it can be Count, Bytes, Milliseconds, None, Percent, etc.
-    metrics.addMetric("FirstMetric", MetricUnits.Count, 1);
 
 
     // You need to take the segment automatically created by Lambda and pass it to Tracer
@@ -47,18 +52,23 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
         tracer.setSegment(handlerSegment);
 
         const item = await putItem(event)
+        
+        metrics.addMetric("SuccessfulPutItem", MetricUnits.Count, 1);
+        metrics.addMetadata("request_location", location);
 
         response = {
             statusCode: 200,
             headers: {
                 'Access-Control-Allow-Origin': '*'
             },
-            body: "Item adicionado com sucesso"
+            body: "Item added successfuly"
         }
+
     } catch (err) {
         let error_message = `Error getting dynamodb items: ${err}`
         // error log
         logger.error(error_message);
+        metrics.addMetric("FailedPutItem", MetricUnits.Count, 1);
         response = {
             statusCode: 500,
             body: JSON.stringify({

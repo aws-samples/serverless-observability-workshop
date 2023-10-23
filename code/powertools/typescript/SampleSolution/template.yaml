@@ -48,8 +48,8 @@ Resources:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             RestApiId: !Ref Api
-            Path: /items
-            Method: get
+            Path: /api/items
+            Method: GET
     Metadata: # Manage esbuild properties
       BuildMethod: esbuild
       BuildProperties:
@@ -77,8 +77,8 @@ Resources:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             RestApiId: !Ref Api
-            Path: /items/{id}
-            Method: get
+            Path: /api/items/{id}
+            Method: GET
     Metadata: # Manage esbuild properties
       BuildMethod: esbuild
       BuildProperties:
@@ -106,8 +106,8 @@ Resources:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             RestApiId: !Ref Api
-            Path: /items
-            Method: post
+            Path: /api/items
+            Method: POST
     Metadata: # Manage esbuild properties
       BuildMethod: esbuild
       BuildProperties:
