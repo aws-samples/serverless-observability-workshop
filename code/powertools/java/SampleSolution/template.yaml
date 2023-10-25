@@ -100,27 +100,6 @@ Resources:
             Path: /items/{id}
             Method: GET
 
-  HelloFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: .
-      FunctionName: hello-metrics-world
-      Handler: com.item.handler.HelloMetricsWorldHandler::handleRequest
-      Runtime: java11
-      Architectures:
-        - x86_64
-      MemorySize: 1024
-      Environment:
-        Variables:
-          JAVA_TOOL_OPTIONS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
-      Events:
-        HelloEvent:
-          Type: Api
-          Properties:
-            RestApiId: !Ref Api
-            Path: /hello
-            Method: GET
-
   # DynamoDB table to store item: {id: &lt;ID&gt;, name: &lt;NAME&gt;}
   SampleTable:
     Type: AWS::Serverless::SimpleTable

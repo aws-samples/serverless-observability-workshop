@@ -23,7 +23,6 @@ import software.amazon.lambda.powertools.logging.LoggingUtils;
 import software.amazon.lambda.powertools.metrics.Metrics;
 import software.amazon.cloudwatchlogs.emf.logger.MetricsLogger;
 import software.amazon.cloudwatchlogs.emf.model.Unit;
-import software.amazon.cloudwatchlogs.emf.model.DimensionSet;
 import software.amazon.lambda.powertools.metrics.MetricsUtils;
 import software.amazon.lambda.powertools.tracing.Tracing;
 import software.amazon.lambda.powertools.tracing.TracingUtils;
@@ -69,7 +68,6 @@ public class GetItemByIdHandler implements RequestHandler<APIGatewayProxyRequest
 
             Item item = getItemById(id);
             if (item == null) {
-                metricsLogger.putDimensions(DimensionSet.of("Service", "Items"));
                 metricsLogger.putMetric("ItemNotFound", 1, Unit.COUNT);
     
                 return new APIGatewayProxyResponseEvent()
@@ -77,7 +75,6 @@ public class GetItemByIdHandler implements RequestHandler<APIGatewayProxyRequest
                         .withBody("No item found with id: " + id);
             }
 
-            metricsLogger.putDimensions(DimensionSet.of("Service", "Items"));
             metricsLogger.putMetric("SuccessfulGetItem", 1, Unit.COUNT);
 
             TracingUtils.putAnnotation("Item Id", String.valueOf(item.getId()));
