@@ -74,12 +74,9 @@ public class PostItemHandler implements RequestHandler<APIGatewayProxyRequestEve
             logger.info("Request Details");
 
             createItem(item);
-            withSingleMetric("SuccessfulPutItem", 1, Unit.COUNT, "SampleApp", (metric) -> {
-                metric.setDimensions(DimensionSet.of("Service", "Items"));
-            });
 
             metricsLogger.putDimensions(DimensionSet.of("Service", "Items"));
-            metricsLogger.putMetric("SuccessfulPutItem1", 1, Unit.COUNT);
+            metricsLogger.putMetric("SuccessfulPutItem", 1, Unit.COUNT);
 
             metricsLogger.putMetadata("correlation_id", input.getRequestContext().getRequestId());
 
