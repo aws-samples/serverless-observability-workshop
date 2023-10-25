@@ -28,8 +28,6 @@ import software.amazon.lambda.powertools.metrics.MetricsUtils;
 import software.amazon.lambda.powertools.tracing.Tracing;
 import software.amazon.lambda.powertools.tracing.TracingUtils;
 
-import static software.amazon.lambda.powertools.metrics.MetricsUtils.withSingleMetric;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -71,21 +69,16 @@ public class GetItemByIdHandler implements RequestHandler<APIGatewayProxyRequest
 
             Item item = getItemById(id);
             if (item == null) {
-                withSingleMetric("ItemNotFound", 1, Unit.COUNT, "SampleApp", (metric) -> {
-                    metric.setDimensions(DimensionSet.of("Service", "Items"));
-                });
+                metricsLogger.putDimensions(DimensionSet.of("Service", "Items"));
+                metricsLogger.putMetric("ItemNotFound", 1, Unit.COUNT);
     
                 return new APIGatewayProxyResponseEvent()
                         .withStatusCode(404)
                         .withBody("No item found with id: " + id);
             }
 
-            withSingleMetric("SuccessfulGetItem", 1, Unit.COUNT, "SampleApp", (metric) -> {
-                metric.setDimensions(DimensionSet.of("Service", "Items"));
-            });
             metricsLogger.putDimensions(DimensionSet.of("Service", "Items"));
-            metricsLogger.putMetric("SuccessfulGetItem1", 1, Unit.COUNT);
-
+            metricsLogger.putMetric("SuccessfulGetItem", 1, Unit.COUNT);
 
             TracingUtils.putAnnotation("Item Id", String.valueOf(item.getId()));
             TracingUtils.putMetadata("Item Name", item.getName());

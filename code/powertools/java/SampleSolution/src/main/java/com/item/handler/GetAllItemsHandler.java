@@ -25,8 +25,6 @@ import software.amazon.cloudwatchlogs.emf.model.Unit;
 import software.amazon.lambda.powertools.metrics.MetricsUtils;
 import software.amazon.lambda.powertools.tracing.Tracing;
 
-import static software.amazon.lambda.powertools.metrics.MetricsUtils.withSingleMetric;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -59,12 +57,9 @@ public class GetAllItemsHandler implements RequestHandler<APIGatewayProxyRequest
 
             logger.info("Received request: " + JSON.std.asString(input));
             List<Item> items = getAllItems();
-
-            withSingleMetric("SuccessfulGetAllItems", 1, Unit.COUNT, "SampleApp", (metric) -> {
-                metric.setDimensions(DimensionSet.of("Service", "Items"));
-            });
             
-            //metricsLogger.putMetric("SuccessfulGetAllItems", 1, Unit.COUNT);
+            metricsLogger.putDimensions(DimensionSet.of("Service", "Items"));
+            metricsLogger.putMetric("SuccessfulGetAllItems", 1, Unit.COUNT);
             metricsLogger.putMetadata("correlation_id", input.getRequestContext().getRequestId());
 
             return new APIGatewayProxyResponseEvent()
