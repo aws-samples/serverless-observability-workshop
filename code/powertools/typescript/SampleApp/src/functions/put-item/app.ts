@@ -42,7 +42,7 @@ const putItem = async (event) => {
     let response
     try {
         const body = JSON.parse(event.body)
-        const id = body.id
+        const id = body.id.toString()
         const name = body.name
 
         var params = {
