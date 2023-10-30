@@ -9,10 +9,10 @@
     ".NETCoreApp,Version=v6.0/linux-x64": {
       "SampleApp/1.0.0": {
         "dependencies": {
-          "AWS.Lambda.Powertools.Logging": "1.3.2",
-          "AWS.Lambda.Powertools.Metrics": "1.4.2",
+          "AWS.Lambda.Powertools.Logging": "1.3.3",
+          "AWS.Lambda.Powertools.Metrics": "1.4.3",
           "AWS.Lambda.Powertools.Tracing": "1.3.2",
-          "AWSSDK.DynamoDBv2": "3.7.203.1",
+          "AWSSDK.DynamoDBv2": "3.7.203.11",
           "Amazon.Lambda.AspNetCoreServer.Hosting": "1.6.0",
           "Microsoft.Extensions.DependencyInjection": "7.0.0"
         },
@@ -125,26 +125,26 @@
           }
         }
       },
-      "AWS.Lambda.Powertools.Logging/1.3.2": {
+      "AWS.Lambda.Powertools.Logging/1.3.3": {
         "dependencies": {
           "AspectInjector": "2.8.1",
           "Microsoft.Extensions.Logging": "7.0.0"
         },
         "runtime": {
           "lib/net6.0/AWS.Lambda.Powertools.Logging.dll": {
-            "assemblyVersion": "1.3.2.0",
-            "fileVersion": "1.3.2.0"
+            "assemblyVersion": "1.3.3.0",
+            "fileVersion": "1.3.3.0"
           }
         }
       },
-      "AWS.Lambda.Powertools.Metrics/1.4.2": {
+      "AWS.Lambda.Powertools.Metrics/1.4.3": {
         "dependencies": {
           "AspectInjector": "2.8.1"
         },
         "runtime": {
           "lib/net6.0/AWS.Lambda.Powertools.Metrics.dll": {
-            "assemblyVersion": "1.4.2.0",
-            "fileVersion": "1.4.2.0"
+            "assemblyVersion": "1.4.3.0",
+            "fileVersion": "1.4.3.0"
           }
         }
       },
@@ -162,28 +162,28 @@
           }
         }
       },
-      "AWSSDK.Core/3.7.204": {
+      "AWSSDK.Core/3.7.204.10": {
         "runtime": {
           "lib/netcoreapp3.1/AWSSDK.Core.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.7.204.0"
+            "fileVersion": "3.7.204.10"
           }
         }
       },
-      "AWSSDK.DynamoDBv2/3.7.203.1": {
+      "AWSSDK.DynamoDBv2/3.7.203.11": {
         "dependencies": {
-          "AWSSDK.Core": "3.7.204"
+          "AWSSDK.Core": "3.7.204.10"
         },
         "runtime": {
           "lib/netcoreapp3.1/AWSSDK.DynamoDBv2.dll": {
             "assemblyVersion": "3.3.0.0",
-            "fileVersion": "3.7.203.1"
+            "fileVersion": "3.7.203.11"
           }
         }
       },
       "AWSSDK.XRay/3.7.200.36": {
         "dependencies": {
-          "AWSSDK.Core": "3.7.204"
+          "AWSSDK.Core": "3.7.204.10"
         },
         "runtime": {
           "lib/netcoreapp3.1/AWSSDK.XRay.dll": {
@@ -194,7 +194,7 @@
       },
       "AWSXRayRecorder.Core/2.14.0": {
         "dependencies": {
-          "AWSSDK.Core": "3.7.204",
+          "AWSSDK.Core": "3.7.204.10",
           "Amazon.Lambda.SQSEvents": "2.1.0"
         },
         "runtime": {
@@ -363,19 +363,19 @@
       "path": "aspectinjector/2.8.1",
       "hashPath": "aspectinjector.2.8.1.nupkg.sha512"
     },
-    "AWS.Lambda.Powertools.Logging/1.3.2": {
+    "AWS.Lambda.Powertools.Logging/1.3.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-DgNDUQiwXbCuPuwGC5X5efNe3CTQ/NPbxE6lQoXm2LtwBRqr4g0P0IWGGMOR3uJCp4NmRDwYO5avlZH2JamWkQ==",
-      "path": "aws.lambda.powertools.logging/1.3.2",
-      "hashPath": "aws.lambda.powertools.logging.1.3.2.nupkg.sha512"
+      "sha512": "sha512-FnSk2HxefekalHs1giKtQ5b27QRRIpOB+xezhkwXZ57J5KjEWqgRpJdu/4V2+JCElfXZdkmpk3V+pRCXlq0Oow==",
+      "path": "aws.lambda.powertools.logging/1.3.3",
+      "hashPath": "aws.lambda.powertools.logging.1.3.3.nupkg.sha512"
     },
-    "AWS.Lambda.Powertools.Metrics/1.4.2": {
+    "AWS.Lambda.Powertools.Metrics/1.4.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-/tO8OPeKThMRzlB4BfgozILlgAdfe2NPPS2A6xjEL6sH2kS5wPi9A4HeVYrC0oo5pwZ/zvoUYV47LQ/12Ak4SQ==",
-      "path": "aws.lambda.powertools.metrics/1.4.2",
-      "hashPath": "aws.lambda.powertools.metrics.1.4.2.nupkg.sha512"
+      "sha512": "sha512-uQ5NnVyFXqwzf92IBu9mLzQZYV6k9DCE91HVL7bxtplZwFzRU71rDwZuJxEeHzBOuDfqjwY9a5oiZmybhK56CQ==",
+      "path": "aws.lambda.powertools.metrics/1.4.3",
+      "hashPath": "aws.lambda.powertools.metrics.1.4.3.nupkg.sha512"
     },
     "AWS.Lambda.Powertools.Tracing/1.3.2": {
       "type": "package",
@@ -384,19 +384,19 @@
       "path": "aws.lambda.powertools.tracing/1.3.2",
       "hashPath": "aws.lambda.powertools.tracing.1.3.2.nupkg.sha512"
     },
-    "AWSSDK.Core/3.7.204": {
+    "AWSSDK.Core/3.7.204.10": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-lr9Ttgl7sP+8JKlAXsusDfVXOGWRGB7y14tN7zUuRP1IeXacIogFxOsfDTbecuvut/LnwYOj8J3s0h7R+oHiDw==",
-      "path": "awssdk.core/3.7.204",
-      "hashPath": "awssdk.core.3.7.204.nupkg.sha512"
+      "sha512": "sha512-wYTTmT2C8aik3AxQlOVTH2JpsEnprUCbmeImj04nv1bmfw/vhfh1egXX9/F4ptQF8RReMS4tWIS07csfFRG+Kg==",
+      "path": "awssdk.core/3.7.204.10",
+      "hashPath": "awssdk.core.3.7.204.10.nupkg.sha512"
     },
-    "AWSSDK.DynamoDBv2/3.7.203.1": {
+    "AWSSDK.DynamoDBv2/3.7.203.11": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-HlpkMKxMitX6qZZhTyLfyzfQy58UBJZcC9xaH/04i2AiCfCgtJQwGNKUJvzifrqE5JFAowtLcFRwz4i1y+B2ag==",
-      "path": "awssdk.dynamodbv2/3.7.203.1",
-      "hashPath": "awssdk.dynamodbv2.3.7.203.1.nupkg.sha512"
+      "sha512": "sha512-9qVPYFPGP2qSTEhGXaa7jmaVQql7gomjF7RA8V3YPTgbQl3lghdiHWAU/zsGTy5zL3Gs4fNPoGYaKBG03gpOHw==",
+      "path": "awssdk.dynamodbv2/3.7.203.11",
+      "hashPath": "awssdk.dynamodbv2.3.7.203.11.nupkg.sha512"
     },
     "AWSSDK.XRay/3.7.200.36": {
       "type": "package",

@@ -12,9 +12,14 @@ Globals:
       Variables:
         POWERTOOLS_SERVICE_NAME: powertools-dotnet-sample-app
         POWERTOOLS_LOG_LEVEL: Debug
-        POWERTOOLS_SERVICE_NAME: ItemsService
   Api:
     TracingEnabled: true
+    MethodSettings:
+            - ResourcePath: "/*"
+              HttpMethod: "*"
+              DataTraceEnabled: True
+              LoggingLevel: INFO
+              MetricsEnabled: True
 Resources:
   # API Gateway
   Api:
