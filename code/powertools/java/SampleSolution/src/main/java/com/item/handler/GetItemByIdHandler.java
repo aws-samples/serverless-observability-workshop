@@ -23,12 +23,9 @@ import software.amazon.lambda.powertools.logging.LoggingUtils;
 import software.amazon.lambda.powertools.metrics.Metrics;
 import software.amazon.cloudwatchlogs.emf.logger.MetricsLogger;
 import software.amazon.cloudwatchlogs.emf.model.Unit;
-import software.amazon.cloudwatchlogs.emf.model.DimensionSet;
 import software.amazon.lambda.powertools.metrics.MetricsUtils;
 import software.amazon.lambda.powertools.tracing.Tracing;
 import software.amazon.lambda.powertools.tracing.TracingUtils;
-
-import static software.amazon.lambda.powertools.metrics.MetricsUtils.withSingleMetric;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -52,9 +49,9 @@ public class GetItemByIdHandler implements RequestHandler<APIGatewayProxyRequest
     }
 
     @Logging(logEvent = true)
-    @Metrics(namespace = "SampleApp", service = "Items", captureColdStart = true)
     @Tracing
-    @Override 
+    @Metrics(namespace = "SampleApp", service = "Items", captureColdStart = true)
+    @Override
     public APIGatewayProxyResponseEvent handleRequest(final APIGatewayProxyRequestEvent input, final Context context) {
 
         try {
@@ -71,21 +68,17 @@ public class GetItemByIdHandler implements RequestHandler<APIGatewayProxyRequest
 
             Item item = getItemById(id);
             if (item == null) {
-                withSingleMetric("ItemNotFound", 1, Unit.COUNT, "SampleApp", (metric) -> {
-                    metric.setDimensions(DimensionSet.of("Service", "Items"));
-                });
+                metricsLogger.putMetric("ItemNotFound", 1, Unit.COUNT);
     
                 return new APIGatewayProxyResponseEvent()
                         .withStatusCode(404)
                         .withBody("No item found with id: " + id);
             }
 
-            withSingleMetric("SuccessfulGetItem", 1, Unit.COUNT, "SampleApp", (metric) -> {
-                metric.setDimensions(DimensionSet.of("Service", "Items"));
-            });
+            metricsLogger.putMetric("SuccessfulGetItem", 1, Unit.COUNT);
 
-            TracingUtils.putAnnotation("Item Id", String.valueOf(item.getId()));
-            TracingUtils.putMetadata("Item Name", item.getName());
+            TracingUtils.putAnnotation("ItemId", String.valueOf(item.getId()));
+            TracingUtils.putMetadata("ItemName", item.getName());
 
             return new APIGatewayProxyResponseEvent()
                     .withStatusCode(200)

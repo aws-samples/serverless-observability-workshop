@@ -20,12 +20,9 @@ import software.amazon.awssdk.services.dynamodb.model.ScanResponse;
 import software.amazon.lambda.powertools.logging.Logging;
 import software.amazon.lambda.powertools.metrics.Metrics;
 import software.amazon.cloudwatchlogs.emf.logger.MetricsLogger;
-import software.amazon.cloudwatchlogs.emf.model.DimensionSet;
 import software.amazon.cloudwatchlogs.emf.model.Unit;
 import software.amazon.lambda.powertools.metrics.MetricsUtils;
 import software.amazon.lambda.powertools.tracing.Tracing;
-
-import static software.amazon.lambda.powertools.metrics.MetricsUtils.withSingleMetric;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,12 +56,8 @@ public class GetAllItemsHandler implements RequestHandler<APIGatewayProxyRequest
 
             logger.info("Received request: " + JSON.std.asString(input));
             List<Item> items = getAllItems();
-
-            withSingleMetric("SuccessfulGetAllItems", 1, Unit.COUNT, "SampleApp", (metric) -> {
-                metric.setDimensions(DimensionSet.of("Service", "Items"));
-            });
             
-            //metricsLogger.putMetric("SuccessfulGetAllItems", 1, Unit.COUNT);
+            metricsLogger.putMetric("SuccessfulGetAllItems", 1, Unit.COUNT);
             metricsLogger.putMetadata("correlation_id", input.getRequestContext().getRequestId());
 
             return new APIGatewayProxyResponseEvent()
