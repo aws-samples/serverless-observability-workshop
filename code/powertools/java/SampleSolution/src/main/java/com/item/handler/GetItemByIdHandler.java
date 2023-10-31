@@ -49,9 +49,9 @@ public class GetItemByIdHandler implements RequestHandler<APIGatewayProxyRequest
     }
 
     @Logging(logEvent = true)
-    @Metrics(namespace = "SampleApp", service = "Items", captureColdStart = true)
     @Tracing
-    @Override 
+    @Metrics(namespace = "SampleApp", service = "Items", captureColdStart = true)
+    @Override
     public APIGatewayProxyResponseEvent handleRequest(final APIGatewayProxyRequestEvent input, final Context context) {
 
         try {
