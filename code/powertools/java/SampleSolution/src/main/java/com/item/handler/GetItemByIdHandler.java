@@ -77,8 +77,8 @@ public class GetItemByIdHandler implements RequestHandler<APIGatewayProxyRequest
 
             metricsLogger.putMetric("SuccessfulGetItem", 1, Unit.COUNT);
 
-            TracingUtils.putAnnotation("Item Id", String.valueOf(item.getId()));
-            TracingUtils.putMetadata("Item Name", item.getName());
+            TracingUtils.putAnnotation("ItemId", String.valueOf(item.getId()));
+            TracingUtils.putMetadata("ItemName", item.getName());
 
             return new APIGatewayProxyResponseEvent()
                     .withStatusCode(200)
