@@ -160,3 +160,6 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrnc
+
+# sam files
+.aws-sam/

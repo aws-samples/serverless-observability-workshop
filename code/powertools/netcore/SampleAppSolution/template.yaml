@@ -48,7 +48,7 @@ Resources:
         SampleApp:
           Type: Api
           Properties:
-            Path: /api/items
+            Path: /items
             Method: GET
             RestApiId:
               Ref: Api
@@ -73,7 +73,7 @@ Resources:
         SampleApp:
           Type: Api
           Properties:
-            Path: /api/items/{id}
+            Path: /items/{id}
             Method: GET
             RestApiId:
               Ref: Api
@@ -98,7 +98,7 @@ Resources:
         SampleApp:
           Type: Api
           Properties:
-            Path: /api/items
+            Path: /items
             Method: POST
             RestApiId:
               Ref: Api
