@@ -1,0 +1,121 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Sample Item Application
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 100
+    Tracing: Active
+    Environment: 
+      Variables:
+        POWERTOOLS_SERVICE_NAME: SampleApp
+        POWERTOOLS_LOG_LEVEL: Debug
+        POWERTOOLS_METRICS_NAMESPACE: SampleApp
+  Api:
+    TracingEnabled: true
+
+Resources:
+# API Gateway
+  Api:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+
+  PostItemFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      FunctionName: item-api-post
+      Handler: com.item.handler.PostItemHandler::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 1024
+      Tracing: Active
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
+          POWERTOOLS_SERVICE_NAME: SampleApp
+          SAMPLE_APP_TABLE: !Ref SampleTable
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref SampleTable
+      Events:
+        ItemPostEvent:
+          Type: Api
+          Properties:
+            RestApiId: !Ref Api
+            Path: /items
+            Method: POST
+
+  GetAllItemsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      FunctionName: item-api-get-all
+      Handler: com.item.handler.GetAllItemsHandler::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 1024
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
+          SAMPLE_APP_TABLE: !Ref SampleTable
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref SampleTable
+      Events:
+        GetAllItemsEvent:
+          Type: Api
+          Properties:
+            RestApiId: !Ref Api
+            Path: /items
+            Method: GET
+
+  GetItemByIdFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      FunctionName: item-api-get-by-id
+      Handler: com.item.handler.GetItemByIdHandler::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      MemorySize: 1024
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
+          SAMPLE_APP_TABLE: !Ref SampleTable
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref SampleTable
+      Events:
+        GetItemByIdEvent:
+          Type: Api
+          Properties:
+            RestApiId: !Ref Api
+            Path: /items/{id}
+            Method: GET
+
+  # DynamoDB table to store item: {id: &lt;ID&gt;, name: &lt;NAME&gt;}
+  SampleTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: SampleAppItemJava
+      PrimaryKey:
+        Name: Id
+        Type: Number 
+      ProvisionedThroughput:
+        ReadCapacityUnits: 2
+        WriteCapacityUnits: 2
+
+Outputs:
+  ApiUrl:
+    Description: API Gateway endpoint URL
+    Value: !Sub "https://${Api}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+  SampleTable:
+    Description: Sample Data Table ARN
+    Value: !GetAtt SampleTable.Arn
