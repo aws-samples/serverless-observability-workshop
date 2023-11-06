@@ -2,7 +2,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { DynamoDBDocument } from "@aws-sdk/lib-dynamodb";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb"; // ES6 import
 
-const client = new DynamoDBClient({ region: "us-east-1" });
+const client = new DynamoDBClient({});
 const ddbDocClient = DynamoDBDocument.from(client);
 
 
@@ -42,8 +42,8 @@ const putItem = async (event) => {
     let response
     try {
         const body = JSON.parse(event.body)
-        const id = body.id.toString()
-        const name = body.name
+        const id = body.Id.toString()
+        const name = body.Name
 
         var params = {
             TableName: process.env.SAMPLE_TABLE,
