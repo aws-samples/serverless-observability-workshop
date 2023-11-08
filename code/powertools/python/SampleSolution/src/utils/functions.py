@@ -10,7 +10,4 @@ tracer = Tracer()
 def get_calling_ip():
     http = urllib3.PoolManager()
     response = http.request('GET',SERVICE_URL, headers={'User-Agent': USER_AGENT})
-    location = response.data.decode('utf-8').strip()
-    tracer.put_annotation("Location", location)
-    tracer.put_metadata("Location", location)
-    return location
+    return response.data.decode('utf-8').strip()
