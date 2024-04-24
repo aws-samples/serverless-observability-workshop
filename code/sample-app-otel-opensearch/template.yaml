@@ -1,0 +1,252 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  otel-observability-app
+
+Transform:
+- AWS::Serverless-2016-10-31
+
+Parameters:
+  MasterUserPassword:
+    Description: Password for the internal master user
+    Type: String
+    NoEcho: true
+
+
+Globals:
+  Function:
+    Runtime: nodejs18.x
+    Timeout: 100
+    MemorySize: 128
+    CodeUri: ./
+    Environment:
+      Variables:
+        APP_NAME: !Ref SampleTable
+        SAMPLE_TABLE: !Ref SampleTable
+        SERVICE_NAME: item_service
+        ENABLE_DEBUG: false
+        # Enable usage of KeepAlive to reduce overhead of short-lived actions, like DynamoDB queries
+        AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+
+Resources:
+# API Gateway
+  Api:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+
+# Lambda Functions
+  getAllItemsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/get-all-items.getAllItemsHandler
+      Description: A simple example includes a HTTP get method to get all items from a DynamoDB table.
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref SampleTable
+        - CloudWatchPutMetricPolicy: {}
+        - CloudWatchLambdaInsightsExecutionRolePolicy
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref Api
+            Path: /items
+            Method: GET
+            
+  getByIdFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/get-by-id.getByIdHandler
+      Description: A simple example includes a HTTP get method to get one item by id from a DynamoDB table.
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref SampleTable
+        - CloudWatchPutMetricPolicy: {}
+        - CloudWatchLambdaInsightsExecutionRolePolicy
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref Api
+            Path: /items/{id}
+            Method: GET
+            
+  putItemFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/put-item.putItemHandler
+      Description: A simple example includes a HTTP post method to add one item to a DynamoDB table.
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref SampleTable
+        - CloudWatchPutMetricPolicy: {}
+        - SNSPublishMessagePolicy:
+            TopicName: !Sub ${NewItemTopic.TopicName}
+        - CloudWatchLambdaInsightsExecutionRolePolicy
+      Environment:
+        Variables:
+          TOPIC_NAME: !Ref NewItemTopic
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref Api
+            Path: /items
+            Method: POST
+
+  notifyNewItemFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/notify-item.notifyNewItemHandler
+      Description: A simple example that is triggered by a SNS message to notify of a new item insertion.
+      Policies:
+        - CloudWatchLambdaInsightsExecutionRolePolicy
+      Events:
+        TopicListener:
+          Type: SNS
+          Properties:
+            Topic: !Ref NewItemTopic
+            FilterPolicy:
+              Status:
+                - Success
+
+# SNS Topic
+  NewItemTopic:
+    Type: AWS::SNS::Topic
+
+# DynamoDB Table            
+  SampleTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: id
+        Type: String
+
+# CloudWatch Logs - Log Groups
+  ApiAccessLogGroup:
+    Type: AWS::Logs::LogGroup
+    DependsOn: Api
+    Properties:
+      LogGroupName: !Sub /aws/apigateway/${Api}
+      RetentionInDays: 7
+  
+  GetByIdLogGroup:
+    Type: AWS::Logs::LogGroup
+    DependsOn: getByIdFunction
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${getByIdFunction}
+      RetentionInDays: 7
+
+  GetAllItemsLogGroup:
+    Type: AWS::Logs::LogGroup
+    DependsOn: getAllItemsFunction
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${getAllItemsFunction}
+      RetentionInDays: 7
+
+  PutItemLogGroup:
+    Type: AWS::Logs::LogGroup
+    DependsOn: putItemFunction
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${putItemFunction}
+      RetentionInDays: 7
+
+  NotifyItemLogGroup:
+    Type: AWS::Logs::LogGroup
+    DependsOn: notifyNewItemFunction
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${notifyNewItemFunction}
+      RetentionInDays: 7
+
+  FargateCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: fargate-cluster
+      CapacityProviders:
+        - FARGATE
+      DefaultCapacityProviderStrategy:
+        - CapacityProvider: FARGATE
+          Weight: 1
+  
+  OpensearchDomain:
+  # Opensearch domain to host traces
+    Type: AWS::OpenSearchService::Domain
+    Properties:
+      DomainName: "otel-traces-opensearch"
+      EngineVersion: "OpenSearch_2.11"
+      AccessPolicies:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: "*"
+            Action: "es:*"
+            Resource: !Sub "arn:aws:es:${AWS::Region}:${AWS::AccountId}:domain/otel-traces-opensearch/*"
+      AdvancedSecurityOptions:
+        Enabled: true
+        InternalUserDatabaseEnabled: true
+        MasterUserOptions:
+          MasterUserName: "admin"
+          MasterUserPassword: !Ref MasterUserPassword
+      NodeToNodeEncryptionOptions:
+        Enabled: true
+      EncryptionAtRestOptions:
+        Enabled: true
+      DomainEndpointOptions: 
+        EnforceHTTPS: true
+      EBSOptions:
+          EBSEnabled: true
+          VolumeSize: 50
+          VolumeType: gp2
+      ClusterConfig:
+        InstanceCount: 1
+        MultiAZWithStandbyEnabled: false
+        InstanceType: "t3.medium.search"
+  DataPrepperIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+            Action: sts:AssumeRole
+  
+  ECSTaskExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2008-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy          
+Outputs:
+  ApiUrl:
+    Description: "API Gateway endpoint URL for Prod stage"
+    Value: !Sub "https://${Api}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+
+  SampleTable:
+    Value: !GetAtt SampleTable.Arn
+    Description: Sample Data Table ARN
+  
+  OSDomainURL:
+    Description: "The URL to access the Opensearch domain"
+    Value: !Join
+      - ''
+      - - 'https://'
+        - !GetAtt OpensearchDomain.DomainEndpoint
+        - '/_dashboards'
+
+  DataPrepperRoleARN:
+    Description: "The ARN of the Data Prepper task IAM Role"
+    Value: !GetAtt DataPrepperIAMRole.Arn
+  
+  ECSTaskExecutionRoleARN:
+    Description: "The ARN of the ECS Task Execution IAM Role"
+    Value: !GetAtt ECSTaskExecutionRole.Arn
+

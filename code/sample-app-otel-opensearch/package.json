@@ -1,0 +1,19 @@
+{
+    "name": "obersability-app",
+    "description": "observability-app-description",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "aws-embedded-metrics": "^2.0.0",
+        "aws-sdk": "^2.683.0",
+        "aws-xray-sdk-core": "^3.0.1",
+        "uuid": "^8.1.0",
+        "lambda-log": "^2.4.0"
+    },
+    "devDependencies": {
+        "jest": "^26.0.1"
+    },
+    "scripts": {
+        "test": "jest"
+    }
+}
