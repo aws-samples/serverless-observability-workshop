@@ -18,7 +18,7 @@
     "requiresCompatibilities": [
         "FARGATE"
     ],
-    "executionRoleArn":"ECS_IAM_TASK_ROLE",
+    "executionRoleArn":"<ECS_IAM_TASK_ROLE>",
     "cpu": "256",
     "memory": "512"
 }
