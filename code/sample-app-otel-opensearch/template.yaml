@@ -202,6 +202,7 @@ Resources:
         InstanceCount: 1
         MultiAZWithStandbyEnabled: false
         InstanceType: "t3.medium.search"
+  
   DataPrepperIAMRole:
     Type: AWS::IAM::Role
     Properties:
@@ -248,4 +249,8 @@ Outputs:
   ECSTaskExecutionRoleARN:
     Description: "The ARN of the ECS Task Execution IAM Role"
     Value: !GetAtt ECSTaskExecutionRole.Arn
+  
+  FargateClusterName:
+    Description: "The name of the Fargate Cluster"
+    Value: !Ref FargateCluster
 
