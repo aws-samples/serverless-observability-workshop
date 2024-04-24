@@ -165,3 +165,6 @@ msbuild.log
 msbuild.err
 msbuild.wrnc
 code/powertools/java/SampleSolution/.aws-sam/build.toml
+
+# sam build folder
+code/sample-app-otel-opensearch/.aws-sam/
