@@ -1,0 +1,24 @@
+{
+    "family": "data-prepper-taskdef",
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+        {
+            "name": "data-prepper-container",
+            "image": "<DP_IMAGE_URI>",
+            "portMappings": [
+                {
+                    "containerPort": 4900,
+                    "hostPort": 4900,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true
+        }
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "executionRoleArn":"ECS_IAM_TASK_ROLE",
+    "cpu": "256",
+    "memory": "512"
+}
