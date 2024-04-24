@@ -240,7 +240,6 @@ Outputs:
       - ''
       - - 'https://'
         - !GetAtt OpensearchDomain.DomainEndpoint
-        - '/_dashboards'
 
   DataPrepperRoleARN:
     Description: "The ARN of the Data Prepper task IAM Role"

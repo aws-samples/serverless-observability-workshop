@@ -13,7 +13,7 @@ entry-pipeline:
         name: "raw-trace-pipeline"
     - pipeline:
         name: "service-map-pipeline"
-raw-pipeline:
+raw-trace-pipeline:
   source:
     pipeline:
       name: "entry-pipeline"
