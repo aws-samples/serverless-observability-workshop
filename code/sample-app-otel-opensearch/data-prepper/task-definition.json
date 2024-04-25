@@ -18,6 +18,7 @@
                 "options": {
                     "awslogs-group": "/ecs/data-prepper",
                     "awslogs-region": "<REGION>",
+                    "awslogs-create-group": "true",
                     "awslogs-stream-prefix": "ecs"
                 }
             }
@@ -26,8 +27,8 @@
     "requiresCompatibilities": [
         "FARGATE"
     ],
-    "executionRoleArn":"<ECS_IAM_TASK_ROLE>",
-    "taskRoleArn": "<ECS_IAM_TASK_ROLE>",
+    "executionRoleArn":"<ECS_EXE_TASK_ROLE>",
+    "taskRoleArn": "<ECS_TASK_ROLE>",
     "cpu": "256",
     "memory": "512"
 }

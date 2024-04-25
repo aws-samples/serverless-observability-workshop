@@ -238,7 +238,7 @@ Resources:
               Service: ecs-tasks.amazonaws.com
             Action: sts:AssumeRole
   
-  ECSTaskExecutionRole:
+  ECSExecutionRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -249,7 +249,8 @@ Resources:
               Service: ecs-tasks.amazonaws.com
             Action: sts:AssumeRole
       ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy          
+        - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+        - arn:aws:iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs          
 
   DPVPC:
     Type: AWS::EC2::VPC
@@ -327,9 +328,13 @@ Outputs:
     Description: "The ARN of the Data Prepper task IAM Role"
     Value: !GetAtt DataPrepperIAMRole.Arn
   
-  ECSTaskExecutionRoleARN:
+  ECSExecutionRoleARN:
     Description: "The ARN of the ECS Task Execution IAM Role"
-    Value: !GetAtt ECSTaskExecutionRole.Arn
+    Value: !GetAtt ECSExecutionRole.Arn
+
+  DataPrepperIAMRole:
+    Description: "The ARN of the ECS Task Execution IAM Role"
+    Value: !GetAtt DataPrepperIAMRole.Arn
   
   FargateClusterName:
     Description: "The name of the Fargate Cluster"
