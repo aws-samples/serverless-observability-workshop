@@ -178,7 +178,20 @@ Resources:
       DefaultCapacityProviderStrategy:
         - CapacityProvider: FARGATE
           Weight: 1
-  
+  DPSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Default security group for VPC
+      VpcId: !Ref DPVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 4900
+          ToPort: 4900
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 21890
+          ToPort: 21890
+          CidrIp: 0.0.0.0/0
   OpensearchDomain:
   # Opensearch domain to host traces
     Type: AWS::OpenSearchService::Domain
@@ -198,7 +211,7 @@ Resources:
         InternalUserDatabaseEnabled: true
         MasterUserOptions:
           MasterUserName: "admin"
-          MasterUserPassword: !Ref MasterUserPassword
+          MasterUserPassword: !Ref OpensearchMasterUserPassword
       NodeToNodeEncryptionOptions:
         Enabled: true
       EncryptionAtRestOptions:
