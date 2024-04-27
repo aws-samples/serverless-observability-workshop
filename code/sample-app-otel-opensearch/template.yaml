@@ -27,7 +27,7 @@ Globals:
   Function:
     Runtime: nodejs18.x
     Timeout: 100
-    MemorySize: 128
+    MemorySize: 512
     CodeUri: ./
     Environment:
       Variables:

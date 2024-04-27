@@ -7,5 +7,5 @@ COPY pipelines.yaml /usr/share/data-prepper/pipelines/pipelines.yaml
 # Copy your data-prepper-config.yaml file into the container
 COPY data-prepper-config.yaml /usr/share/data-prepper/config/data-prepper-config.yaml
 
-
-EXPOSE 4900
+# Expose ports 4900 and 21890
+EXPOSE 4900 21890

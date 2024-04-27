@@ -1,0 +1,21 @@
+extensions:
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: 'localhost:4318'
+exporters:
+  logging:
+  otlp/data-prepper:
+    endpoint: <DP_PUBLIC_IP>:21890
+    tls:
+      insecure: true
+service:
+  telemetry:
+    logs:
+      level: "DEBUG"
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [otlp/data-prepper]
+  

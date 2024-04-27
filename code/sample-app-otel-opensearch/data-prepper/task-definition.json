@@ -10,6 +10,11 @@
                     "containerPort": 4900,
                     "hostPort": 4900,
                     "protocol": "tcp"
+                },
+                {
+                    "containerPort": 21890,
+                    "hostPort": 21890,
+                    "protocol": "tcp"
                 }
             ],
             "essential": true,
