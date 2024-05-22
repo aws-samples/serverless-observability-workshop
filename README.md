@@ -1,4 +1,4 @@
-
+...........
 # AWS Serverless Observability Workshop
 
 This repository is part of workshop [Serverless Observability Workshop](https://serverless-observability.workshop.aws/en/). This repo have [AWS Serverless Application](https://aws.amazon.com/serverless/sam/) to deploy a demo application for education purpose about how to instrument, collect, and analyze metrics, traces, and log of your serverless application to understand what are happen and prevent failures
