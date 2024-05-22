@@ -1,33 +1,58 @@
+...........
+# AWS Serverless Observability Workshop
 
-# AWS Serverless Observability Workshop 
+This repository is part of workshop [Serverless Observability Workshop](https://serverless-observability.workshop.aws/en/). This repo have [AWS Serverless Application](https://aws.amazon.com/serverless/sam/) to deploy a demo application for education purpose about how to instrument, collect, and analyze metrics, traces, and log of your serverless application to understand what are happen and prevent failures
 
-This workshop can be found [here](http://observability.serverlessworkshops.io/).
+### Components
+- Amazon CloudWatch
+- AWS X-Ray
+- AWS Lambda
+- Amazon DynamoDB
+- AWS SNS
 
-## Done:
+## Overall architecture
 
-- [x] ~~Write the Logger lib for Custom Logging and Metrics.~~
-- [x] ~~Implement extensible Metric method for reusability across multiple apps.~~
-- [x] ~~Add Business and ColdStart CloudWatch Custom Metrics.~~
-- [x] ~~Add X-Ray Annotations and Metadata for method calls.~~
-- [x] ~~Demonstrate how to inject X-Ray Subsegments to orchestrate method calls.~~
-- [x] ~~Enable Debug toggle on SAM Template.~~
-- [x] ~~Create X-Ray Group for querying failed events by annotations.~~
-- [x] ~~Better document helper classes.~~
-- [X] ~~Add Metric to capture Cold Start duration to report Avg time on CW Dashboards.~~
-- [X] ~~Create Log Subscription to asyncronously create CW Metrics.~~
-- [X] ~~Properly chain method calls inside X-Ray Subsegments.~~
-- [X] ~~Enable API Gateway Custom Access Logs.~~
-- [X] ~~Create CDK project to create CloudWatch Dashboard with Operational/Business metrics from Lambda.~~
-- [X] ~~Add Parameters for creating the CDK CW Dashboard stack.~~
-- [X] ~~Create Synthetic Canaries module.~~
-- [X] ~~Create Contributor Insight module.~~
+![Architecture](/img/architecture.png)
 
-## TO-DO:
+In this sample, we will have an API Gateway triggering AWS Lambdas to PUT and GET data from Amazon DynamoDB and publish message in a AWS SNS topic and observe what happen in the application.
 
-- [ ] Create CDK project to provision ES (Advanced Module in workshop).
-- [ ] Create Circuit Breaker module.
-- [ ] Create Partner Solutions module.
-- [ ] Create Log Subscription to push logs to ES.
-- [ ] Create Kibana Visualization / Dashboards for import/export.
-- [ ] Create Decorators for Tracing methods using X-Ray in a Tracing Lib.
-- [ ] Transform the Tracing/Logging Lib into a Layer for extended reusability (Maybe not needed for the workshop).
+### Getting started:
+
+Make sure you have the necessary IAM permissions to deploy all the resources that will be deployed in this sample
+
+- In the AWS Region that you want to deploy the solution, create a AWS Cloud9 environment.
+
+#### Deploying
+**Remember:** This repo is part of an [Workshop](https://serverless-observability.workshop.aws/en/) and have some steps there to help solution works perfectly.
+
+1. Clone the repo in your Cloud9 env:
+    ```shell
+   git clone https://github.com/aws-samples/serverless-observability-workshop.git
+   ```
+
+2. If you want to understand how to collect metrics and logs follow this step:
+    ```shell
+   cd ~/environment/serverless-observability-workshop/code/sample-app
+   npm install
+   sam build
+   sam deploy -g
+   ```   
+    1. For more details see [HERE](https://catalog.us-east-1.prod.workshops.aws/workshops/b3fc5f7a-ff34-41fa-a9f2-4cd9e093e6ff/en-US/module-1)
+
+3. If you want to undestand how to inject and check Traces follow this step:
+    ```shell
+   cd ~/environment/serverless-observability-workshop/code/sample-app-tracing
+   npm install
+   sam build
+   sam deploy -g
+   ```   
+
+#### Clean Up
+1. Go back in your Cloud9 environment and remove each project like this example:
+    ```shell
+    cd ~/environment/serverless-observability-workshop/code/sample-app
+    sam delete
+   ```   
+
+## License:
+This library is licensed under the MIT-0 License. See the LICENSE file.

@@ -8,8 +8,18 @@ Globals:
   Function:
     Timeout: 100
     Tracing: Active
+    Environment: 
+      Variables:
+        POWERTOOLS_SERVICE_NAME: powertools-dotnet-sample-app
+        POWERTOOLS_LOG_LEVEL: Debug
   Api:
     TracingEnabled: true
+    MethodSettings:
+            - ResourcePath: "/*"
+              HttpMethod: "*"
+              DataTraceEnabled: True
+              LoggingLevel: INFO
+              MetricsEnabled: True
 Resources:
   # API Gateway
   Api:
@@ -28,6 +38,7 @@ Resources:
       MemorySize: 256
       Environment:
         Variables:
+          POWERTOOLS_SERVICE_NAME: GetAllItemsFunction
           SAMPLE_TABLE: !Ref SampleTable
       Policies:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
@@ -52,6 +63,7 @@ Resources:
       MemorySize: 256
       Environment:
         Variables:
+          POWERTOOLS_SERVICE_NAME: GetItemByIDFunction
           SAMPLE_TABLE: !Ref SampleTable
       Policies:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
@@ -76,6 +88,7 @@ Resources:
       MemorySize: 256
       Environment:
         Variables:
+          POWERTOOLS_SERVICE_NAME: PutItemFunction
           SAMPLE_TABLE: !Ref SampleTable
       Policies:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
