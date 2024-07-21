@@ -197,7 +197,7 @@ Resources:
     Type: AWS::OpenSearchService::Domain
     Properties:
       DomainName: "otel-traces-opensearch"
-      EngineVersion: "OpenSearch_2.11"
+      EngineVersion: "OpenSearch_2.13"
       AccessPolicies:
         Version: "2012-10-17"
         Statement:
