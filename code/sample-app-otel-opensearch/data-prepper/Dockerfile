@@ -1,5 +1,5 @@
 # Use the official OpenSearch Data Prepper image
-FROM opensearchproject/data-prepper:2.7.0
+FROM opensearchproject/data-prepper:2.8.0
 
 # Copy your pipelines.yaml file into the container
 COPY pipelines.yaml /usr/share/data-prepper/pipelines/pipelines.yaml
