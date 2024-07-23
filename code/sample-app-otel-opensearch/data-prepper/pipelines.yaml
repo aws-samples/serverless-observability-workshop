@@ -26,8 +26,9 @@ raw-trace-pipeline:
   sink:
     - opensearch:
          hosts: [ "<OPENSEARCH_ENDPOINT>" ]
-         aws_sigv4: true
          index_type: trace-analytics-raw
+         aws:
+          region: <REGION>
 service-map-pipeline:
   delay: "100"
   source:
@@ -42,5 +43,6 @@ service-map-pipeline:
   sink:
     - opensearch:
          hosts: [ "<OPENSEARCH_ENDPOINT>" ]
-         aws_sigv4: true
          index_type: trace-analytics-service-map
+         aws:
+          region: <REGION>
