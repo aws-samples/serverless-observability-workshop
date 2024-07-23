@@ -29,6 +29,7 @@ Globals:
     Timeout: 100
     MemorySize: 512
     CodeUri: ./
+    # <ADD_ADOT_LAYER_HERE>
     # <ADD_ADDITIONAL_PROPERTIES_ALL_FXs>
     Environment:
       Variables:
