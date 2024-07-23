@@ -29,6 +29,7 @@ Globals:
     Timeout: 100
     MemorySize: 512
     CodeUri: ./
+    # <ADD_ADDITIONAL_PROPERTIES_ALL_FXs>
     Environment:
       Variables:
         APP_NAME: !Ref SampleTable
@@ -37,7 +38,7 @@ Globals:
         ENABLE_DEBUG: false
         # Enable usage of KeepAlive to reduce overhead of short-lived actions, like DynamoDB queries
         AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
-        # <ADD_ADDITIONAL_ENV_VARS_ALL_FX>
+        # <ADD_ADDITIONAL_ENV_VARS_ALL_FXs>
 
 Resources:
 # API Gateway
@@ -45,6 +46,7 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       StageName: Prod
+      # <ADD_ADDITIONAL_PROPERTIES_APIGW>
 
 # Lambda Functions
   getAllItemsFunction:
@@ -64,6 +66,7 @@ Resources:
             RestApiId: !Ref Api
             Path: /items
             Method: GET
+            # <ADD_ADDITIONAL_PROPERTIES_APIGW>
             
   getByIdFunction:
     Type: AWS::Serverless::Function
