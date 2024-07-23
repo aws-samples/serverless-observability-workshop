@@ -37,6 +37,7 @@ Globals:
         ENABLE_DEBUG: false
         # Enable usage of KeepAlive to reduce overhead of short-lived actions, like DynamoDB queries
         AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+        # <ADD_ADDITIONAL_ENV_VARS_ALL_FX>
 
 Resources:
 # API Gateway
