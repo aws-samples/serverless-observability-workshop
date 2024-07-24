@@ -22,7 +22,7 @@ raw-trace-pipeline:
       buffer_size: 1024
       batch_size: 160
   processor:
-    - otel_trace_raw:
+    - otel_traces:
   sink:
     - opensearch:
          hosts: [ "<OPENSEARCH_ENDPOINT>" ]
@@ -39,7 +39,7 @@ service-map-pipeline:
       buffer_size: 10240
       batch_size: 160
   processor:
-    - service_map_stateful:
+    - service_map:
   sink:
     - opensearch:
          hosts: [ "<OPENSEARCH_ENDPOINT>" ]
